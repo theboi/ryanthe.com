@@ -1,0 +1,27 @@
+.main {
+  max-height: 100vh;
+}
+
+.navbar {
+  margin: 50px 70px;
+  display: flex;
+  justify-content: flex-end;
+  place-items: center;
+}
+
+.navbar li {
+  cursor: pointer;
+}
+
+.navbar li:not(:first-of-type) {
+  padding: 10px;
+  font-family: 'Nimbus Sans', sans-serif;
+}
+
+.icon {
+  margin-right: auto;
+}
+
+.content {
+  padding: 0 70px;
+}
