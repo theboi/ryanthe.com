@@ -7,13 +7,24 @@
   display: flex;
   justify-content: flex-end;
   place-items: center;
+  height: 50px;
 }
 
-.navbar li {
+.navbar li > * {
   cursor: pointer;
+  transition: all 250ms ease-in-out;
+  color: var(--text)
 }
 
-.navbar li:not(:first-of-type) {
+.navbar li:hover > * {
+  opacity: 0.7;
+}
+
+.navbar li:active > * {
+  opacity: 0.5;
+}
+
+.navbar li:not(:first-of-type) > * {
   padding: 10px;
   font-family: 'Nimbus Sans', sans-serif;
 }
