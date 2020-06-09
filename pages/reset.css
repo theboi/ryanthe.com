@@ -42,8 +42,9 @@ Variables
   --bg0: rgb(255, 255, 255);
   --bg1: rgb(248, 248, 248);
   --bg2: rgb(242, 242, 242);
+  --bg3: rgb(241, 241, 241);
   --text1: rgb(7, 7, 7);
-  --shadow: rgb(238, 238, 238);
+  --shadow: rgb(238, 238, 238, 0.4);
 
   color: var(--text1);
   background-color: var(--bg1);
@@ -51,11 +52,12 @@ Variables
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg0: rgb(12, 12, 12);
-    --bg1: rgb(19, 19, 19);
+    --bg0: rgb(38, 38, 38);
+    --bg1: rgb(31, 31, 31);
     --bg2: rgb(23, 23, 23);
+    --bg3: rgb(58, 58, 58);
     --text1: rgb(255, 255, 255);
-    --shadow: rgb(40, 40, 40);
+    --shadow: rgba(0, 0, 0, 0);
 
     color: var(--text1);
     background-color: var(--bg1);
