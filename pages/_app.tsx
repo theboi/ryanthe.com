@@ -18,15 +18,26 @@ export default function App({ Component, pageProps }: AppProps) {
   const [isDarkMode, setDarkMode] = useState(true);
 
   useEffect(() => {
+    const darkModeQuery = window.matchMedia("(prefers-color-scheme: dark)")
     setDarkMode(
-      window.matchMedia("(prefers-color-scheme:dark)").matches ? true : false
+      darkModeQuery.matches ? true : false
     );
-    window
-      .matchMedia("(prefers-color-scheme:dark)")
-      .addEventListener("change", (event) => {
+    try {
+      // Chrome, Firefox
+      darkModeQuery.addEventListener("change", (event) => {
         setDarkMode(event.matches);
       });
-    matchesMedia = window.matchMedia("(prefers-color-scheme:dark)").matches;
+    } catch {
+      try {
+        // Safari
+        darkModeQuery.addListener((event) => {
+          setDarkMode(event.matches);
+        })
+      } catch {
+        console.error("ERROR: Media query for dark mode")
+      }
+    }
+    matchesMedia = darkModeQuery.matches;
   }, [matchesMedia]);
 
   useEffect(() => {
