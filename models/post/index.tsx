@@ -14,11 +14,10 @@ enum Genre {
 export default class Post {
   static Genre = Genre;
 
-  url: string;
   title: string;
   desc: string;
-  genre: Genre | [Genre];
-  media: string | [string];
+  genre: Genre | Genre[];
+  media: string | string[];
 
   static getAll() {
     if (!firebase.apps.length) firebase.initializeApp(K.firebaseConfig);
@@ -34,7 +33,6 @@ export default class Post {
 
   constructor(url?: string) {
     if (!firebase.apps.length) firebase.initializeApp(K.firebaseConfig);
-    this.url = url ?? "BLANK"
 
     firebase
       .firestore()
