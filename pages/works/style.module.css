@@ -4,6 +4,7 @@ MOBILE
 .main {
   display: flex;
   width: 100%;
+  flex-direction: column;
 }
 
 .filter {
@@ -22,4 +23,7 @@ DESKTOP
 //////////////////////////////////////////////////////////////////////////////*/
 
 @media screen and (min-width: 768px) {
+  .main {
+    flex-direction: row;
+  }
 }
