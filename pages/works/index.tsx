@@ -6,7 +6,6 @@ import style from "./style.module.css";
 import PostCard from "../../components/cards/post";
 
 export default function WorkPage(props) {
-  const posts: [Post] = [new Post("title")];
 
   const [currentPosts, setCurrentPosts] = useState([]);
 
@@ -15,6 +14,7 @@ export default function WorkPage(props) {
       const data = Array.from(res, (value) => {
         return value.data();
       });
+      console.log(data)
       if (!currentPosts.length) setCurrentPosts(data);
     });
   });

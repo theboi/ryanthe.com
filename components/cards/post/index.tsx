@@ -4,7 +4,7 @@ import Link from "next/link";
 import style from "./style.module.css";
 import Post from "../../../models/post";
 
-export default function PostCard(props: { value: Post; currentPosts: Post[]}) {
+export default function PostCard(props: { value: Post; currentPosts: Post[] }) {
   const LinkWrapper = ({ condition, wrapper, children }) =>
     condition ? wrapper(children) : children;
 
@@ -14,20 +14,21 @@ export default function PostCard(props: { value: Post; currentPosts: Post[]}) {
       wrapper={(children) => (
         <Link
           href="/works/[query]"
-          as={`/works/${props.value?.title
-            ?.toLowerCase()
-            .replace(/[^0-9a-zA-Z-_]/g, "-") ?? "ERROR"}`}
+          as={`/works/${Post.parseToUrl(props.value?.title ?? "ERROR")}`}
         >
           <a>{children}</a>
         </Link>
       )}
     >
-      <div
-        className={`${style.gridPost} ${
-          !props.currentPosts.length ? style.loading : null
-        }`}
-      >
-        {props.value?.media as string[]}
+      <div className={style.content}>
+        <div
+          className={`${style.gridPost} ${
+            !props.currentPosts.length ? style.loading : null
+          }`}
+        >
+          {props.value?.title}
+          {props.value?.body}
+        </div>
       </div>
     </LinkWrapper>
   );
