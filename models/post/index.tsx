@@ -18,6 +18,7 @@ export default class Post {
   genre: Genre | Genre[];
   media: File[];
 
+  static Genre = Genre
   static cache: firebase.firestore.CollectionReference;
 
   static accessDb = () => {
