@@ -6,6 +6,13 @@ import "firebase/storage";
 
 import K from "../../constants";
 
+interface PostData {
+  title: string;
+  body: string;
+  genre: Genre | Genre[];
+  media: File[];
+}
+
 enum Genre {
   Code,
   Design,
@@ -18,13 +25,28 @@ export default class Post {
   genre: Genre | Genre[];
   media: File[];
 
-  static Genre = Genre
-  static cache: firebase.firestore.CollectionReference;
+  static Genre = Genre;
+  static cache: firebase.firestore.DocumentData;
 
-  static accessDb = () => {
+  static getPosts = (url?: string) => {
     if (!firebase.apps.length) firebase.initializeApp(K.firebaseConfig);
-    if (!Post.cache) Post.cache = firebase.firestore().collection("posts");
-    return Post.cache;
+    if (!Post.cache) {
+      Post.cache = firebase
+        .firestore()
+        .collection("posts")
+        .get()
+        .then((res) => {
+          return Array.from(res.docs, (doc) => {
+            console.log(doc.data());
+            return new Post(
+              doc.data() as PostData
+            );
+          });
+        });
+    }
+    return url
+      ? Post.cache.then((value) => value.find((el) => el.title === url))
+      : Post.cache;
   };
 
   static parseToUrl(title: string): string {
@@ -49,7 +71,9 @@ export default class Post {
         });
     });
 
-    Post.accessDb()
+    firebase
+      .firestore()
+      .collection("posts")
       .doc(url)
       .withConverter({
         toFirestore: (post: Post) => {
@@ -69,7 +93,12 @@ export default class Post {
         },
         fromFirestore: (snapshot, options) => {
           const data = snapshot.data(options);
-          return new Post(data.title, data.body, data.genre, data.media);
+          return new Post({
+            title: data.title,
+            body: data.body,
+            genre: data.genre,
+            media: data.media,
+          });
         },
       })
       .set(data)
@@ -81,47 +110,10 @@ export default class Post {
       });
   };
 
-  static getAll() {
-    return Post.accessDb()
-      .get()
-      .then((res) => {
-        return res.docs;
-      });
-  }
-
-  static getWithUrl(url: string) {
-    return Post.accessDb()
-      .doc(url)
-      .get()
-      .then((res) => res.data());
-  }
-
-  constructor(
-    title: string,
-    body: string,
-    genre: Genre | Genre[],
-    media: File[]
-  ) {
-    // Post.accessDb()
-    //   .get()
-    //   .then((res) => {
-    //     const post = res.docs.find((doc) => {
-    //       doc.data().url ?? "" === url;
-    //     }) ?? {
-    //       data: () => {
-    //         return {
-    //           title: "ERROR",
-    //           body: "ERROR",
-    //           genre: "ERROR",
-    //           media: "ERROR",
-    //         };
-    //       },
-    //     };
-    //   });
-
-    this.title = title;
-    this.body = body;
-    this.genre = genre;
-    this.media = media;
+  constructor(data: PostData) {
+    this.title = data.title;
+    this.body = data.body;
+    this.genre = data.genre;
+    this.media = data.media;
   }
 }
