@@ -10,34 +10,40 @@ interface PostData {
   title: string;
   body: string;
   genre: Genre | Genre[];
+  media: string[];
+}
+
+interface NewPost {
+  title: string;
+  body: string;
+  genre: Genre | Genre[];
   media: File[];
 }
 
 enum Genre {
-  Code,
-  Design,
-  Robot,
+  Code = 'CODE',
+  Design = 'DESIGN',
+  Robot = 'ROBOT',
 }
 
 export default class Post {
   title: string;
   body: string;
   genre: Genre | Genre[];
-  media: File[];
+  media: string[];
 
   static Genre = Genre;
-  static cache: firebase.firestore.DocumentData;
+  static firestoreCache: firebase.firestore.DocumentData;
 
   static getPosts = (url?: string) => {
     if (!firebase.apps.length) firebase.initializeApp(K.firebaseConfig);
-    if (!Post.cache) {
-      Post.cache = firebase
+    if (!Post.firestoreCache) {
+      Post.firestoreCache = firebase
         .firestore()
         .collection("posts")
         .get()
         .then((res) => {
           return Array.from(res.docs, (doc) => {
-            console.log(doc.data());
             return new Post(
               doc.data() as PostData
             );
@@ -45,15 +51,15 @@ export default class Post {
         });
     }
     return url
-      ? Post.cache.then((value) => value.find((el) => el.title === url))
-      : Post.cache;
+      ? Post.firestoreCache.then((value) => value.find((el) => el.title === url))
+      : Post.firestoreCache;
   };
 
   static parseToUrl(title: string): string {
     return title.toLowerCase().replace(/[^0-9a-zA-Z-_]/g, "-");
   }
 
-  static addNew = (data: Post) => {
+  static addNew = (data: NewPost) => {
     const url = Post.parseToUrl(data.title);
     data.media.map((value) => {
       firebase
@@ -75,32 +81,6 @@ export default class Post {
       .firestore()
       .collection("posts")
       .doc(url)
-      .withConverter({
-        toFirestore: (post: Post) => {
-          return {
-            title: post.title,
-            body: post.body,
-            genre: post.genre,
-            media: post.media.map((value) => {
-              return firebase
-                .storage()
-                .ref()
-                .child("images")
-                .child(url)
-                .child(value.name).fullPath;
-            }),
-          };
-        },
-        fromFirestore: (snapshot, options) => {
-          const data = snapshot.data(options);
-          return new Post({
-            title: data.title,
-            body: data.body,
-            genre: data.genre,
-            media: data.media,
-          });
-        },
-      })
       .set(data)
       .then((res) => {
         console.log(res);
@@ -109,6 +89,13 @@ export default class Post {
         console.error(err);
       });
   };
+
+  static getStorage(ref: string) {
+    if (!firebase.apps.length) firebase.initializeApp(K.firebaseConfig);
+    return firebase.storage().ref().child(ref).getDownloadURL().then(res => {
+      return res
+    })
+  }
 
   constructor(data: PostData) {
     this.title = data.title;
