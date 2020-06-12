@@ -1,10 +1,25 @@
-import React, { ReactChildren, ReactNode } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
 import style from "./style.module.css";
 import Post from "../../../models/post";
 
-export default function PostCard(props: { value: Post; currentPosts: Post[] }) {
+export default function PostCard(props: {
+  post: Post;
+  currentPosts: Post[];
+  isGrid: boolean;
+}) {
+  const [image, setImage] = useState("");
+
+  useEffect(() => {
+    console.log("abc");
+    if (props.post) {
+      Post.getStorage(props.post.media[0]).then((res) => {
+        setImage(res);
+      });
+    }
+  });
+
   const LinkWrapper = ({ condition, wrapper, children }) =>
     condition ? wrapper(children) : children;
 
@@ -14,7 +29,7 @@ export default function PostCard(props: { value: Post; currentPosts: Post[] }) {
       wrapper={(children) => (
         <Link
           href="/works/[query]"
-          as={`/works/${Post.parseToUrl(props.value?.title ?? "ERROR")}`}
+          as={`/works/${Post.parseToUrl(props.post?.title ?? "ERROR")}`}
         >
           <a>{children}</a>
         </Link>
@@ -22,12 +37,19 @@ export default function PostCard(props: { value: Post; currentPosts: Post[] }) {
     >
       <div className={style.content}>
         <div
-          className={`${style.gridPost} ${
+          className={`${style.post} ${props.isGrid ? style.grid : style.list} ${
             !props.currentPosts.length ? style.loading : null
           }`}
         >
-          {props.value?.title}
-          {props.value?.body}
+          <div
+            className={style.image}
+            style={{ backgroundImage: `url(${image})` }}
+          />
+          <div className={style.details}>
+            <p>{props.post?.genre}</p>
+            <h2>{props.post?.title}</h2>
+            <p>{props.post?.body}</p>
+          </div>
         </div>
       </div>
     </LinkWrapper>

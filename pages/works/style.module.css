@@ -8,14 +8,22 @@ MOBILE
 }
 
 .filter {
-  width: 300px;
+  width: 200px;
+}
+
+.content {
+  width: 100%;
 }
 
 .content.grid {
-  width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
+}
+
+.content.list {
+  display: flex;
+  flex-direction: column;
 }
 
 /* /////////////////////////////////////////////////////////////////////////////
