@@ -7,6 +7,7 @@ import "firebase/storage";
 import K from "../../constants";
 
 interface PostData {
+  date: string;
   title: string;
   body: string;
   genre: Genre | Genre[];
@@ -14,6 +15,7 @@ interface PostData {
 }
 
 interface NewPost {
+  date: string;
   title: string;
   body: string;
   genre: Genre | Genre[];
@@ -21,12 +23,14 @@ interface NewPost {
 }
 
 enum Genre {
+  None = "NONE",
   Code = "CODE",
   Design = "DESIGN",
   Robot = "ROBOT",
 }
 
 export default class Post {
+  date: string;
   title: string;
   body: string;
   genre: Genre | Genre[];
@@ -49,9 +53,10 @@ export default class Post {
           });
         });
     }
+
     return url
       ? Post.firestoreCache.then((value) =>
-          value.find((el) => el.title === url)
+          value.find((el) => Post.parseToUrl(el.title) === url)
         )
       : Post.firestoreCache;
   };
@@ -82,7 +87,20 @@ export default class Post {
       .firestore()
       .collection("posts")
       .doc(url)
-      .set(data)
+      .set({
+        date: data.date,
+        title: data.title,
+        body: data.body,
+        genre: data.genre,
+        media: data.media.map((value) => {
+          return firebase
+            .storage()
+            .ref()
+            .child("images")
+            .child(url)
+            .child(value.name).fullPath;
+        }),
+      })
       .then((res) => {
         console.log(res);
       })
@@ -95,24 +113,32 @@ export default class Post {
     if (!firebase.apps.length) firebase.initializeApp(K.firebaseConfig);
 
     if (!Post.storageImageCache.has(ref)) {
-      console.log("getdownload");
-      Post.storageImageCache.set(ref, (async () => {
-        return await firebase
-          .storage()
-          .ref()
-          .child(ref)
-          .getDownloadURL()
-          .then((res) => {
-            return axios.get(res).then((res) => {
-              return res;
+      Post.storageImageCache.set(
+        ref,
+        (async () => {
+          return await firebase
+            .storage()
+            .ref()
+            .child(ref)
+            .getDownloadURL()
+            .then((res) => {
+              return axios.get(res).then((res) => {
+                return res;
+              });
+            })
+            .catch((err) => {
+              console.error("ERROR: ", err);
+              return;
             });
-          })
-      })())
+        })()
+      );
     }
+
     return Post.storageImageCache.get(ref);
   }
 
   constructor(data: PostData) {
+    this.date = data.date;
     this.title = data.title;
     this.body = data.body;
     this.genre = data.genre;

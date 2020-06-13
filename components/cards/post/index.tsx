@@ -12,10 +12,12 @@ export default function PostCard(props: {
   const [image, setImage] = useState("");
 
   useEffect(() => {
-    if (props.post) {
+    if (props.post?.media.length) {
       Post.getStorage(props.post.media[0]).then((res) => {
         setImage(res.config.url);
-      });
+      }).catch(err => {
+        console.error("ERROR: ", err)
+      })
     }
   });
 

@@ -10,6 +10,7 @@ export default function WorkPage() {
 
   useEffect(() => {
     Post.getPosts().then((data) => {
+      if (!data.length) console.error("ERROR: No data to display");
       if (!currentPosts.length) setCurrentPosts(data);
     });
   });

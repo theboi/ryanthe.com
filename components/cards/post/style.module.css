@@ -39,8 +39,6 @@ MOBILE
   color: var(--white);
   box-shadow: 0 0 10px 5px var(--shadow);
   border: solid 1px var(--border);
-
-  background-color: var(--bg0);
   height: 300px;
 }
 
@@ -72,6 +70,7 @@ MOBILE
 .post.list .image {
   height: 180px;
   width: 100%;
+  border: solid 1px var(--border);
 }
 
 .post.list .details {
@@ -81,7 +80,7 @@ MOBILE
 DESKTOP
 //////////////////////////////////////////////////////////////////////////////*/
 
-@media screen and (min-width: /*768px*/ 1000px) {
+@media screen and /*(min-width: 768px)*/ (hover: hover) {
   /* Grid */
   .post.grid .image {
     filter: brightness(100%);
@@ -103,15 +102,21 @@ DESKTOP
 
   /* List */
   .post.list {
-    background-color: var(--bg1);
     border: solid 1px transparent;
-    flex-direction: row;
-    height: 230px;
+    background-color: var(--bg1);
   }
 
   .post.list:hover {
     border: solid 1px var(--border);
     background-color: var(--bg0);
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  /* List */
+  .post.list {
+    flex-direction: row;
+    height: 230px;
   }
   
   .post.list .image {
