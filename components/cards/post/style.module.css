@@ -81,7 +81,7 @@ MOBILE
 DESKTOP
 //////////////////////////////////////////////////////////////////////////////*/
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: /*768px*/ 1000px) {
   /* Grid */
   .post.grid .image {
     filter: brightness(100%);

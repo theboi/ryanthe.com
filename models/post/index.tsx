@@ -1,6 +1,6 @@
-import React from "react";
+import axios from "axios";
 
-import * as firebase from "firebase/app";
+import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/storage";
 
@@ -21,9 +21,9 @@ interface NewPost {
 }
 
 enum Genre {
-  Code = 'CODE',
-  Design = 'DESIGN',
-  Robot = 'ROBOT',
+  Code = "CODE",
+  Design = "DESIGN",
+  Robot = "ROBOT",
 }
 
 export default class Post {
@@ -34,6 +34,7 @@ export default class Post {
 
   static Genre = Genre;
   static firestoreCache: firebase.firestore.DocumentData;
+  static storageImageCache = new Map();
 
   static getPosts = (url?: string) => {
     if (!firebase.apps.length) firebase.initializeApp(K.firebaseConfig);
@@ -44,14 +45,14 @@ export default class Post {
         .get()
         .then((res) => {
           return Array.from(res.docs, (doc) => {
-            return new Post(
-              doc.data() as PostData
-            );
+            return new Post(doc.data() as PostData);
           });
         });
     }
     return url
-      ? Post.firestoreCache.then((value) => value.find((el) => el.title === url))
+      ? Post.firestoreCache.then((value) =>
+          value.find((el) => el.title === url)
+        )
       : Post.firestoreCache;
   };
 
@@ -92,9 +93,23 @@ export default class Post {
 
   static getStorage(ref: string) {
     if (!firebase.apps.length) firebase.initializeApp(K.firebaseConfig);
-    return firebase.storage().ref().child(ref).getDownloadURL().then(res => {
-      return res
-    })
+
+    if (!Post.storageImageCache.has(ref)) {
+      console.log("getdownload");
+      Post.storageImageCache.set(ref, (async () => {
+        return await firebase
+          .storage()
+          .ref()
+          .child(ref)
+          .getDownloadURL()
+          .then((res) => {
+            return axios.get(res).then((res) => {
+              return res;
+            });
+          })
+      })())
+    }
+    return Post.storageImageCache.get(ref);
   }
 
   constructor(data: PostData) {
