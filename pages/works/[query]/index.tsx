@@ -1,22 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 import Post from "../../../models/post";
 import style from "./style.module.css";
 
 export default function WorksUrlPage() {
+  const [content, setContent] = useState(
+    new Post({ date: "", title: "", body: "", genre: Post.Genre.None, media: [""] })
+  );
 
   const query = useRouter().query.query as string;
 
   useEffect(() => {
-    Post.getPosts(query ?? "title").then(post => {
-      console.log(post)
-    })
-  })
+    Post.getPosts(query ?? "title").then((post) => {
+      setContent(post);
+    });
+  });
 
   return (
     <>
-      <div className={style.main}></div>
+      <div className={style.main}>
+        <h1>{content.title}</h1>
+        <p>{content.body}</p>
+      </div>
     </>
   );
 }
