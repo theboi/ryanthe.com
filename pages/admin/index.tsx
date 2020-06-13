@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import * as firebase from "firebase/app";
+import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/storage"
 import style from "./style.module.css";
@@ -9,6 +9,7 @@ import Post from "../../models/post";
 let titleField: string;
 let bodyField: string;
 let fileField: File[];
+let dateField: string;
 
 export default function AdminPage() {
   const [signedIn, setSignedIn] = useState(true);
@@ -39,8 +40,9 @@ export default function AdminPage() {
         {signedIn ? (
           <>
             <div className={style.admin}>
-              <input placeholder="Title" type="text" className={style.bodyField} onChange={event => titleField = event.target.value}/>
-              <textarea placeholder="Body" name="Content" id="content" cols={30} rows={10} className={style.bodyField} onChange={event => bodyField = event.target.value} />
+              <input placeholder="Title" type="text" className={style.smallInput} onChange={event => titleField = event.target.value}/>
+              <input placeholder="Date" type="text" className={style.smallInput} onChange={event => dateField = event.target.value}/>
+              <textarea placeholder="Body" name="Content" id="content" cols={30} rows={10} className={style.largeInput} onChange={event => bodyField = event.target.value} />
               <div className={style.genre}>
                 <input type="checkbox" id="code"/>
                 <label htmlFor="code">Code</label>

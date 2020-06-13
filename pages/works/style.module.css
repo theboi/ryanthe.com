@@ -5,6 +5,7 @@ MOBILE
   display: flex;
   width: 100%;
   flex-direction: column;
+  margin-bottom: 100px;
 }
 
 .filter {
@@ -33,5 +34,6 @@ DESKTOP
 @media screen and (min-width: 768px) {
   .main {
     flex-direction: row;
+    margin-bottom: 200px;
   }
 }

@@ -3,7 +3,7 @@ import { AppProps } from "next/app";
 import Head from "next/head";
 import Link from "next/link";
 
-import * as firebase from "firebase/app";
+import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 
