@@ -46,6 +46,10 @@ export default function App({ Component, pageProps, router }: AppProps) {
     <>
       <Head>
         <title>Ryan Theodore The</title>
+        <meta name="version" content="v2.0"/>
+        <meta name="description" content="Ryan Theodore The's personal portfolio website"/>
+        <meta name="subject" content="Ryan's Portfolio Website"/>
+        <meta name="keywords" content="Ryan, Portfolio, Personal, Coding, Programming, Designing, Student"/>
         <link
           rel="icon"
           href={
@@ -55,7 +59,6 @@ export default function App({ Component, pageProps, router }: AppProps) {
           }
         />
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossOrigin="anonymous" />
-
       </Head>
       <div className={style.main}>
         <ul className={style.navbar}>
