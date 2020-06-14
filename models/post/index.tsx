@@ -122,9 +122,7 @@ export default class Post {
             .child(ref)
             .getDownloadURL()
             .then((res) => {
-              return axios.get(res).then((res) => {
-                return res;
-              });
+              return res
             })
             .catch((err) => {
               console.error("ERROR: ", err);
