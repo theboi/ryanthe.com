@@ -15,7 +15,7 @@ MOBILE
 }
 
 .hey {
-  font-family: 'Nimbus Sans', serif;
+  font-family: "Nimbus Sans", serif;
   font-size: 100px;
   font-weight: 400;
 }
@@ -38,6 +38,18 @@ MOBILE
   margin-right: 10px;
 }
 
+.socialButtons {
+  transition: all 250ms ease-in-out;
+  color: var(--white);
+  text-align: center;
+  font-size: 30px;
+  padding: 7px;
+  border-radius: 100px;
+  width: 50px;
+  height: 50px;
+  line-height: 39px;
+}
+
 /* /////////////////////////////////////////////////////////////////////////////
 DESKTOP
 //////////////////////////////////////////////////////////////////////////////*/
@@ -55,5 +67,18 @@ DESKTOP
   .intro {
     margin: 0;
     margin-right: auto;
+  }
+}
+
+@media screen and (hover: hover) {
+  .socialButtons {
+    font-size: 25px;
+    width: 45px;
+    height: 45px;
+    line-height: 34px;
+  }
+
+  .socialButtons:hover {
+    filter: brightness(70%) blur(0.5px);
   }
 }
