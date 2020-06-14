@@ -46,10 +46,10 @@ export default function App({ Component, pageProps, router }: AppProps) {
     <>
       <Head>
         <title>Ryan Theodore The</title>
-        <meta name="version" content="v2.0"/>
-        <meta name="description" content="Ryan Theodore The's personal portfolio website"/>
-        <meta name="subject" content="Ryan's Portfolio Website"/>
-        <meta name="keywords" content="Ryan, Portfolio, Personal, Coding, Programming, Designing, Student"/>
+        <meta name="version" content="v2.0" />
+        <meta name="description" content="Ryan Theodore The's personal portfolio website" />
+        <meta name="subject" content="Ryan's Portfolio Website" />
+        <meta name="keywords" content="Ryan, Portfolio, Personal, Coding, Programming, Designing, Student" />
         <link
           rel="icon"
           href={

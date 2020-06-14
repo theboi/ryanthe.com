@@ -9,15 +9,17 @@ export default function PostCard(props: {
   currentPosts: Post[];
   isGrid: boolean;
 }) {
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState<string | ArrayBuffer>(undefined);
 
   useEffect(() => {
     if (props.post?.media.length) {
-      Post.getStorage(props.post.media[0]).then((res) => {
-        setImage(res.config.url);
-      }).catch(err => {
-        console.error("ERROR: ", err)
-      })
+      Post.getStorage(props.post.media[0])
+        .then((res) => {
+          setImage(res)
+        })
+        .catch((err) => {
+          console.error("ERROR: ", err);
+        });
     }
   });
 
