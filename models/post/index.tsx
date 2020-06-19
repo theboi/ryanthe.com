@@ -1,5 +1,3 @@
-import axios from "axios";
-
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/storage";
@@ -10,7 +8,7 @@ interface PostData {
   date: string;
   title: string;
   body: string;
-  genre: Genre | Genre[];
+  genre: Genre[];
   media: string[];
 }
 
@@ -18,22 +16,24 @@ interface NewPost {
   date: string;
   title: string;
   body: string;
-  genre: Genre | Genre[];
+  genre: Genre[];
   media: File[];
 }
 
-enum Genre {
-  None = "NONE",
-  Code = "CODE",
-  Design = "DESIGN",
-  Robot = "ROBOT",
+export enum Genre {
+  Error,
+  All,
+  Code,
+  Design,
+  Robot,
+  Others,
 }
 
 export default class Post {
   date: string;
   title: string;
   body: string;
-  genre: Genre | Genre[];
+  genre: Genre[];
   media: string[];
 
   static Genre = Genre;
@@ -63,6 +63,18 @@ export default class Post {
 
   static parseToUrl(title: string): string {
     return title.toLowerCase().replace(/[^0-9a-zA-Z-_]/g, "-");
+  }
+
+  static genreToString(genre: Genre) {
+    switch (genre) {
+      case 0: return "ERROR"
+      case 1: return "ALL"
+      case 2: return "CODE"
+      case 3: return "DESIGN"
+      case 4: return "ROBOT"
+      case 5: return "OTHERS"
+      default: return ""
+    }
   }
 
   static addNew = (data: NewPost) => {

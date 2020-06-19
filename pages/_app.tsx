@@ -13,11 +13,16 @@ import K from "../constants";
 
 let matchesMedia: boolean;
 let data;
+let listening = false;
 
 export default function App({ Component, pageProps, router }: AppProps) {
   const [isDarkMode, setDarkMode] = useState(true);
+  const [width, setWidth] = useState(-1);
 
   useEffect(() => {
+    if (width === -1) {
+      setWidth(window.innerWidth);
+    }
     const darkModeQuery = window.matchMedia("(prefers-color-scheme: dark)");
     setDarkMode(darkModeQuery.matches ? true : false);
     try {
@@ -40,6 +45,13 @@ export default function App({ Component, pageProps, router }: AppProps) {
 
   useEffect(() => {
     if (!firebase.apps.length) firebase.initializeApp(K.firebaseConfig);
+
+    if (!listening) {
+      window.addEventListener("resize", () => {
+        setWidth(window.innerWidth);
+      });
+      listening = true;
+    }
   });
 
   return (
@@ -47,9 +59,15 @@ export default function App({ Component, pageProps, router }: AppProps) {
       <Head>
         <title>Ryan Theodore The</title>
         <meta name="version" content="v2.0" />
-        <meta name="description" content="Ryan Theodore The's personal portfolio website" />
+        <meta
+          name="description"
+          content="Ryan Theodore The's personal portfolio website"
+        />
         <meta name="subject" content="Ryan's Portfolio Website" />
-        <meta name="keywords" content="Ryan, Portfolio, Personal, Coding, Programming, Designing, Student" />
+        <meta
+          name="keywords"
+          content="Ryan, Portfolio, Personal, Coding, Programming, Designing, Student"
+        />
         <link
           rel="icon"
           href={
@@ -58,7 +76,12 @@ export default function App({ Component, pageProps, router }: AppProps) {
               : "./favicons/favicon-light.ico"
           }
         />
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+          crossOrigin="anonymous"
+        />
       </Head>
       <div className={style.main}>
         <ul className={style.navbar}>
@@ -88,7 +111,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
           </li>
         </ul>
         <div className={style.content}>
-          <Component {...pageProps} data={data} />
+          <Component {...pageProps} data={data} width={width} />
         </div>
       </div>
     </>

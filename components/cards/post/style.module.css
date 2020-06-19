@@ -88,6 +88,7 @@ DESKTOP
 
   .post.grid:hover .image {
     filter: brightness(40%) blur(2px);
+    overflow: hidden;
   }
 
   .post.grid .details {

@@ -1,18 +1,19 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, ChangeEvent } from "react";
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/storage";
 import style from "./style.module.css";
 import K from "../../constants";
-import Post from "../../models/post";
+import Post, { Genre } from "../../models/post";
 
 let titleField: string;
 let bodyField: string;
 let fileField: File[] = [];
 let dateField: string;
+let genreField: Genre[] = [];
 
 export default function AdminPage() {
-  const [signedIn, setSignedIn] = useState(false);
+  const [signedIn, setSignedIn] = useState(true);
   const message = `I see you have found me. You shouldn't be here. Go away. 
                                                                               
   Why are you still here...
@@ -22,22 +23,28 @@ export default function AdminPage() {
 
   let messageRef = useRef(null);
   let counter = 0;
+  let interval;
 
   useEffect(() => {
     if (!signedIn) {
       if (!firebase.apps.length) firebase.initializeApp(K.firebaseConfig);
 
-      messageRef.current.innerHTML = "";
-
-      setInterval(() => {
-        if (counter < message.length) {
-          messageRef.current.innerHTML =
-            messageRef.current.innerHTML + message[counter];
-          counter++;
-        }
-      }, 50);
+      // messageRef.current.innerHTML = "";
+      // clearInterval(interval)
+      // interval = setInterval(() => {
+      //   if (counter < message.length) {
+      //     messageRef.current.innerHTML =
+      //       messageRef.current.innerHTML + message[counter];
+      //     counter++;
+      //   }
+      // }, 50);
     }
   });
+
+  const checkboxHandler = (event, genre: Genre) => {
+    if (event.target.checked) genreField.push(genre);
+    else genreField.splice(genreField.indexOf(genre), 1);
+  };
 
   return (
     <>
@@ -67,14 +74,25 @@ export default function AdminPage() {
                 onChange={(event) => (bodyField = event.target.value)}
               />
               <div className={style.genre}>
-                <select id="jello"></select>
-                <input type="checkbox" id="code" />
+                <input
+                  type="checkbox"
+                  id="code"
+                  onChange={event => checkboxHandler(event, Genre.Code)}
+                />
                 <label htmlFor="code">Code</label>
 
-                <input type="checkbox" id="design" />
+                <input
+                  type="checkbox"
+                  id="design"
+                  onChange={(event) => checkboxHandler(event, Genre.Design)}
+                />
                 <label htmlFor="design">Design</label>
 
-                <input type="checkbox" id="robot" />
+                <input
+                  type="checkbox"
+                  id="robot"
+                  onChange={(event) => checkboxHandler(event, Genre.Robot)}
+                />
                 <label htmlFor="robot">Robot</label>
               </div>
               <input
@@ -100,13 +118,19 @@ export default function AdminPage() {
                   } else if (!fileField.length) {
                     alert("No files selected");
                   }
-                  Post.addNew({
-                    date: dateField ?? "ERROR",
-                    title: titleField ?? "ERROR",
-                    body: bodyField ?? "ERROR",
-                    genre: Post.Genre.Code,
-                    media: fileField,
-                  });
+                  console.log("bef",genreField)
+                  try {
+                    Post.addNew({
+                      date: dateField ?? "ERROR",
+                      title: titleField ?? "ERROR",
+                      body: bodyField ?? "ERROR",
+                      genre: genreField ?? [Genre.Error],
+                      media: fileField,
+                    })
+                    alert("Successfully posted")
+                  } catch (err) {
+                    console.error(err);
+                  }
                 }}
               >
                 Post
@@ -129,6 +153,7 @@ export default function AdminPage() {
                       } else {
                         firebase.auth().signOut();
                         setSignedIn(false);
+                        clearInterval(interval);
                       }
                     })
                     .catch((error) => {

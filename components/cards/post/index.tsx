@@ -49,7 +49,17 @@ export default function PostCard(props: {
             style={{ backgroundImage: `url(${image})` }}
           />
           <div className={style.details}>
-            <p>{props.post?.genre}</p>
+            <p>{(() => {
+              return props.post?.genre.map(value => {
+                switch (value) {
+                  case 0: return "NONE"
+                  case 1: return "CODE"
+                  case 2: return "DESIGN"
+                  case 3: return "ROBOT"
+                  default: return ""
+                }
+              }).join(' | ')
+            })()}</p>
             <h2>{props.post?.title}</h2>
             <p>{props.post?.body}</p>
           </div>
