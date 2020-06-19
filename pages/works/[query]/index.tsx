@@ -20,8 +20,8 @@ export default function WorksUrlPage() {
   return (
     <>
       <div className={style.main}>
-        <h1>{content.title}</h1>
-        <p>{content.body}</p>
+        <h1>{content?.title}</h1>
+        <p>{content?.body}</p>
       </div>
     </>
   );
