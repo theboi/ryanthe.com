@@ -94,6 +94,15 @@ DESKTOP
     left: 100px;
   }
 
+  .crown {
+    width: 128px;
+    height: 128px;
+    background-image: var(--crown2);
+    position: absolute;
+    top: 10px;
+    left: 140px;
+  }
+
   .socialButtons {
     font-size: 25px;
     width: 45px;

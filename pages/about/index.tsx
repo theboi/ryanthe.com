@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./style.module.css";
 
 export default function AboutPage() {
@@ -21,18 +21,15 @@ export default function AboutPage() {
       link: "https://twitter.com/theboi_io",
     },
   ];
+  const [isCrowned, setIsCrowned] = useState(false);
 
   return (
     <>
       <div className={style.main}>
         <div className={style.meWrapper}>
-          <img
-            className={style.me}
-            src="/images/me.jpg"
-            alt="Me"
-            useMap="#me"
-          />
-          <div className={style.meMap} onClick={() => console.log("yeyt")}/>
+          <img className={style.me} src="/images/me.jpg" alt="Me" style={isCrowned ? {cursor: "pointer"} : null} />
+          <div className={style.meMap} onClick={() => setIsCrowned(true)} style={isCrowned ? {cursor: "pointer"} : null} />
+          <div className={isCrowned ? style.crown : null} />
         </div>
         <div className={style.intro}>
           <h1 className={style.hey}>Hey,</h1>
