@@ -111,7 +111,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
           </li>
         </ul>
         <div className={style.content}>
-          <Component {...pageProps} data={data} width={width} />
+          <Component {...pageProps} data={data} width={width} isDarkMode={isDarkMode}/>
         </div>
       </div>
     </>

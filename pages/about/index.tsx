@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import style from "./style.module.css";
 
-export default function AboutPage() {
+export default function AboutPage(props) {
   const socialLinks = [
     { icon: "github", color: "#333", link: "https://github.com/theboi" },
     {
@@ -27,9 +27,8 @@ export default function AboutPage() {
     <>
       <div className={style.main}>
         <div className={style.meWrapper}>
-          <img className={style.me} src="/images/me.jpg" alt="Me" style={isCrowned ? {cursor: "pointer"} : null} />
+          <img className={style.me} src={isCrowned ? (props.isDarkMode ? "/images/crowns/dark-me-crown.jpg" : "/images/crowns/light-me-crown.jpg") : "/images/crowns/me.jpg"} alt="Me" style={isCrowned ? {cursor: "pointer"} : null} />
           <div className={style.meMap} onClick={() => setIsCrowned(true)} style={isCrowned ? {cursor: "pointer"} : null} />
-          <div className={isCrowned ? style.crown : null} />
         </div>
         <div className={style.intro}>
           <h1 className={style.hey}>Hey,</h1>
