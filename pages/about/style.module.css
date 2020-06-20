@@ -7,11 +7,20 @@ MOBILE
   margin-bottom: 200px;
 }
 
-.me {
-  margin: 20px auto -40px auto;
+.meWrapper {
+  position: relative;
+  margin: 20px 50px -40px auto;
   width: 80vw;
-  max-width: 370px;
+  object-fit: cover;
+  min-width: 370px;
+  width: 370px;
   border-radius: 10px;
+  overflow: hidden;
+}
+
+.me {
+  height: 100%;
+  width: 100%;
 }
 
 .hey {
@@ -21,6 +30,7 @@ MOBILE
 }
 
 .intro {
+  z-index: 1;
   margin-left: 7vw;
   max-width: 500px;
 }
@@ -30,7 +40,7 @@ MOBILE
 }
 
 .social {
-  margin: 20px 0;
+  margin-top: 40px;
   display: flex;
 }
 
@@ -77,6 +87,11 @@ DESKTOP
 
   .meMap {
     cursor: var(--crown2), pointer;
+    height: 70px;
+    width: 70px;
+    position: absolute;
+    top: 0;
+    left: 100px;
   }
 
   .socialButtons {
