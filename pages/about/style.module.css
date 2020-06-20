@@ -71,6 +71,14 @@ DESKTOP
 }
 
 @media screen and (hover: hover) {
+  .me {
+    cursor: var(--crown1), pointer;
+  }
+
+  .meMap {
+    cursor: var(--crown2), pointer;
+  }
+
   .socialButtons {
     font-size: 25px;
     width: 45px;

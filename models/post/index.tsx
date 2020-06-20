@@ -66,6 +66,7 @@ export default class Post {
   }
 
   static genreToString(genre: Genre) {
+
     switch (genre) {
       case 0: return "ERROR"
       case 1: return "ALL"
