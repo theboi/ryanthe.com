@@ -13,9 +13,11 @@ MOBILE
 }
 
 .filter {
+  transition: all 250ms ease-in-out;
   height: 50px;
   overflow: hidden;
   border-radius: 10px;
+  margin-bottom: 20px;
 }
 
 .filter li {
