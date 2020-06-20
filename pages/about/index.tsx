@@ -25,19 +25,15 @@ export default function AboutPage() {
   return (
     <>
       <div className={style.main}>
-        <img className={style.me} src="/images/me.jpg" alt="Me" useMap="#me"/>
-        <map name="me">
-          <area
-            shape="rect"
-            coords="100,5,180,65"
-            alt="Crowned"
-            media="screen and (hover: hover)"
-            href="https://ryanthe.com"
-            // onClick={() => console.log("yeet")}
-            target="_blank"
-            className={style.meMap}
+        <div className={style.meWrapper}>
+          <img
+            className={style.me}
+            src="/images/me.jpg"
+            alt="Me"
+            useMap="#me"
           />
-        </map>
+          <div className={style.meMap} onClick={() => console.log("yeyt")}/>
+        </div>
         <div className={style.intro}>
           <h1 className={style.hey}>Hey,</h1>
           <p>
