@@ -24,6 +24,7 @@ MOBILE
   line-height: 50px;
   background-color: var(--bg2);
   font-family: "Nimbus Sans", sans-serif;
+  cursor: pointer;
 }
 
 .filter li:hover {
@@ -32,6 +33,9 @@ MOBILE
 
 .switch {
   font-size: 27px;
+  cursor: pointer;
+  margin-left: -70px;
+  padding: 20px 0 20px 70px;
 }
 
 .content {

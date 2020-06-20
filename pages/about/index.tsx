@@ -1,6 +1,5 @@
 import React from "react";
 import style from "./style.module.css";
-import SocialButton from "../../components/buttons/social";
 
 export default function AboutPage() {
   const socialLinks = [
@@ -26,7 +25,19 @@ export default function AboutPage() {
   return (
     <>
       <div className={style.main}>
-        <img className={style.me} src="/images/me.jpg" alt="Me" />
+        <img className={style.me} src="/images/me.jpg" alt="Me" useMap="#me"/>
+        <map name="me">
+          <area
+            shape="rect"
+            coords="100,5,180,65"
+            alt="Crowned"
+            media="screen and (hover: hover)"
+            href="https://ryanthe.com"
+            // onClick={() => console.log("yeet")}
+            target="_blank"
+            className={style.meMap}
+          />
+        </map>
         <div className={style.intro}>
           <h1 className={style.hey}>Hey,</h1>
           <p>
@@ -40,6 +51,7 @@ export default function AboutPage() {
                   className={style.socialButtons}
                   style={{ background: value.color }}
                   href={value.link}
+                  target="_blank"
                 >
                   <i className={`fab fa-${value.icon}`}></i>
                 </a>

@@ -33,6 +33,13 @@ export default function WorkPage(props) {
     <>
       <div className={style.main}>
         <div>
+        <div onClick={() => setIsGrid(!isGrid)} className={style.switch}>
+            {isGrid ? (
+              <i className="fas fa-th-list"></i>
+            ) : (
+              <i className="fas fa-th"></i>
+            )}
+          </div>
           <div
             className={`${style.filter} ${
               mobileFilterIsOpen ? style.active : null
@@ -63,13 +70,6 @@ export default function WorkPage(props) {
               })}
 
             </ul>
-          </div>
-          <div onClick={() => setIsGrid(!isGrid)} className={style.switch}>
-            {isGrid ? (
-              <i className="fas fa-th-list"></i>
-            ) : (
-              <i className="fas fa-th"></i>
-            )}
           </div>
         </div>
         <div className={`${style.content} ${isGrid ? style.grid : style.list}`}>

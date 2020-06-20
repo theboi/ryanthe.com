@@ -40,6 +40,9 @@ Variables
   --light: #f8f9fa;
   --dark: #343a40;
 
+  --crown1: url(../public/images/crowns/light-crown.png);
+  --crown2: url(../public/images/crowns/light-crown-select.png);
+
   --bg0: rgb(255, 255, 255);
   --bg1: rgb(248, 248, 248);
   --bg2: rgb(241, 241, 241);
@@ -55,6 +58,9 @@ Variables
 
 @media (prefers-color-scheme: dark) {
   :root {
+    --crown1: url(../public/images/crowns/dark-crown.png);
+    --crown2: url(../public/images/crowns/dark-crown-select.png);
+
     --bg0: rgb(38, 38, 38);
     --bg1: rgb(31, 31, 31);
     --bg2: rgb(48, 48, 48);
