@@ -15,7 +15,7 @@ let matchesMedia: boolean;
 let data;
 let listening = false;
 
-export default function App({ Component, pageProps, router }: AppProps) {
+export default function App({ Component, pageProps }: AppProps) {
   const [isDarkMode, setDarkMode] = useState(true);
   const [width, setWidth] = useState(-1);
 
@@ -107,6 +107,11 @@ export default function App({ Component, pageProps, router }: AppProps) {
           <li>
             <Link href="/works">
               <a>WORKS</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/resume">
+              <a>RESUME</a>
             </Link>
           </li>
         </ul>
