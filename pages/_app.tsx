@@ -58,10 +58,26 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>Ryan Theodore The</title>
+        <meta property="og:title" content="Ryan Theodore The" />
+        <meta
+          property="og:description"
+          content="Ryan Theodore The's personal portfolio website."
+        />
+        <meta
+          property="og:image"
+          content="./images/share.jpg"
+        />
+        <meta
+          property="og:url"
+          content="https://www.ryanthe.com"
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+
+
         <meta name="version" content="v2.0" />
         <meta
           name="description"
-          content="Ryan Theodore The's personal portfolio website"
+          content="Ryan Theodore The's personal portfolio website."
         />
         <meta name="subject" content="Ryan's Portfolio Website" />
         <meta
@@ -116,7 +132,12 @@ export default function App({ Component, pageProps }: AppProps) {
           </li>
         </ul>
         <div className={style.content}>
-          <Component {...pageProps} data={data} width={width} isDarkMode={isDarkMode}/>
+          <Component
+            {...pageProps}
+            data={data}
+            width={width}
+            isDarkMode={isDarkMode}
+          />
         </div>
       </div>
     </>
