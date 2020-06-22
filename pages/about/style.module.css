@@ -11,7 +11,7 @@ MOBILE
   position: relative;
   margin: 20px 50px -40px auto;
   width: 80vw;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 10px;
   overflow: hidden;
 }
@@ -67,6 +67,16 @@ MOBILE
   line-height: 39px;
 }
 
+.heart {
+  width: 100px;
+  height: 100px;
+  background-image: url(../../public/images/heart.gif);
+  background-size: contain;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 /* /////////////////////////////////////////////////////////////////////////////
 DESKTOP
 //////////////////////////////////////////////////////////////////////////////*/
@@ -80,9 +90,6 @@ DESKTOP
   .meWrapper {
     min-width: 370px;
     width: 370px;
-  }
-
-  .me {
     margin-right: 50px;
   }
 
@@ -102,15 +109,6 @@ DESKTOP
 @media screen and (hover: hover) {
   .me {
     cursor: var(--crown1), pointer;
-  }
-
-  .crown {
-    width: 128px;
-    height: 128px;
-    background-image: var(--crown2);
-    position: absolute;
-    top: 10px;
-    left: 140px;
   }
 
   .socialButtons {

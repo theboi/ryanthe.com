@@ -27,8 +27,24 @@ export default function AboutPage(props) {
     <>
       <div className={style.main}>
         <div className={style.meWrapper}>
-          <img className={style.me} src={isCrowned ? (props.isDarkMode ? "/images/crowns/dark-me-crown.jpg" : "/images/crowns/light-me-crown.jpg") : "/images/crowns/me.jpg"} alt="Me" style={isCrowned ? {cursor: "pointer"} : null} />
-          <div className={style.meMap} onClick={() => setIsCrowned(true)} style={isCrowned ? {cursor: "pointer"} : null} />
+          <img
+            className={style.me}
+            src={
+              isCrowned
+                ? props.isDarkMode
+                  ? "/images/crowns/dark-me-crown.jpg"
+                  : "/images/crowns/light-me-crown.jpg"
+                : "/images/crowns/me.jpg"
+            }
+            alt="Me"
+            style={isCrowned ? { cursor: "pointer" } : null}
+          />
+          <div
+            className={style.meMap}
+            onClick={() => setIsCrowned(true)}
+            style={isCrowned ? { cursor: "pointer" } : null}
+          />
+          {/* <div className={style.heart}/> */}
         </div>
         <div className={style.intro}>
           <h1 className={style.hey}>Hey,</h1>
@@ -37,9 +53,10 @@ export default function AboutPage(props) {
             and <span>designer</span> based in Singapore. Coding since 2018.
           </p>
           <div className={style.social}>
-            {socialLinks.map((value) => {
+            {socialLinks.map((value, index) => {
               return (
                 <a
+                  key={index}
                   className={style.socialButtons}
                   style={{ background: value.color }}
                   href={value.link}
