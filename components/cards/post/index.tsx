@@ -15,7 +15,7 @@ export default function PostCard(props: {
     if (props.post?.media.length) {
       Post.getStorage(props.post.media[0])
         .then((res) => {
-          setImage(res)
+          setImage(res);
         })
         .catch((err) => {
           console.error("ERROR: ", err);
@@ -49,8 +49,13 @@ export default function PostCard(props: {
             style={{ backgroundImage: `url(${image})` }}
           />
           <div className={style.details}>
-            <p>{(() => {
-              return props.post?.genre.map(value => Post.genreToString(value)).join(' | ')})()}</p>
+            <p>
+              {(() => {
+                return props.post?.genre
+                  .map((value) => Post.genreToString(value))
+                  .join(" | ");
+              })()}
+            </p>
             <h2>{props.post?.title}</h2>
             <p>{props.post?.body}</p>
           </div>
