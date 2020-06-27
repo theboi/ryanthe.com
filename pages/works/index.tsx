@@ -4,6 +4,7 @@ import Post, { Genre } from "../../models/post";
 import style from "./style.module.css";
 import PostCard from "../../components/cards/post";
 
+let allPosts = [];
 export default function WorkPage(props) {
   const mobileMinWidth = 768;
   const [currentPosts, setCurrentPosts] = useState([]);
@@ -23,10 +24,13 @@ export default function WorkPage(props) {
   ];
 
   useEffect(() => {
-    Post.getPosts().then((data) => {
-      if (!data.length) console.error("ERROR: No data to display");
-      if (!currentPosts.length) setCurrentPosts(data);
-    });
+    if (!allPosts.length) {
+      Post.getPosts().then((data) => {
+        allPosts = data
+        if (!data.length) console.error("ERROR: No data to display");
+        if (!currentPosts.length) setCurrentPosts(allPosts);
+      });
+    }
   });
   
   return (
@@ -62,8 +66,17 @@ export default function WorkPage(props) {
                     index={index}
                     filter={filter}
                     onClick={() => {
-                      if (props.width >= mobileMinWidth) setFilter(genreList[index]);
-                      else if (mobileFilterIsOpen) setFilter(filterTypes[index]);
+                      const newFilter = (() => {
+                        if (props.width >= mobileMinWidth) return genreList[index];
+                        else if (mobileFilterIsOpen) return filterTypes[index];
+                      })()
+                      setFilter(newFilter)
+                      
+                      if (newFilter === Genre.All) {
+                        setCurrentPosts(allPosts)
+                      } else {
+                        setCurrentPosts(allPosts.filter(val => val.genre.includes(newFilter)));
+                      }
                     }}
                   />
                 );

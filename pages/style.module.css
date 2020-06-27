@@ -6,10 +6,10 @@ MOBILE
 }
 
 .navbar {
-  margin: 40px 30px;
-  display: flex;
   justify-content: flex-end;
-  place-items: center;
+  place-items: center;  
+  display: flex;
+  margin: 40px 30px;
   height: 50px;
 }
 
@@ -40,6 +40,27 @@ MOBILE
   padding: 0 15px;
 }
 
+.hamBox {
+  background-color: red;
+  height: 50px;
+  width: 50px;
+}
+
+.ham {
+  width: 10px;
+  height: 5px;
+  background-color: var(--text1);
+}
+
+@keyframes centerHam {
+  from {
+    width: 25px;
+  }
+  to {
+    width: 3px;
+  }
+}
+
 /* /////////////////////////////////////////////////////////////////////////////
 DESKTOP
 //////////////////////////////////////////////////////////////////////////////*/
@@ -48,6 +69,7 @@ DESKTOP
   .navbar {
     margin: 50px 70px;
   }
+
   .content {
     padding: 0 70px;
   }

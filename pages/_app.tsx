@@ -6,6 +6,7 @@ import Link from "next/link";
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import "firebase/analytics";
 
 import "./reset.css";
 import style from "./style.module.css";
@@ -18,6 +19,7 @@ let listening = false;
 export default function App({ Component, pageProps }: AppProps) {
   const [isDarkMode, setDarkMode] = useState(true);
   const [width, setWidth] = useState(-1);
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
 
   useEffect(() => {
     if (width === -1) {
@@ -47,6 +49,7 @@ export default function App({ Component, pageProps }: AppProps) {
     if (!firebase.apps.length) firebase.initializeApp(K.firebaseConfig);
 
     if (!listening) {
+      firebase.analytics().logEvent('page_visited');
       window.addEventListener("resize", () => {
         setWidth(window.innerWidth);
       });
@@ -63,18 +66,11 @@ export default function App({ Component, pageProps }: AppProps) {
           property="og:description"
           content="Ryan Theodore The's personal portfolio website."
         />
-        <meta
-          property="og:image"
-          content="./images/share.jpg"
-        />
-        <meta
-          property="og:url"
-          content="https://www.ryanthe.com"
-        />
+        <meta property="og:image" content="./images/share.jpg" />
+        <meta property="og:url" content="https://www.ryanthe.com" />
         <meta name="twitter:card" content="summary_large_image" />
 
-
-        <meta name="version" content="v2.0" />
+        <meta name="version" content="v2.1" />
         <meta
           name="description"
           content="Ryan Theodore The's personal portfolio website."
@@ -99,6 +95,7 @@ export default function App({ Component, pageProps }: AppProps) {
           crossOrigin="anonymous"
         />
       </Head>
+
       <div className={style.main}>
         <ul className={style.navbar}>
           <li className={style.icon}>
@@ -130,6 +127,17 @@ export default function App({ Component, pageProps }: AppProps) {
               <a>RESUME</a>
             </Link>
           </li>
+          {/* TODO: ADD MOBILE SUPPORT FOR NAVBAR */}
+          {/* <div
+            className={style.hamBox}
+            onClick={() => {
+              setMenuIsOpen(!menuIsOpen);
+            }}
+          >
+            <span
+              className={`${style.ham}`} // ${menuIsOpen ? style.open : null}
+            />
+          </div> */}
         </ul>
         <div className={style.content}>
           <Component
@@ -143,3 +151,5 @@ export default function App({ Component, pageProps }: AppProps) {
     </>
   );
 }
+
+// >=768

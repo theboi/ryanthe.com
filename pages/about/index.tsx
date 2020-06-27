@@ -49,7 +49,7 @@ export default function AboutPage(props) {
         <div className={style.intro}>
           <h1 className={style.hey}>Hey,</h1>
           <p>
-            I'm Ryan — a <span>student</span> software <span>developer</span>{" "}
+            I'm Ryan — a <span>student</span>, self-taught software <span>developer</span>{" "}
             and <span>designer</span> based in Singapore. Coding since 2018.
           </p>
           <div className={style.social}>
