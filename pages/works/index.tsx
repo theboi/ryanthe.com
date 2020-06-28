@@ -20,7 +20,7 @@ export default function WorkPage(props) {
   ];
   const filterTypes = [
     genreList[filter - 1],
-    ...genreList.filter((value, index) => index !== filter - 1),
+    ...genreList.filter((_, index) => index !== filter - 1),
   ];
 
   useEffect(() => {
@@ -31,6 +31,7 @@ export default function WorkPage(props) {
         if (!currentPosts.length) setCurrentPosts(allPosts);
       });
     }
+    if (!currentPosts.length) setCurrentPosts(allPosts);
   });
   
   return (
@@ -73,9 +74,9 @@ export default function WorkPage(props) {
                       setFilter(newFilter)
                       
                       if (newFilter === Genre.All) {
-                        setCurrentPosts(allPosts)
+                        setCurrentPosts(allPosts ?? [0])
                       } else {
-                        setCurrentPosts(allPosts.filter(val => val.genre.includes(newFilter)));
+                        setCurrentPosts(allPosts.filter(val => val.genre.includes(newFilter)) ?? [0]);
                       }
                     }}
                   />
