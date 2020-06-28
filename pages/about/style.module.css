@@ -67,14 +67,8 @@ MOBILE
   line-height: 39px;
 }
 
-.heart {
-  width: 100px;
-  height: 100px;
-  background-image: url(../../public/images/heart.gif);
-  background-size: contain;
-  position: absolute;
-  top: 0;
-  right: 0;
+.contact i {
+  margin: 20px 10px;
 }
 
 /* /////////////////////////////////////////////////////////////////////////////
