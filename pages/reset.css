@@ -43,12 +43,16 @@ Variables
   --crown1: url(../public/images/crowns/light-crown.png);
   --crown2: url(../public/images/crowns/light-crown-select.png);
 
-  --bg0: rgb(255, 255, 255);
-  --bg1: rgb(248, 248, 248);
-  --bg2: rgb(241, 241, 241);
-  --bg3: rgb(232, 232, 232);
+  --bg0: rgb(248, 248, 248);
+  --bg1: rgb(255, 255, 255);
+  --bg2: rgb(247, 247, 247);
+  --bg3: rgb(242, 242, 242);
   --text1: rgb(7, 7, 7);
 
+  --link1: rgb(57, 120, 255);
+  --link2: rgb(28, 84, 206);
+  --link3: rgb(17, 60, 154);
+  
   --highlight: rgb(255, 0, 0);
   --shadow: rgba(210, 210, 210, 0.4);
   --border: rgba(0, 0, 0, 0);
@@ -64,9 +68,13 @@ Variables
 
     --bg0: rgb(38, 38, 38);
     --bg1: rgb(31, 31, 31);
-    --bg2: rgb(48, 48, 48);
+    --bg2: rgb(40, 40, 40);
     --bg3: rgb(58, 58, 58);
     --text1: rgb(255, 255, 255);
+
+    --link1: rgb(189, 210, 255);
+    --link2: rgb(169, 196, 255);
+    --link3: rgb(129, 169, 255);
 
     --highlight: rgb(255, 74, 74);
     --shadow: rgba(0, 0, 0, 0);
@@ -207,6 +215,15 @@ html {
 
 a {
   font-style: none;
+  color: var(--link1);
+}
+
+a:hover {
+  color: var(--link2);
+}
+
+a:active {
+  color: var(--link3);
 }
 
 *:focus {

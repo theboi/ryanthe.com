@@ -30,7 +30,7 @@ MOBILE
 }
 
 .filter li:hover {
-  background-color: var(--bg3);
+  background-color: var(--bg2);
 }
 
 .switch {

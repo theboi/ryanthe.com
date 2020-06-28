@@ -3,7 +3,7 @@ import Head from "next/head";
 
 import style from "./style.module.css";
 
-export default function Home() {
+export default function IndexPage() {
   return (
     <>
       <div className={style.main}>

@@ -49,9 +49,16 @@ export default function AboutPage(props) {
         <div className={style.intro}>
           <h1 className={style.hey}>Hey,</h1>
           <p>
-            I'm Ryan — a <span>student</span>, self-taught software <span>developer</span>{" "}
-            and <span>designer</span> based in Singapore. Coding since 2018.
+            I'm Ryan — a <span>student</span>, self-taught software{" "}
+            <span>developer</span> and <span>designer</span> based in Singapore.
+            Coding since 2018.
           </p>
+          <div className={style.contact}>
+            <i className={`far fa-envelope`} />
+            <a href="mailto:ryan.theodore.2006@gmail.com" target="_blank">
+              ryan.theodore.2006@gmail.com
+            </a>
+          </div>
           <div className={style.social}>
             {socialLinks.map((value, index) => {
               return (
@@ -62,7 +69,7 @@ export default function AboutPage(props) {
                   href={value.link}
                   target="_blank"
                 >
-                  <i className={`fab fa-${value.icon}`}></i>
+                  <i className={`fab fa-${value.icon}`} />
                 </a>
               );
             })}
