@@ -49,7 +49,7 @@ export default function App({ Component, pageProps }: AppProps) {
     if (!firebase.apps.length) firebase.initializeApp(K.firebaseConfig);
 
     if (!listening) {
-      firebase.analytics().logEvent('page_visited');
+      firebase.analytics().logEvent("page_visited");
       window.addEventListener("resize", () => {
         setWidth(window.innerWidth);
       });
@@ -112,32 +112,36 @@ export default function App({ Component, pageProps }: AppProps) {
               />
             </Link>
           </li>
-          <li>
-            <Link href="/about">
-              <a>ABOUT</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/works">
-              <a>WORKS</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/resume">
-              <a>RESUME</a>
-            </Link>
-          </li>
-          {/* TODO: ADD MOBILE SUPPORT FOR NAVBAR */}
-          {/* <div
-            className={style.hamBox}
+          <div
+            className={`${style.navlinks} ${menuIsOpen ? style.open : null}`}
             onClick={() => {
-              setMenuIsOpen(!menuIsOpen);
+              if (width < 768) setMenuIsOpen(!menuIsOpen);
             }}
           >
-            <span
-              className={`${style.ham}`} // ${menuIsOpen ? style.open : null}
-            />
-          </div> */}
+            <li>
+              <Link href="/about">
+                <a>ABOUT</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/works">
+                <a>WORKS</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/resume">
+                <a>RESUME</a>
+              </Link>
+            </li>
+          </div>
+          <li
+            className={style.hamBox}
+            onClick={() => {
+              if (width < 768) setMenuIsOpen(!menuIsOpen);
+            }}
+          >
+            <div className={`${style.ham} ${menuIsOpen ? style.open : null}`} />
+          </li>
         </ul>
         <div className={style.content}>
           <Component
