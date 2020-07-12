@@ -34,29 +34,37 @@ MOBILE
 }
 
 .navlinks {
-  background-color: var(--bgtrans);
   transition: all 250ms ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background-color: var(--bgtrans);
   position: absolute;
-  top: 70px;
+  top: -40px;
   left: -30px;
   right: -30px;
   padding: 0 30px;
   text-align: right;
-  z-index: 100;
+  z-index: 10;
   height: 0;
   overflow: hidden;
 }
 
 .navlinks.open {
-  height: 150px;
+  height: 250px;
 }
 
 .navlinks a {
   display: block;
 }
 
+.navlinks li:last-child {
+  margin-bottom: 20px;
+}
+
 .icon {
   margin-right: auto;
+  z-index: 11;
 }
 
 .content {
@@ -69,12 +77,12 @@ MOBILE
 }
 
 .ham {
+  z-index: 11;
   position: relative;
   transition: all 200ms ease-in-out;
   margin: 17.5px 0;
   width: 100%;
   height: 4px;
-  background-color: var(--text1);
   border-radius: 10px;
 }
 
@@ -84,7 +92,7 @@ MOBILE
   position: absolute;
   width: 100%;
   height: 4px;
-  background-color: var(--text1);
+  background-color: inherit;
   border-radius: 10px;
 }
 
@@ -121,8 +129,13 @@ DESKTOP
   .navlinks li > * {
     padding: 10px;
   }
+
+  .navlinks li:last-child {
+    margin-bottom: 0;
+  }
   
   .navlinks {
+    background-color: transparent;
     width: auto;
     position: static;
     display: flex;

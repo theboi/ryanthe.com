@@ -4,6 +4,9 @@ import { useRouter } from "next/router";
 import Post, { Genre } from "../../../models/post";
 import style from "./style.module.css";
 
+let willFetchImages: boolean;
+let tempImages: string[];
+
 export default function WorksUrlPage() {
   const [content, setContent] = useState(
     new Post({
@@ -11,31 +14,52 @@ export default function WorksUrlPage() {
       title: "",
       body: "",
       genre: [],
-      media: [""],
+      media: [],
     })
   );
 
+  const [images, setImages] = useState([]);
   const query = useRouter().query.query as string;
 
   useEffect(() => {
-    Post.getPosts(query ?? "title").then((post) => {
-      setContent(post);
-    });
+    if (content)
+      Post.getPosts(query ?? "ERROR").then((post) => {
+        console.log("fetch posts");
+        setContent(post);
+        if (!willFetchImages) {
+          willFetchImages = true;
+          tempImages = [];
+        }
+      });
+
+    if (content && willFetchImages) {
+      willFetchImages = false;
+      content.media.forEach((value) => {
+        Post.getStorage(value)
+          .then((value) => {
+            tempImages.push(value);
+            if (tempImages.length === content.media.length) {
+              console.log(tempImages);
+              setImages(tempImages);
+            }
+          })
+          .catch((err) => {
+            console.error("ERROR: ", err);
+          });
+      });
+    }
   });
 
   return (
     <>
       <div className={style.main}>
-        <div
-          className={style.header}
-          // style={{
-          //   backgroundImage: `url(${
-          //     display.header.image?.startsWith("http") ?? true
-          //       ? display.header.image
-          //       : require(`../../assets/images/Projects/${display.header.image}.jpg`)
-          //   })`,
-          // }}
-        >
+        <div className={style.header}>
+          <div
+            className={style.headerImage}
+            style={{
+              backgroundImage: `url(${images?.[0]})`,
+            }}
+          />
           <h1 className={style.title}>{content?.title}</h1>
           <div className={style.details}>
             <p className={style.genre}>{content?.genre.join(" | ")}</p>
