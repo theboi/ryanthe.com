@@ -11,6 +11,7 @@ MOBILE
 }
 
 .post {
+  box-shadow: var(--shadow);
   position: relative;
 }
 
@@ -37,7 +38,6 @@ MOBILE
 /* Grid */
 .post.grid {
   color: var(--white);
-  box-shadow: 0 0 10px 5px var(--shadow);
   border: solid 1px var(--border);
   height: 300px;
 }
