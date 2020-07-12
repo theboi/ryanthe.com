@@ -19,6 +19,7 @@ MOBILE
   border-radius: 10px;
   margin-bottom: 20px;
   box-shadow: var(--shadow);
+  border: solid 1px var(--border);
 }
 
 .filter li {
@@ -69,6 +70,7 @@ DESKTOP
     height: inherit;
     margin: 0 30px 0 -100px;
     box-shadow: none;
+    border: none;
   }
 
   .filter li {

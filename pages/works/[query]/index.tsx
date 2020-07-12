@@ -8,21 +8,13 @@ let willFetchImages: boolean;
 let tempImages: string[];
 
 export default function WorksUrlPage() {
-  const [content, setContent] = useState(
-    new Post({
-      date: "",
-      title: "",
-      body: "",
-      genre: [],
-      media: [],
-    })
-  );
+  const [content, setContent] = useState<Post>();
 
   const [images, setImages] = useState([]);
   const query = useRouter().query.query as string;
 
   useEffect(() => {
-    if (content)
+    if (!content)
       Post.getPosts(query ?? "ERROR").then((post) => {
         console.log("fetch posts");
         setContent(post);

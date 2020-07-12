@@ -126,19 +126,22 @@ export default function App({ Component, pageProps }: AppProps) {
                   : "rgba(255, 255, 255, 0.7)",
             }}
           >
-            {["ABOUT", "WORKS", "RESUME"].map((value) => {
-              return <li
-                style={{
-                  color:
-                    isDarkMode || router.pathname === "/works/[query]"
-                      ? "rgb(255, 255, 255)"
-                      : "rgb(7, 7, 7)",
-                }}
-              >
-                <Link href={`/${value.toLowerCase()}`}>
-                  <a>{value}</a>
-                </Link>
-              </li>;
+            {["ABOUT", "WORKS", "RESUME"].map((value, index) => {
+              return (
+                <li
+                  key={index}
+                  style={{
+                    color:
+                      isDarkMode || router.pathname === "/works/[query]"
+                        ? "rgb(255, 255, 255)"
+                        : "rgb(7, 7, 7)",
+                  }}
+                >
+                  <Link href={`/${value.toLowerCase()}`}>
+                    <a>{value}</a>
+                  </Link>
+                </li>
+              );
             })}
           </div>
           <li
