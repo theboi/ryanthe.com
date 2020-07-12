@@ -55,7 +55,7 @@ Variables
   
   --highlight: rgb(255, 0, 0);
   --shadow: rgba(210, 210, 210, 0.4);
-  --border: rgba(0, 0, 0, 0);
+  --border: rgb(242, 242, 242);
 
   color: var(--text1);
   background-color: var(--bg1);

@@ -9,8 +9,9 @@ MOBILE
 
 .meWrapper {
   position: relative;
-  margin: 20px 50px -40px auto;
+  margin: 20px auto -40px 7vw;
   width: 80vw;
+  max-width: 300px;
   object-fit: contain;
   border-radius: 10px;
   overflow: hidden;
@@ -38,7 +39,7 @@ MOBILE
 
 .intro {
   z-index: 1;
-  margin-left: 7vw;
+  margin: 0 7vw;
   max-width: 500px;
 }
 
@@ -110,9 +111,11 @@ DESKTOP
     width: 45px;
     height: 45px;
     line-height: 34px;
+    color: var(--white);
   }
 
   .socialButtons:hover {
+    color: var(--white);
     filter: brightness(70%) blur(0.5px);
   }
 }

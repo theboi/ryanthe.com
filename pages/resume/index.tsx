@@ -3,6 +3,10 @@ import React from "react";
 import style from "./style.module.css";
 
 export default () => {
+  const links = new Set([
+    ["React", "https://reactjs.org/"]
+  ])
+
   const content = [
     {
       header: "Skill",
