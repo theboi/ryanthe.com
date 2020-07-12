@@ -15,6 +15,7 @@ MOBILE
   object-fit: contain;
   border-radius: 10px;
   overflow: hidden;
+  box-shadow: var(--shadow);
 }
 
 .me {

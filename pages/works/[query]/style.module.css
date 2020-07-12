@@ -19,7 +19,7 @@ MOBILE
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  filter: brightness(40%);
+  filter: brightness(40%) blur(3px);
 }
 
 .title {
