@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { AppProps } from "next/app";
 import Head from "next/head";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 import firebase from "firebase/app";
 import "firebase/auth";
@@ -20,6 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const [isDarkMode, setDarkMode] = useState(true);
   const [width, setWidth] = useState(-1);
   const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     if (width === -1) {
@@ -102,7 +104,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <Link href="/">
               <img
                 src={
-                  isDarkMode
+                  isDarkMode || router.pathname === "/works/[query]"
                     ? "/icons/logo192-dark.png"
                     : "/icons/logo192-light.png"
                 }
@@ -117,22 +119,27 @@ export default function App({ Component, pageProps }: AppProps) {
             onClick={() => {
               if (width < 768) setMenuIsOpen(!menuIsOpen);
             }}
+            style={{
+              backgroundColor:
+                isDarkMode || router.pathname === "/works/[query]"
+                  ? "rgba(31, 31, 31, 0.7)"
+                  : "rgba(255, 255, 255, 0.7)",
+            }}
           >
-            <li>
-              <Link href="/about">
-                <a>ABOUT</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/works">
-                <a>WORKS</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/resume">
-                <a>RESUME</a>
-              </Link>
-            </li>
+            {["ABOUT", "WORKS", "RESUME"].map((value) => {
+              return <li
+                style={{
+                  color:
+                    isDarkMode || router.pathname === "/works/[query]"
+                      ? "rgb(255, 255, 255)"
+                      : "rgb(7, 7, 7)",
+                }}
+              >
+                <Link href={`/${value.toLowerCase()}`}>
+                  <a>{value}</a>
+                </Link>
+              </li>;
+            })}
           </div>
           <li
             className={style.hamBox}
@@ -140,7 +147,15 @@ export default function App({ Component, pageProps }: AppProps) {
               if (width < 768) setMenuIsOpen(!menuIsOpen);
             }}
           >
-            <div className={`${style.ham} ${menuIsOpen ? style.open : null}`} />
+            <div
+              className={`${style.ham} ${menuIsOpen ? style.open : null}`}
+              style={{
+                backgroundColor:
+                  isDarkMode || router.pathname === "/works/[query]"
+                    ? "rgb(255, 255, 255)"
+                    : "rgb(7, 7, 7)",
+              }}
+            />
           </li>
         </ul>
         <div className={style.content}>
