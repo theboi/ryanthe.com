@@ -33,16 +33,14 @@ MOBILE
   font-family: 'Nimbus Sans', sans-serif;
 }
 
-.navlinks li {
-  padding: 7px 0;
-}
-
 .navlinks {
-  background-color: var(--bg1);
-  width: 100vw;
+  background-color: var(--bgtrans);
   transition: all 250ms ease-in-out;
   position: absolute;
   top: 70px;
+  left: -30px;
+  right: -30px;
+  padding: 0 30px;
   text-align: right;
   z-index: 100;
   height: 0;
@@ -51,6 +49,10 @@ MOBILE
 
 .navlinks.open {
   height: 150px;
+}
+
+.navlinks a {
+  display: block;
 }
 
 .icon {
