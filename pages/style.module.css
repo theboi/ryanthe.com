@@ -38,7 +38,6 @@ MOBILE
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  background-color: var(--bgtrans);
   position: absolute;
   top: -40px;
   left: -30px;
@@ -135,7 +134,8 @@ DESKTOP
   }
   
   .navlinks {
-    background-color: transparent;
+    background-color: transparent !important;
+    padding: 0;
     width: auto;
     position: static;
     display: flex;
