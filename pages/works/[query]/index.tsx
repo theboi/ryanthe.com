@@ -62,7 +62,14 @@ export default function WorksUrlPage() {
           />
           <h1 className={style.title}>{content?.title}</h1>
           <div className={style.details}>
-            <p className={style.genre}>{content?.genre.join(" | ")}</p>
+            <p className={style.genre}>
+              {content?.genre
+                .map(
+                  (value) =>
+                    ["Error", "All", "Code", "Design", "Robot", "Others"][value]
+                )
+                .join(" | ")}
+            </p>
             <h4 className={style.date}>
               {`${content?.date.split("/")[0]} ${(() => {
                 switch (content?.date.split("/")[1]) {
