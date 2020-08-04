@@ -98,7 +98,7 @@ export default function WorksUrlPage() {
         </div>
         <div className={style.body}>
           <h2 className={style.subtitle}>{content?.title}</h2>
-          {/* {content?.body.map(function search(value) {
+          {JSON.parse(content?.body).map(function search(value) {
             switch (value.type) {
               case "group":
                 return (
@@ -114,17 +114,17 @@ export default function WorksUrlPage() {
                 return <h2 className={style.subhead}>{value.value}</h2>;
               case "image":
                 return (
-                  <figure className={style.imageFig} alt={value.meta}>
+                  <figure className={style.imageFig}>
                     <img
                       onClick={() => {
                         console.log("full screen");
                       }}
                       className={style.imageImg}
-                      src={
-                        value.value?.startsWith("http") ?? true
-                          ? value.value
-                          : require(`../../assets/images/Projects/${value.value}.jpg`)
-                      }
+                      // src={
+                      //   value.value?.startsWith("http") ?? true
+                      //     ? value.value
+                      //     : require(`../../assets/images/Projects/${value.value}.jpg`)
+                      // }
                       alt={value.meta}
                     />
                     <figcaption className={style.imageCaption}>
@@ -161,7 +161,7 @@ export default function WorksUrlPage() {
                 );
               case "iframe":
                 return (
-                  <figure className={style.imageFig} alt={value.meta}>
+                  <figure className={style.imageFig}>
                     <iframe
                       className={style.imageImg}
                       title={value.meta}
@@ -176,7 +176,7 @@ export default function WorksUrlPage() {
               default:
                 return <p>ERROR: Invalid element name.</p>;
             }
-          })} */}
+          })}
         </div>
       </div>
     </>
