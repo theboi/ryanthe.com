@@ -1,33 +1,18 @@
 /* /////////////////////////////////////////////////////////////////////////////
 MOBILE
 //////////////////////////////////////////////////////////////////////////////*/
-/* Login */
-.header {
-  margin-bottom: 10px;
+.multi, .single, .markdown {
+  color: var(--text1);
 }
 
-/* Admin */
-.admin {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.admin > * {
-  background-color: transparent;
-  color: var(--bg1);
-  font-size: 16px;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 10px;
+.multi::selection, .single::selection, .markdown > *::selection {
+  color: unset;
+  background-color: #f1705f80;
 }
 
 /* /////////////////////////////////////////////////////////////////////////////
 DESKTOP
 //////////////////////////////////////////////////////////////////////////////*/
-
 @media screen and (min-width: 768px) {
+  
 }

@@ -6,6 +6,8 @@ import style from "./style.module.css";
 import K from "../../constants";
 import Post, { Genre } from "../../models/post";
 
+import { TextField, TextFieldType } from "../../components/form/textfield";
+
 let titleField: string;
 let bodyField: string;
 let fileField: File[] = [];
@@ -24,6 +26,116 @@ export default function AdminPage() {
   let messageRef = useRef(null);
   let counter = 0;
   let interval;
+
+  const validateInputs = () => {
+    if (!titleField || !bodyField || !dateField) {
+      alert("Fill in all fields");
+      return;
+    } else if (
+      !dateField.match(
+        /([0-9]{2,2})\/(0[1-9]|1[0-2])\/(0[1-9]|1[0-9]|2[0-9]|3[0-1])/
+      )
+    ) {
+      alert("Invalid date");
+      return;
+    } else if (!fileField.length) {
+      alert("No files selected");
+    }
+    console.log("bef", genreField);
+    try {
+      Post.addNew({
+        date: dateField ?? "ERROR",
+        title: titleField ?? "ERROR",
+        body: bodyField ?? "ERROR",
+        genre: genreField ?? [Genre.Error],
+        media: fileField,
+      });
+      alert("Successfully posted");
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const adminPage = (
+    <>
+      <div className={style.admin}>
+        <TextField
+          placeholder="Date"
+          onChange={(event) => {dateField = event.target.value}}
+        />
+        <TextField
+          placeholder="Title"
+          onChange={(event) => {titleField = event.target.value}}
+        />
+        <TextField
+          placeholder="Body"
+          onChange={(event) => {bodyField = event.target.value}}
+          type={TextFieldType.Markdown}
+        />
+        {/* <div className={style.genre}>
+          <input
+            type="checkbox"
+            id="code"
+            onChange={(event) => checkboxHandler(event, Genre.Code)}
+          />
+          <label htmlFor="code">Code</label>
+
+          <input
+            type="checkbox"
+            id="design"
+            onChange={(event) => checkboxHandler(event, Genre.Design)}
+          />
+          <label htmlFor="design">Design</label>
+
+          <input
+            type="checkbox"
+            id="robot"
+            onChange={(event) => checkboxHandler(event, Genre.Robot)}
+          />
+          <label htmlFor="robot">Robot</label>
+        </div> */}
+        <input
+          type="file"
+          id="file"
+          multiple
+          onChange={(event) => (fileField = Array.from(event.target.files))}
+        />
+        <button onClick={validateInputs}>Post</button>
+      </div>
+    </>
+  );
+
+  const loginPage = (
+    <>
+      <h1 className={style.header}>
+        Greetings, fellow hum
+        <span
+          onDoubleClick={() => {
+            firebase
+              .auth()
+              .signInWithPopup(new firebase.auth.GoogleAuthProvider())
+              .then((result) => {
+                console.log("Successfully signed in");
+                if (result.user.email === "ryan.the.2006@gmail.com") {
+                  setSignedIn(true);
+                } else {
+                  firebase.auth().signOut();
+                  setSignedIn(false);
+                  clearInterval(interval);
+                }
+              })
+              .catch((error) => {
+                console.error(error);
+              });
+          }}
+        >
+          a
+        </span>
+        n
+      </h1>
+      <p ref={messageRef}>{""}</p>
+    </>
+  );
 
   useEffect(() => {
     if (!signedIn) {
@@ -48,127 +160,7 @@ export default function AdminPage() {
 
   return (
     <>
-      <div className={style.main}>
-        {signedIn ? (
-          <>
-            <div className={style.admin}>
-              <input
-                placeholder="Title"
-                type="text"
-                className={style.smallInput}
-                onChange={(event) => (titleField = event.target.value)}
-              />
-              <input
-                placeholder="Date"
-                type="text"
-                className={style.smallInput}
-                onChange={(event) => (dateField = event.target.value)}
-              />
-              <textarea
-                placeholder="Body"
-                name="Content"
-                id="content"
-                cols={30}
-                rows={10}
-                className={style.largeInput}
-                onChange={(event) => (bodyField = event.target.value)}
-              />
-              <div className={style.genre}>
-                <input
-                  type="checkbox"
-                  id="code"
-                  onChange={event => checkboxHandler(event, Genre.Code)}
-                />
-                <label htmlFor="code">Code</label>
-
-                <input
-                  type="checkbox"
-                  id="design"
-                  onChange={(event) => checkboxHandler(event, Genre.Design)}
-                />
-                <label htmlFor="design">Design</label>
-
-                <input
-                  type="checkbox"
-                  id="robot"
-                  onChange={(event) => checkboxHandler(event, Genre.Robot)}
-                />
-                <label htmlFor="robot">Robot</label>
-              </div>
-              <input
-                type="file"
-                id="file"
-                multiple
-                onChange={(event) =>
-                  (fileField = Array.from(event.target.files))
-                }
-              />
-              <button
-                onClick={() => {
-                  if (!titleField || !bodyField || !dateField) {
-                    alert("Fill in all fields");
-                    return;
-                  } else if (
-                    !dateField.match(
-                      /([0-9]{2,2})\/(0[1-9]|1[0-2])\/(0[1-9]|1[0-9]|2[0-9]|3[0-1])/
-                    )
-                  ) {
-                    alert("Invalid date");
-                    return;
-                  } else if (!fileField.length) {
-                    alert("No files selected");
-                  }
-                  console.log("bef",genreField)
-                  try {
-                    Post.addNew({
-                      date: dateField ?? "ERROR",
-                      title: titleField ?? "ERROR",
-                      body: bodyField ?? "ERROR",
-                      genre: genreField ?? [Genre.Error],
-                      media: fileField,
-                    })
-                    alert("Successfully posted")
-                  } catch (err) {
-                    console.error(err);
-                  }
-                }}
-              >
-                Post
-              </button>
-            </div>
-          </>
-        ) : (
-          <>
-            <h1 className={style.header}>
-              Greetings, fellow hum
-              <span
-                onDoubleClick={() => {
-                  firebase
-                    .auth()
-                    .signInWithPopup(new firebase.auth.GoogleAuthProvider())
-                    .then((result) => {
-                      console.log("Successfully signed in");
-                      if (result.user.email === "ryan.the.2006@gmail.com") {
-                        setSignedIn(true);
-                      } else {
-                        firebase.auth().signOut();
-                        setSignedIn(false);
-                        clearInterval(interval);
-                      }
-                    })
-                    .catch((error) => {
-                      console.error(error);
-                    });
-                }}
-              >
-                a
-              </span>
-              n
-            </h1>
-            <p ref={messageRef}>{""}</p>
-          </>
-        )}
-      </div>
+      <div className={style.main}>{signedIn ? adminPage : loginPage}</div>
     </>
   );
 }
