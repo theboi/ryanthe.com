@@ -1,8 +1,8 @@
-import React, { ChangeEvent, EventHandler, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import style from "./style.module.css";
 
 type TextFieldChangeEventHandler = (
-  event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
 ) => void;
 
 export enum TextFieldType {

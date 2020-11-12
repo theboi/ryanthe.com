@@ -14,17 +14,6 @@ MOBILE
   max-width: 700px;
   margin: 0 auto;
 }
-
-.admin > * {
-  background-color: transparent;
-  color: var(--bg1);
-  font-size: 16px;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-
 /* /////////////////////////////////////////////////////////////////////////////
 DESKTOP
 //////////////////////////////////////////////////////////////////////////////*/

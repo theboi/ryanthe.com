@@ -7,6 +7,7 @@ import K from "../../constants";
 import Post, { Genre } from "../../models/post";
 
 import { TextField, TextFieldType } from "../../components/form/textfield";
+import { Button } from "../../components/form/button"
 
 let titleField: string;
 let bodyField: string;
@@ -100,7 +101,7 @@ export default function AdminPage() {
           multiple
           onChange={(event) => (fileField = Array.from(event.target.files))}
         />
-        <button onClick={validateInputs}>Post</button>
+        <Button onClick={validateInputs} />
       </div>
     </>
   );
