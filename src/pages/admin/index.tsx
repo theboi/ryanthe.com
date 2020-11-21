@@ -3,7 +3,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/storage";
 import style from "./style.module.css";
-import K from "../../constants";
+import K from "../../../constants";
 import Post, { Genre } from "../../models/post";
 
 import { TextField, TextFieldType } from "../../components/form/textfield";
