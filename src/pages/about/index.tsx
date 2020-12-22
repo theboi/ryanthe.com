@@ -25,6 +25,16 @@ const socialLinks: SocialLink[] = [
     color: "#1da1f2",
     link: "https://twitter.com/theboi_io",
   },
+  {
+    icon: "medium-m",
+    color: "#00ab6c",
+    link: "https://medium.com/@theboi",
+  },
+  {
+    icon: "tiktok",
+    color: "#010101",
+    link: "/rick",
+  }
 ];
 
 export default function AboutPage(props) {

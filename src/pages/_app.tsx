@@ -90,12 +90,8 @@ export default function App({ Component, pageProps }: AppProps) {
               : "./favicons/favicon-light.ico"
           }
         />
-        <link
-          rel="stylesheet"
-          href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
-          crossOrigin="anonymous"
-        />
+        <script defer src="https://kit.fontawesome.com/9fd42c17a6.js" crossOrigin="anonymous"></script>
+
       </Head>
 
       <div className={style.main}>
