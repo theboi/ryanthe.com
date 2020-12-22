@@ -2,7 +2,7 @@ import React from 'react';
 
 import style from './style.module.css';
 
-export default () => {
+export default function WorksPage() {
   return (
     <>
       <div className={style.main}>

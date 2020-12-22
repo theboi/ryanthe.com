@@ -182,4 +182,6 @@
 //     </>
 //   );
 // }
-export default <div></div>
+export default function WorksItemsPage() {
+  return <div></div>
+}
