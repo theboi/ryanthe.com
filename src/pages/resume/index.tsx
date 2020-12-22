@@ -2,7 +2,7 @@ import React from "react";
 
 import style from "./style.module.css";
 
-export default () => {
+export default function ResumePage() {
   const links = new Set([
     ["React", "https://reactjs.org/"]
   ])
