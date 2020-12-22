@@ -4,7 +4,7 @@ import "firebase/auth";
 import "firebase/storage";
 import style from "./style.module.css";
 import K from "../../../constants";
-import Post, { Genre } from "../../models/post";
+import Post, { Genre } from "../../models/work";
 
 import { TextField, TextFieldType } from "../../components/form/textfield";
 import { Button } from "../../components/form/button"

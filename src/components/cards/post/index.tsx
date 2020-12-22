@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
 import style from "./style.module.css";
-import Post from "../../../models/post";
+import Post from "../../../models/work";
 
 export default function PostCard(props: {
   post: Post;

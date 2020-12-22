@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-import Post, { Genre } from "../../../models/post";
+import Post, { Genre } from "../../src/models/work";
 import style from "./style.module.css";
 
 let willFetchImages: boolean;
