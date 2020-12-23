@@ -15,7 +15,7 @@
 // let dateField: string;
 // let genreField: Genre[] = [];
 
-// export default function AdminPage() {
+// export function AdminPage() {
 //   const [signedIn, setSignedIn] = useState(true);
 //   const message = `I see you have found me. You shouldn't be here. Go away. 
                                                                               
@@ -166,6 +166,6 @@
 //   );
 // }
 
-export default function AdminPage() {
+export function AdminPage() {
   return <div></div>
 }

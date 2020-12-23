@@ -2,7 +2,7 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/storage";
 
-import K from "../../../constants";
+import { K } from "../../../constants";
 
 interface PostData {
   date: string;
@@ -29,7 +29,7 @@ export enum Genre {
   Others,
 }
 
-export default class Post {
+export class Post {
   date: string;
   title: string;
   body: string;
@@ -66,15 +66,21 @@ export default class Post {
   }
 
   static genreToString(genre: Genre) {
-
     switch (genre) {
-      case 0: return "ERROR"
-      case 1: return "ALL"
-      case 2: return "CODE"
-      case 3: return "DESIGN"
-      case 4: return "ROBOT"
-      case 5: return "OTHERS"
-      default: return ""
+      case 0:
+        return "ERROR";
+      case 1:
+        return "ALL";
+      case 2:
+        return "CODE";
+      case 3:
+        return "DESIGN";
+      case 4:
+        return "ROBOT";
+      case 5:
+        return "OTHERS";
+      default:
+        return "";
     }
   }
 
@@ -135,7 +141,7 @@ export default class Post {
             .child(ref)
             .getDownloadURL()
             .then((res) => {
-              return res
+              return res;
             })
             .catch((err) => {
               console.error("ERROR: ", err);

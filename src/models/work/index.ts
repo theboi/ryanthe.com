@@ -1,4 +1,4 @@
-export enum Genre {
+export enum PostGenre {
   Code = "code",
   Design = "design",
   Robotics = "robotics",
@@ -6,7 +6,7 @@ export enum Genre {
   Others = "others",
 }
 
-export default class Work {
+export class Work {
   #date: string;
   #title: string;
   #body: string;
