@@ -1,9 +1,8 @@
 import React from "react";
-import Head from "next/head";
 
 import style from "./style.module.css";
 
-export default function IndexPage() {
+export default function HomePage() {
   return (
     <>
       <div className={style.main}>
