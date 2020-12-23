@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-const Home = () => (
+export const Home = () => (
   <div className="container">
     <Head>
       <title>Create Next App</title>
@@ -199,5 +199,3 @@ const Home = () => (
     `}</style>
   </div>
 )
-
-export default Home

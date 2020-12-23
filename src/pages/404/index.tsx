@@ -2,7 +2,7 @@ import React from 'react';
 
 import style from './style.module.css';
 
-export default function Error404Page(props) {
+export function Error404Page(props) {
   return (
     <>
     <div className={style.main}>

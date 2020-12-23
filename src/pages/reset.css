@@ -9,8 +9,15 @@
       format("woff");
 }
 @font-face {
+  font-family: "Menlo";
+  src: url("../../public/fonts/Menlo/Menlo-Regular.ttf") format("truetype"),
+    url("../../public/fonts/Menlo/Menlo-Italic.ttf") format("truetype"),
+    url("../../public/fonts/Menlo/Menlo-Bold.ttf") format("truetype"),
+    url("../../public/fonts/Menlo/Menlo-BoldItalic.ttf") format("truetype");
+}
+@font-face {
   font-family: "Aeonik";
-  src: url("../../public/fonts/Aeonik-Medium.woff") format("woff");
+  src: url("../../public/fonts/Aeonik/Aeonik-Medium.woff") format("woff");
   font-weight: 500;
 }
 
@@ -53,9 +60,10 @@ Variables
   --link1: rgb(57, 120, 255);
   --link2: rgb(28, 84, 206);
   --link3: rgb(17, 60, 154);
-  
+
   --highlight: rgb(255, 0, 0);
-  --shadow: 0 0 5px 0px rgba(138, 138, 138, 0.1), 0 0 10px 5px rgba(138, 138, 138, 0.05);
+  --shadow: 0 0 5px 0px rgba(138, 138, 138, 0.1),
+    0 0 10px 5px rgba(138, 138, 138, 0.05);
   --border: rgb(242, 242, 242);
 
   color: var(--text1);
@@ -91,7 +99,7 @@ Variables
 Reset
 //////////////////////////////////////////////////////////////////////////////*/
 * {
-  font-family: "Rubik", sans-serif;
+  font-family: "Menlo", sans-serif;/* Menlo/Rubik */
 }
 
 *::selection {

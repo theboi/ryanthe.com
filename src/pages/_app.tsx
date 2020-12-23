@@ -11,7 +11,7 @@ import "firebase/analytics";
 
 import "./reset.css";
 import style from "./style.module.css";
-import K from "../../constants";
+import { K } from "../../constants";
 
 let matchesMedia: boolean;
 let data;
@@ -90,8 +90,11 @@ export default function App({ Component, pageProps }: AppProps) {
               : "./favicons/favicon-light.ico"
           }
         />
-        <script defer src="https://kit.fontawesome.com/9fd42c17a6.js" crossOrigin="anonymous"></script>
-
+        <script
+          defer
+          src="https://kit.fontawesome.com/9fd42c17a6.js"
+          crossOrigin="anonymous"
+        ></script>
       </Head>
 
       <div className={style.main}>
