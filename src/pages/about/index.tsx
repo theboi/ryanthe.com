@@ -72,8 +72,8 @@ export default function AboutPage(props) {
           </p>
           <div className={style.contact}>
             <i className={`far fa-envelope`} />
-            <a href="mailto:ryan.theodore.2006@gmail.com" target="_blank">
-              ryan.theodore.2006@gmail.com
+            <a href="mailto:ryan@ryanthe.com" target="_blank">
+              ryan@ryanthe.com
             </a>
           </div>
           <div className={style.social}>
