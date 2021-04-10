@@ -1,0 +1,35 @@
+/* /////////////////////////////////////////////////////////////////////////////
+MOBILE
+//////////////////////////////////////////////////////////////////////////////*/
+.socialButtons {
+  transition: all 250ms ease-in-out;
+  color: var(--white);
+  text-align: center;
+  font-size: 27px;
+  padding: 7px;
+  border-radius: 100px;
+  width: 50px;
+  height: 50px;
+  line-height: 39px;
+}
+
+/* /////////////////////////////////////////////////////////////////////////////
+DESKTOP
+//////////////////////////////////////////////////////////////////////////////*/
+
+@media screen and (min-width: 768px) {
+  
+}
+
+@media screen and (hover: hover) {
+  .socialButtons {
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    line-height: 28px;
+  }
+
+  .socialButtons:hover {
+    filter: brightness(70%) blur(0.5px);
+  }
+}

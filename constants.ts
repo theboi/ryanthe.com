@@ -1,4 +1,6 @@
-export default class K {
+import { SocialButtonData } from "./src/components/buttons/social";
+
+export class K {
   static firebaseConfig = {
     apiKey: process.env.GOOGLE_API_KEY,
     authDomain: "personal-website-ryan.firebaseapp.com",

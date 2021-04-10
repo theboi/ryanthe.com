@@ -5,7 +5,7 @@
 // import PostCard from "../src/components/cards/post";
 
 // let allPosts = [];
-// export default function WorkPage(props) {
+// export function WorkPage(props) {
 //   const mobileMinWidth = 768;
 //   const [currentPosts, setCurrentPosts] = useState([]);
 //   const [isGrid, setIsGrid] = useState(true);
@@ -118,6 +118,6 @@
 //     </li>
 //   );
 // };
-export default function Works() {
+export function Works() {
   return <div></div>
 }

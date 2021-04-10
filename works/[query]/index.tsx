@@ -7,7 +7,7 @@
 // let willFetchImages: boolean;
 // let tempImages: string[];
 
-// export default function WorksUrlPage() {
+// export function WorksUrlPage() {
 //   const [content, setContent] = useState<Post>();
 
 //   const [images, setImages] = useState([]);
@@ -182,6 +182,6 @@
 //     </>
 //   );
 // }
-export default function WorksItemsPage() {
+export function WorksItemsPage() {
   return <div></div>
 }
