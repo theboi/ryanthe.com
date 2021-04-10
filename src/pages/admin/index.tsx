@@ -166,6 +166,6 @@
 //   );
 // }
 
-export function AdminPage() {
+export default function AdminPage() {
   return <div></div>
 }
