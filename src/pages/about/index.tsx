@@ -67,7 +67,9 @@ export default class AboutPage extends React.Component<Props, State> {
           />
           <img
             className={style.crown}
-            src={`/images/crowns/${this.props.isDarkMode ? "dark" : "light"}-crown.png`}
+            src={`/images/crowns/${
+              this.props.isDarkMode ? "dark" : "light"
+            }-crown.png`}
             alt="Crown"
             hidden={!this.state.isCrowned}
           />
@@ -82,7 +84,10 @@ export default class AboutPage extends React.Component<Props, State> {
           <p>
             I'm Ryan — a <span>student</span>, self-taught software{" "}
             <span>developer</span> and <span>designer</span> based in Singapore.
-            <br/>Coding since 2018.
+            <br />
+            <br />I am passionate about harnessing technology to improve society
+            through STEAM (Science, Technology, Engineering, Aesthetics and
+            Mathematics).
           </p>
           <div className={style.contact}>
             <i className={`far fa-envelope`} />
@@ -91,9 +96,9 @@ export default class AboutPage extends React.Component<Props, State> {
             </a>
           </div>
           <div className={style.social}>
-            {socialData.map((group) => (
-              <div className={style.socialGroup}>
-                {group.map((v, i) => (
+            {socialData.map((g, i) => (
+              <div className={style.socialGroup} key={i}>
+                {g.map((v, i) => (
                   <SocialButton key={i} data={v} />
                 ))}
               </div>

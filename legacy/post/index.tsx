@@ -2,7 +2,7 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/storage";
 
-import { K } from "../../../constants";
+import { K } from "../../constants";
 
 interface PostData {
   date: string;

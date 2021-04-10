@@ -99,7 +99,7 @@ Variables
 Reset
 //////////////////////////////////////////////////////////////////////////////*/
 * {
-  font-family: "Menlo", sans-serif;/* Menlo/Rubik */
+  font-family: "Rubik", sans-serif;/* Menlo/Rubik */
 }
 
 *::selection {
