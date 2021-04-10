@@ -90,11 +90,7 @@ export default function App({ Component, pageProps }: AppProps) {
               : "./favicons/favicon-light.ico"
           }
         />
-        <script
-          defer
-          src="https://kit.fontawesome.com/9fd42c17a6.js"
-          crossOrigin="anonymous"
-        ></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
       </Head>
 
       <div className={style.main}>
