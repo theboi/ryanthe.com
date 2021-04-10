@@ -7,7 +7,7 @@ export interface SocialButtonData {
   link: string;
 }
 
-export const SocialButton = (props: {data: SocialButtonData}) => {
+export function SocialButton(props: {data: SocialButtonData}) {
   return (
     <a
       className={style.socialButtons}

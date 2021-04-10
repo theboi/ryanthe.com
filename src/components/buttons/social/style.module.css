@@ -27,11 +27,9 @@ DESKTOP
     width: 40px;
     height: 40px;
     line-height: 28px;
-    color: var(--white);
   }
 
   .socialButtons:hover {
-    color: var(--white);
     filter: brightness(70%) blur(0.5px);
   }
 }
