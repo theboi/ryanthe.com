@@ -11,7 +11,7 @@ import "firebase/analytics";
 
 import "./reset.css";
 import style from "./style.module.css";
-import { K } from "../../../constants";
+import { K } from "../../constants";
 
 let matchesMedia: boolean;
 let data;

@@ -3,21 +3,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap");
 @font-face {
   font-family: "Nimbus Sans";
-  src: url("../../../public/fonts/NimbusSans/NimbusSans-BoldExtended.ttf")
+  src: url("../../public/fonts/NimbusSans/NimbusSans-BoldExtended.ttf")
       format("truetype"),
-    url("../../../public/fonts/NimbusSans/NimbusSans-BoldExtended.woff")
+    url("../../public/fonts/NimbusSans/NimbusSans-BoldExtended.woff")
       format("woff");
 }
 @font-face {
   font-family: "Menlo";
-  src: url("../../../public/fonts/Menlo/Menlo-Regular.ttf") format("truetype"),
-    url("../../../public/fonts/Menlo/Menlo-Italic.ttf") format("truetype"),
-    url("../../../public/fonts/Menlo/Menlo-Bold.ttf") format("truetype"),
-    url("../../../public/fonts/Menlo/Menlo-BoldItalic.ttf") format("truetype");
+  src: url("../../public/fonts/Menlo/Menlo-Regular.ttf") format("truetype"),
+    url("../../public/fonts/Menlo/Menlo-Italic.ttf") format("truetype"),
+    url("../../public/fonts/Menlo/Menlo-Bold.ttf") format("truetype"),
+    url("../../public/fonts/Menlo/Menlo-BoldItalic.ttf") format("truetype");
 }
 @font-face {
   font-family: "Aeonik";
-  src: url("../../../public/fonts/Aeonik/Aeonik-Medium.woff") format("woff");
+  src: url("../../public/fonts/Aeonik/Aeonik-Medium.woff") format("woff");
   font-weight: 500;
 }
 
@@ -47,8 +47,8 @@ Variables
   --light: #f8f9fa;
   --dark: #343a40;
 
-  --crown1: url(../../../public/images/crowns/light-crown.png);
-  --crown2: url(../../../public/images/crowns/light-crown-select.png);
+  --crown1: url(../../public/images/crowns/light-crown.png);
+  --crown2: url(../../public/images/crowns/light-crown-select.png);
 
   --bgtrans: rgba(255, 255, 255, 0.7);
   --bg0: rgb(248, 248, 248);
@@ -72,8 +72,8 @@ Variables
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --crown1: url(../../../public/images/crowns/dark-crown.png);
-    --crown2: url(../../../public/images/crowns/dark-crown-select.png);
+    --crown1: url(../../public/images/crowns/dark-crown.png);
+    --crown2: url(../../public/images/crowns/dark-crown-select.png);
 
     --bgtrans: rgba(31, 31, 31, 0.7);
     --bg0: rgb(38, 38, 38);
