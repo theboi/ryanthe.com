@@ -1,5 +1,6 @@
 require('dotenv').config()
 module.exports = {
+  reactStrictMode: true,
   async redirects() {
     return [
       { /// Workaround for nextjs bug
