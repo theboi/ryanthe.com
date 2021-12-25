@@ -4,6 +4,7 @@ import {
   SocialButton,
   SocialButtonData,
 } from "../../components/buttons/social";
+import Image from "next/image";
 
 const socialData: SocialButtonData[][] = [
   [
@@ -59,19 +60,21 @@ export default class AboutPage extends React.Component<Props, State> {
     return (
       <div className={style.main}>
         <div className={style.meWrapper}>
-          <img
+          <Image
             className={style.me}
             src="/images/crowns/me.jpg"
             alt="Me"
+            layout="fill"
             style={this.state.isCrowned ? { cursor: "pointer" } : null}
           />
-          <img
+          <Image
             className={style.crown}
             src={`/images/crowns/${
               this.props.isDarkMode ? "dark" : "light"
             }-crown.png`}
             alt="Crown"
-            hidden={!this.state.isCrowned}
+            width={100}
+            height={100}
           />
           <div
             className={style.meMap}
@@ -91,7 +94,7 @@ export default class AboutPage extends React.Component<Props, State> {
           </p>
           <div className={style.contact}>
             <i className={`far fa-envelope`} />
-            <a href="mailto:ryan@ryanthe.com" target="_blank">
+            <a href="mailto:ryan@ryanthe.com" target="_blank" rel="noreferrer">
               ryan@ryanthe.com
             </a>
           </div>

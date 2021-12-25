@@ -1,0 +1,35 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(max(220px, 25vw), 1fr));
+  grid-auto-flow: dense;
+  gap: 20px;
+}
+
+.img {
+  object-fit: cover;
+}
+
+.tile {
+  background-color: var(--bg0);
+  display: block;
+  position: relative;
+  height: 300px;
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  background-color: rgba(var(--black), 1);
+  opacity: 0;
+  inset: 0;
+}
+
+.tile:hover .overlay {
+  opacity: 1;
+}
+
+@media screen and (max-width: 500px) { // MOBILE
+  .tile {
+    grid-column: 1 / -1 !important;
+  }
+}

@@ -1,11 +1,14 @@
 require('dotenv').config()
 module.exports = {
   reactStrictMode: true,
+  images: {
+    domains: ['picsum.photos'],
+  },
   async redirects() {
     return [
-      { /// Workaround for nextjs bug
-        source: '/',
-        destination: '/home',
+      {
+        source: '/works',
+        destination: '/',
         permanent: false,
       },
       {
