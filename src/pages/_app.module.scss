@@ -1,10 +1,12 @@
+@use "src/styles/theme";
+
 .main {
   max-height: 100vh;
   margin-bottom: 300px;
 }
 
 .content {
-  padding: 0 15px;
+  padding: 0 map-get(theme.$margins, "mobile");
 }
 
 @media screen and (min-width: 768px) {
@@ -13,6 +15,6 @@
   }
 
   .content {
-    padding: 0 70px;
+    padding: 0 map-get(theme.$margins, "desktop");
   }
 }

@@ -1,0 +1,41 @@
+@use "src/styles/theme";
+
+.main {
+  width: 100%;
+  height: 100vh;
+  background-color: transparent;
+}
+
+.title {
+  font-family: "Nimbus Sans", sans-serif;
+  text-align: center;
+}
+
+.imgBox {
+  left: calc(-1*map-get(theme.$margins, "mobile"));
+  right: calc(-1*map-get(theme.$margins, "mobile"));
+  width: 100vw;
+  height: 300px;
+  position: relative;
+}
+
+.img {
+  position: static;
+  height: 100px;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.md {
+  max-width: 80ch;
+  font-size: large;
+  margin: initial;
+  padding: initial;
+}
+
+@media screen and (min-width: 768px) {
+  .imgBox {
+    left: calc(-1*map-get(theme.$margins, "desktop"));
+    right: calc(-1*map-get(theme.$margins, "desktop"));
+  }
+}
