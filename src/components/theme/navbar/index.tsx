@@ -14,7 +14,7 @@ export default function NavBar() {
   const router = useRouter();
 
   return (
-    <ul className={style.navbar}>
+    <ul className={style.navbar} role="list">
       <li className={style.icon}>
         <Link href="/">
           <a>

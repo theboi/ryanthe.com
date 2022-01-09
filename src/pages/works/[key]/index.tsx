@@ -5,19 +5,6 @@ import { useRouter } from "next/router";
 import ReactMarkdown from "react-markdown";
 import { Component, createElement } from "react";
 
-class Md extends Component<{ str: string }> {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return createElement(
-      "md",
-      null,
-      <ReactMarkdown className={style.md}>{this.props.str}</ReactMarkdown>
-    );
-  }
-}
-
 export default function WorkPage() {
   const router = useRouter();
   const {
@@ -36,7 +23,7 @@ export default function WorkPage() {
         />
       </div>
       <h1>{data?.full_name}</h1>
-      <Md str={data?.body} />
+      <ReactMarkdown className={style.md}>{data?.body}</ReactMarkdown>
     </div>
   );
 }

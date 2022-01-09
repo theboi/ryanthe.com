@@ -1,5 +1,5 @@
 import React from "react";
-import style from './style.module.css';
+import style from "./style.module.scss";
 
 export interface SocialButtonData {
   icon: string;
@@ -7,17 +7,16 @@ export interface SocialButtonData {
   link: string;
 }
 
-export function SocialButton(props: {data: SocialButtonData}) {
+export function SocialButton({ data }: { data: SocialButtonData }) {
   return (
     <a
       className={style.socialButtons}
-      style={{ background: props.data.color }}
-      href={props.data.link}
+      style={{ background: data.color }}
+      href={data.link}
       target="_blank"
+      rel="noreferrer"
     >
-      <i className={`fab fa-${props.data.icon}`} />
+      <i className={`fab fa-${data.icon}`} />
     </a>
   );
 }
-
-

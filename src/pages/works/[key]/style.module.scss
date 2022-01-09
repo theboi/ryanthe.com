@@ -28,9 +28,29 @@
 
 .md {
   max-width: 80ch;
-  font-size: large;
-  margin: initial;
-  padding: initial;
+  
+  p {
+    font-size: 18px;
+    line-height: 1.5em;
+    margin: 1.25em 0 1.6em 0;
+  }
+  h1 {
+    font-size: 40px;
+    line-height: 1.3em;
+    margin: .67em 0;
+  }
+  h2 {
+    font-size: 28px;
+    line-height: 1.3em;
+  }
+  h3 {
+    font-size: 14px;
+    line-height: 1.6em;
+    letter-spacing: .17em;
+    text-transform: uppercase;
+    margin: .67em 0;
+    color: map-get(theme.$colors, "");
+  }
 }
 
 @media screen and (min-width: 768px) {

@@ -1,5 +1,0 @@
-export class WorkProvider {
-  getPosts() {
-
-  }
-}
