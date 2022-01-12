@@ -10,7 +10,7 @@ for fileName in contentFileNames:
     with open('./src/data/works/works/{}'.format(fileName), encoding='utf-8', mode='r') as fin:
       fileData = fin.read()
       title = re.match(r'# (.*)', fileData.split('\n')[0]).group(1)
-      body = re.sub(r".+\n(\n.*: .*)+(\n\n)?", "", fileData)
+      body = re.sub(r".+\n(\n.*: .*)+(\n\n)?", "", fileData, 1)
       contentData[title] = body
 
 with open("./src/data/works/works.csv", encoding='utf-8-sig', mode='r') as fin:

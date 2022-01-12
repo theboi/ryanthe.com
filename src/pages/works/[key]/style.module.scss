@@ -32,6 +32,9 @@
   p {
     font-size: 18px;
     line-height: 1.5em;
+    margin: 0.75em 0 1.6em 0;
+  }
+  p + p {
     margin: 1.25em 0 1.6em 0;
   }
   h1 {
@@ -49,7 +52,6 @@
     letter-spacing: .17em;
     text-transform: uppercase;
     margin: .67em 0;
-    color: map-get(theme.$colors, "");
   }
 }
 

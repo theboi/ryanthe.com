@@ -1,9 +1,10 @@
 import Image from "next/image";
 import style from "./style.module.scss";
-import works from "../../../data/works/works.json";
+import works from "../../../../public/data/works/works.json";
 import { useRouter } from "next/router";
 import ReactMarkdown from "react-markdown";
-import { Component, createElement } from "react";
+import { GetStaticPropsContext } from "next";
+import { databaseId } from "../..";
 
 export default function WorkPage() {
   const router = useRouter();
@@ -26,4 +27,36 @@ export default function WorkPage() {
       <ReactMarkdown className={style.md}>{data?.body}</ReactMarkdown>
     </div>
   );
+}
+
+export async function getStaticProps(ctx: GetStaticPropsContext) {
+  const {
+    params: { key },
+  } = ctx
+
+  const { Client } = require("@notionhq/client");
+
+  const notion = new Client({ auth: process.env.NOTION_API_KEY });
+
+  const k = key as string
+
+  // query database
+  const queryResponse = await notion.databases.query({
+    database_id: databaseId,
+    filter: {
+      property: 'Key',
+      rich_text: {
+        equals: k
+          },
+    },
+  });
+  console.log(queryResponse);
+
+  // retrieve page
+  const retrieveResponse = await notion.pages.retrieve({ page_id: queryResponse.results[0].id });
+  console.log(retrieveResponse);
+
+  return {
+    props: {}, // will be passed to the page component as props
+  };
 }
