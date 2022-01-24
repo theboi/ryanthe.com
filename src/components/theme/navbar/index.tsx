@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import style from "./style.module.scss";
 import { useDarkMode } from "../../../hooks/useDarkMode";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import { useMinWidth } from "../../../hooks/useDeviceType";
 
@@ -11,7 +10,6 @@ export default function NavBar() {
   const isDesktop = useMinWidth();
 
   const [menuIsOpen, setMenuIsOpen] = useState(false);
-  const router = useRouter();
 
   return (
     <ul className={style.navbar} role="list">
@@ -42,7 +40,7 @@ export default function NavBar() {
             : "rgba(255, 255, 255, 0.7)",
         }}
       >
-        {["ABOUT", "WORKS", "RESUME"].map((value, index) => {
+        {["WORKS"].map((value, index) => {
           return (
             <li
               key={index}
@@ -60,7 +58,7 @@ export default function NavBar() {
       <li
         className={style.hamBox}
         onClick={() => {
-          if (isDesktop) setMenuIsOpen(!menuIsOpen);
+          if (!isDesktop) setMenuIsOpen(!menuIsOpen);
         }}
       >
         <div

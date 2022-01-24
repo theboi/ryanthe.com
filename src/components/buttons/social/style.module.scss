@@ -1,29 +1,23 @@
 @use "src/styles/theme";
-.socialButtons {
-  transition: all 250ms ease-in-out;
-  color: map-get(theme.$colors, "white");
-  text-align: center;
-  font-size: 27px;
-  padding: 7px;
-  border-radius: 100px;
-  width: 50px;
-  height: 50px;
-  line-height: 39px;
+
+.button {
+  i {
+    color: map-get(theme.$colors, "black");
+    text-align: center;
+    font-size: 27px;
+    padding: 7px;
+    border-radius: 100px;
+    height: 50px;
+    line-height: 39px;
+    margin-right: 10px;
+  }
+
+  :hover {
+    transition: all 250ms ease-in-out;
+    opacity: 0.7;
+  }
 }
 
 @media screen and (min-width: 768px) {
   
-}
-
-@media screen and (hover: hover) {
-  .socialButtons {
-    font-size: 20px;
-    width: 40px;
-    height: 40px;
-    line-height: 28px;
-  }
-
-  .socialButtons:hover {
-    filter: brightness(70%) blur(0.5px);
-  }
 }

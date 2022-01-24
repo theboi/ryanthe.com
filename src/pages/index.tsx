@@ -1,40 +1,64 @@
 import style from "./style.module.scss";
-import HomeTile from "../components/works/tile";
-import { GetStaticPropsContext } from "next";
-import { useEffect } from "react";
+import { SocialButton, SocialButtonData } from "../components/buttons/social";
+import Image from "next/image";
+import HomeHeader from "../components/home/header";
+import { useState } from "react";
+import { useDarkMode } from "../hooks/useDarkMode";
+import HomeListing from "../components/home/listing";
 
-export const databaseId = "12c16582503441148d442bbab9528bdd";
+export default function HomePage() {
+  const [isCrowned, setIsCrowned] = useState(false);
 
-export default function HomePage({portfolio}) {
-  useEffect(() => {
-    console.log(portfolio);
-    
-  })
   return (
     <div className={style.main}>
-      <section>
-        <div className={style.grid}>
-          {portfolio.results?.reverse().map((e,i) => (
-            <HomeTile key={i} entry={e} />
+      <HomeHeader />
+      <hr />
+      <HomeListing />
+      {/* <div className={style.meWrapper}>
+        <Image
+          className={style.me}
+          src="/images/crowns/me.jpg"
+          alt="Me"
+          layout="fill"
+          // style={isCrowned ? { cursor: "pointer" } : null} TODO: fix this in css
+        />
+        <Image
+          className={style.crown}
+          src={`/images/crowns/${
+            isDarkMode ? "dark" : "light"
+          }-crown.png`}
+          alt="Crown"
+          width={100}
+          height={100}
+        />
+        <div
+          className={style.meMap}
+          onClick={() => {setIsCrowned(true)}}
+          style={isCrowned ? { cursor: "pointer" } : null}
+        />
+      </div>
+      <div className={style.intro}>
+        <h1 className={style.hey}>Hey, I&apos;m Ryan</h1>
+        <h2>
+          I am a <span>student</span>, self-taught software{" "}
+          <span>developer</span> and <span>designer</span> based in Singapore.
+          <br />
+          <br />I am passionate about harnessing technology to improve society
+          through Science, Technology, Engineering, Arts and
+          Mathematics (STEAM).
+        </h2>
+        <div className={style.contact}>
+          <i className={`far fa-envelope`} />
+          <a href="mailto:ryan@ryanthe.com" target="_blank" rel="noreferrer">
+            ryan@ryanthe.com
+          </a>
+        </div>
+        <div className={style.social}>
+          {socialData.map((g, i) => (
+            <SocialButton key={i} data={g} />
           ))}
         </div>
-      </section>
+      </div> */}
     </div>
   );
-}
-
-export async function getStaticProps(ctx: GetStaticPropsContext) {
-  const { Client } = require("@notionhq/client");
-
-  const notion = new Client({ auth: process.env.NOTION_API_KEY });
-
-  const response = await notion.databases.query({
-    database_id: databaseId,
-  });
-
-  return {
-    props: {
-      portfolio: response
-    },
-  };
 }

@@ -1,4 +1,5 @@
 @use "src/styles/theme";
+
 @font-face {
   font-family: "Nimbus Sans"; // navbar font
   src: url("../../public/fonts/NimbusSans/NimbusSans-BoldExtended.ttf")
@@ -13,11 +14,12 @@
     url("../../public/fonts/Menlo/Menlo-Bold.ttf") format("truetype"),
     url("../../public/fonts/Menlo/Menlo-BoldItalic.ttf") format("truetype");
 }
-@font-face {
-  font-family: "Aeonik"; // header font
-  src: url("../../public/fonts/Aeonik/Aeonik-Medium.woff") format("woff");
-  font-weight: 500;
-}
+// @font-face {
+//   font-family: "Aeonik"; // header font
+//   src: url("../../public/fonts/Aeonik/Aeonik-Medium.woff") format("woff");
+//   font-weight: 500;
+// }
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap'); // h1
 
 // paragraph font
 @font-face { font-family: "Proxima Nova"; src: url("https://use.typekit.net/af/efe4a5/00000000000000007735e609/30/l?subset_id=2&fvd=n4&v=3") format("woff2"), url("https://use.typekit.net/af/efe4a5/00000000000000007735e609/30/d?subset_id=2&fvd=n4&v=3") format("woff"), url("https://use.typekit.net/af/efe4a5/00000000000000007735e609/30/a?subset_id=2&fvd=n4&v=3") format("opentype"); font-style: normal; font-weight: 400; font-display: auto; }
@@ -105,12 +107,16 @@ Variables
 Reset
 //////////////////////////////////////////////////////////////////////////////*/
 
-* {
-  font-family: "Proxima Nova", sans-serif;
+p, h2, h3, h4, h5, h6 {
+  font-family: 'Proxima Nova', sans-serif;
 }
 
-h1,h2,h3,h4,h5,h6 {
-  font-family: "Aeonik", sans-serif;
+code {
+  font-family: 'Menlo', monospace;
+}
+
+h1 {
+  font-family: 'Merriweather', serif;
 }
 
 *::selection {
@@ -209,6 +215,15 @@ h4,
 h5,
 h6 {
   clear: both;
+}
+
+hr {
+  border: 0;
+  clear:both;
+  display:block;
+  width: 96%;               
+  background-color: rgba(map-get(theme.$colors, "grey"), 0.1);
+  height: 1px;
 }
 
 blockquote {

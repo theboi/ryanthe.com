@@ -6,6 +6,7 @@ import NavBar from "../components/theme/navbar";
 
 import "./reset.scss";
 import style from "./_app.module.scss";
+import Footer from "../components/theme/footer";
 
 export default function App({ Component, pageProps }: AppProps) {
   const isDarkMode = useDarkMode();
@@ -52,6 +53,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <div className={style.content}>
           <Component {...pageProps} />
         </div>
+        <Footer />
       </div>
     </>
   );

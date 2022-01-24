@@ -1,0 +1,38 @@
+@use "src/styles/theme";
+
+.header {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.title {
+  margin-bottom: .3em;
+}
+
+.social {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px 0;
+  column-gap: 15px;
+}
+
+.image {
+  object-fit: cover;
+  min-width: 700px;
+  // border-radius: 10px;
+}
+
+.info {
+  max-width: 50ch;
+
+  h2 span {
+    transition: all 250ms ease-in-out;
+    color: map-get(theme.$colors, "blue");
+    cursor: pointer;
+
+    &:hover {
+      color: lighten(map-get(theme.$colors, "blue"), 10%); // saturate(map-get(theme.$colors, "red"), 50%);
+    }
+  }
+}
