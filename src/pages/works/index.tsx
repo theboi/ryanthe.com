@@ -1,21 +1,16 @@
 import style from "./style.module.scss";
 import HomeTile from "../../components/works/tile";
 import { GetStaticPropsContext } from "next";
-import { useEffect } from "react";
 
 export const databaseId = "12c16582503441148d442bbab9528bdd";
 
-export default function WorksPage({portfolio}) {
-  useEffect(() => {
-    console.log(portfolio);
-    
-  })
+export default function WorksPage({ data }) {
   return (
     <div className={style.main}>
       <section>
         <div className={style.grid}>
-          {portfolio.results?.reverse().map((e,i) => (
-            <HomeTile key={i} entry={e} />
+          {data.entries?.map((e,i) => (
+            <HomeTile key={i} data={e} /> // TODO: use "Key" as key
           ))}
         </div>
       </section>
@@ -32,9 +27,18 @@ export async function getStaticProps(ctx: GetStaticPropsContext) {
     database_id: databaseId,
   });
 
+  const data = {
+    entries: response.results.reverse().map((e) => ({
+      name: e.properties["Name"],
+      discipline: e.properties["Discipline"],
+      notability: e.properties["Notability"],
+      key: e.properties["Key"],
+    })),
+  };
+
   return {
     props: {
-      portfolio: response
+      data,
     },
   };
 }

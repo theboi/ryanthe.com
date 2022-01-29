@@ -3,7 +3,6 @@ import { SocialButton, SocialButtonData } from "../components/buttons/social";
 import Image from "next/image";
 import HomeHeader from "../components/home/header";
 import { useState } from "react";
-import { useDarkMode } from "../hooks/useDarkMode";
 import HomeListing from "../components/home/listing";
 
 export default function HomePage() {

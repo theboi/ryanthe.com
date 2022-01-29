@@ -13,7 +13,7 @@
   box-shadow: #{map-get(theme.$shadows, "4")};
 
   .desc {
-    color: map-get(theme.$colors, "white");
+    color: map-get(theme.$colors, "black"); // TODO: white
     display: flex;
     flex-direction: column;
     height: 100%;
