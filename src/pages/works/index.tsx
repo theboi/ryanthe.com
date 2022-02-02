@@ -10,7 +10,7 @@ export default function WorksPage({ data }) {
       <section>
         <div className={style.grid}>
           {data.entries?.map((e,i) => (
-            <HomeTile key={i} data={e} /> // TODO: use "Key" as key
+            <HomeTile key={i} data={e} /> // TODO: use "ID" as key
           ))}
         </div>
       </section>
@@ -29,10 +29,10 @@ export async function getStaticProps(ctx: GetStaticPropsContext) {
 
   const data = {
     entries: response.results.reverse().map((e) => ({
-      name: e.properties["Name"],
-      discipline: e.properties["Discipline"],
-      notability: e.properties["Notability"],
-      key: e.properties["Key"],
+      name: e.properties["Name"].title.map((e) => e.plain_text).join(),
+      discipline: e.properties["Discipline"].multi_select.map((e) => e.name).join(", "),
+      notability: e.properties["Notability"]?.select?.name ?? "Low",
+      id: e.properties["ID"]?.rich_text[0]?.plain_text ?? e.properties["Name"].title.map((e) => e.plain_text).join(),
     })),
   };
 

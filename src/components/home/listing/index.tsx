@@ -28,7 +28,7 @@ const data = [
     entries: [
       {
         title: "School of Science and Technology, Singapore",
-        desc: "At the School of Science and Technology, we are able to choose an O-Level Applied Subject to develop our interests in a specific field. For myself, I chose Computing+ as my Applied Subject, which allows me to develop my computational thinking skills, and also further my knowledge in the Python language.",
+        desc: "some desc here lorem ipsum blah blah blah some desc here lorem ipsum blah blah blah some desc here lorem ipsum blah blah blah some desc here lorem ipsum blah blah blahsome desc here lorem ipsum blah blah blah some desc here lorem ipsum blah blah blah some desc here lorem ipsum blah blah blah",
         period: "2019-2022",
         img: "sst.png",
       },

@@ -2,7 +2,7 @@ import style from "./style.module.scss";
 // import works from "../../../../public/data/works/works.json";
 import { useRouter } from "next/router";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
-import { databaseId } from "../";
+import { databaseId } from "..";
 
 export default function WorkPage({ data }) {
 
@@ -32,37 +32,25 @@ const resolveBlock = (block) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSidePropsContext) => {
-  const {
-    params: { key },
-  } = ctx;
+  const id = ctx.params["id"] as string
 
   const { Client } = require("@notionhq/client");
 
   const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
-  const k = key as string;
-
   const entriesWithKey = (
     await notion.databases.query({
       database_id: databaseId,
       filter: {
-        property: "Key",
+        property: "ID",
         rich_text: {
-          equals: k,
+          equals: id,
         },
       },
     })
   );
   if (entriesWithKey.results.length === 0) return { notFound: true }
   const entryWithKey = entriesWithKey.results[0]
-  // console.log(entryWithKey)
-  // retrieve page
-  // const blockWithKey = await notion.blocks.retrieve({ block_id: entryWithKey.id });
-
-  // const blockWithKey = await notion.blocks.children.list({
-  //   block_id: entryWithKey.id,
-  //   page_size: 5,
-  // });
 
   let start = true
   let cursor = undefined

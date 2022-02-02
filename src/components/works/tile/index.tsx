@@ -10,17 +10,17 @@ export default function HomeTile({
     <div
       className={style.tile}
       style={{
-        gridColumn: `span ${data.notability?.select?.name === "High" ? 2 : 1}`,
-        background: `linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0) 66%, rgba(0, 0, 0, 0.6)))`,//, url(/images/works/${data.key.rich_text[0]?.plain_text}.jpg)`,
+        gridColumn: `span ${data.notability === "High" ? 2 : 1}`,
+        background: `linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0) 66%, rgba(0, 0, 0, 0.6)))`,//, url(/images/works/${data.id}.jpg)`,
         backgroundSize: "cover",
       }}
     >
-      <Link href={`/works/${data.key.rich_text[0]?.plain_text}`}>
+      <Link href={`/works/${data.id}`}>
         <a
           className={style.desc}
         >
-          <h1>{data.name.title.map((e) => e.plain_text).join()}</h1>
-          <p>{data.discipline.multi_select.map((e) => e.name).join(", ")}</p>
+          <h1>{data.name}</h1>
+          <p>{data.discipline}</p>
           {/* <Image
             src={}
             layout="fill"
