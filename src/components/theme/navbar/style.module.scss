@@ -13,11 +13,9 @@
   color: var(--text);
   padding: 10px 0;
   font-family: "Nimbus Sans", sans-serif;
-
   &:hover {
     opacity: 0.7;
   }
-
   &:active {
     opacity: 0.5;
   }
@@ -57,50 +55,60 @@
 }
 
 .hamBox {
+  z-index: 11;
   height: 40px;
   width: 40px;
+  cursor: pointer;
+  transition: all 250ms ease-in-out;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
 }
 
 .ham {
-  z-index: 11;
   position: relative;
   transition: all 200ms ease-in-out;
   margin: 17.5px 0;
-  width: 100%;
+  width: 75%;
   height: 4px;
   border-radius: 10px;
-}
 
-.ham::before,
-.ham::after {
-  transition: top 100ms, bottom 100ms;
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 4px;
-  background-color: inherit;
-  border-radius: 10px;
-}
+  &::before,
+  &::after {
+    transition: top 100ms, bottom 100ms;
+    content: "";
+    position: absolute;
+    width: 75%;
+    height: 4px;
+    background-color: inherit;
+    border-radius: 10px;
+    right: 0;
+  }
+  &::before {
+    top: 10px;
+  }
+  &::after {
+    bottom: 10px;
+  }
 
-.ham::before {
-  top: 8px;
-}
-
-.ham::after {
-  bottom: 8px;
-}
-
-.ham.open {
-  transform: rotate(225deg);
-}
-
-.ham.open::before {
-  top: 0;
-  transform: rotate(90deg);
-}
-
-.ham.open::after {
-  bottom: 0;
+  &.open {
+    transform: rotate(225deg);
+    &::before, &::after {
+      width: 100%;
+    }
+    &::before {
+      top: 0;
+      transform: rotate(90deg);
+    }
+    &::after {
+      bottom: 0;
+    }
+  }
 }
 
 @media screen and (min-width: 768px) {
