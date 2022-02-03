@@ -1,32 +1,29 @@
 .navbar {
   position: relative;
   justify-content: flex-end;
-  place-items: center;  
+  place-items: center;
   display: flex;
   margin: 40px 30px;
   height: 50px;
 }
 
-.navbar li > * {
+.navbar li a {
   cursor: pointer;
   transition: all 250ms ease-in-out;
-  color: var(--text)
-}
-
-.navbar li:hover > * {
-  opacity: 0.7;
-}
-
-.navbar li:active > * {
-  opacity: 0.5;
-}
-
-.navlinks li > * {
+  color: var(--text);
   padding: 10px 0;
-  font-family: 'Nimbus Sans', sans-serif;
+  font-family: "Nimbus Sans", sans-serif;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
 }
 
-.navlinks {
+.links {
   transition: all 250ms ease-in-out;
   display: flex;
   flex-direction: column;
@@ -40,18 +37,18 @@
   z-index: 10;
   height: 0;
   overflow: hidden;
-}
 
-.navlinks.open {
-  height: 250px;
-}
+  &.open {
+    height: 250px;
+  }
 
-.navlinks a {
-  display: block;
-}
+  a {
+    display: block;
+  }
 
-.navlinks li:last-child {
-  margin-bottom: 20px;
+  li:last-child {
+    margin-bottom: 20px;
+  }
 }
 
 .icon {
@@ -74,7 +71,8 @@
   border-radius: 10px;
 }
 
-.ham::before, .ham::after {
+.ham::before,
+.ham::after {
   transition: top 100ms, bottom 100ms;
   content: "";
   position: absolute;
@@ -110,15 +108,7 @@
     margin: 50px 70px;
   }
 
-  .navlinks li > * {
-    padding: 10px;
-  }
-
-  .navlinks li:last-child {
-    margin-bottom: 0;
-  }
-  
-  .navlinks {
+  .links {
     background-color: transparent !important;
     padding: 0;
     width: auto;
@@ -127,6 +117,13 @@
     place-items: center;
     flex-direction: row;
     height: 50px;
+
+    li:last-child {
+      margin-bottom: 0;
+    }
+    li > * {
+      padding: 10px;
+    }
   }
 
   .hamBox {

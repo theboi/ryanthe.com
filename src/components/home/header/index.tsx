@@ -2,8 +2,11 @@ import { SocialButton, SocialButtonData } from "../../buttons/social";
 import Image from "next/image";
 
 import style from "./style.module.scss";
+import { useState } from "react";
 
 export default function HomeHeader() {
+  const [isCrowned, setIsCrowned] = useState(false);
+
   return (
     <header className={style.header}>
       <Image src="/images/crowns/me.jpg" alt="Me, Ryan Theodore The" width={250} height={350} className={style.image} />

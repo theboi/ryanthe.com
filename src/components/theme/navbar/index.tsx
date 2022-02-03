@@ -1,12 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import style from "./style.module.scss";
-import { useDarkMode } from "../../../hooks/useDarkMode";
 import { useState } from "react";
 import { useMinWidth } from "../../../hooks/useDeviceType";
 
 export default function NavBar() {
-  const isDarkMode = useDarkMode();
   const isDesktop = useMinWidth();
 
   const [menuIsOpen, setMenuIsOpen] = useState(false);
@@ -17,11 +15,7 @@ export default function NavBar() {
         <Link href="/">
           <a>
             <Image
-              src={
-                isDarkMode
-                  ? "/icons/logo192-dark.png"
-                  : "/icons/logo192-light.png"
-              }
+              src="/icons/logo192-light.png"
               alt="Ryan's Icon"
               width={50}
               height={50}
@@ -30,26 +24,20 @@ export default function NavBar() {
         </Link>
       </li>
       <div
-        className={`${style.navlinks} ${menuIsOpen ? style.open : null}`}
+        className={`${style.links} ${menuIsOpen ? style.open : null}`}
         onClick={() => {
           if (isDesktop) setMenuIsOpen(!menuIsOpen);
         }}
-        style={{
-          backgroundColor: isDarkMode
-            ? "rgba(31, 31, 31, 0.7)"
-            : "rgba(255, 255, 255, 0.7)",
-        }}
+        style={{ backgroundColor: "rgba(255, 255, 255, 0.7)" }}
       >
-        {["WORKS"].map((value, index) => {
+        {["WORKS"].map((v) => {
           return (
             <li
-              key={index}
-              style={{
-                color: isDarkMode ? "rgb(255, 255, 255)" : "rgb(7, 7, 7)",
-              }}
+              key={v}
+              style={{ color: "rgb(7, 7, 7)" }}
             >
-              <Link href={`/${value.toLowerCase()}`}>
-                <a>{value}</a>
+              <Link href={`/${v.toLowerCase()}`}>
+                <a>{v}</a>
               </Link>
             </li>
           );
@@ -63,9 +51,7 @@ export default function NavBar() {
       >
         <div
           className={`${style.ham} ${menuIsOpen ? style.open : null}`}
-          style={{
-            backgroundColor: isDarkMode ? "rgb(255, 255, 255)" : "rgb(7, 7, 7)",
-          }}
+          style={{ backgroundColor: "rgb(7, 7, 7)" }}
         />
       </li>
     </ul>

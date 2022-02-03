@@ -1,19 +1,15 @@
 import style from "./style.module.scss";
-// import works from "../../../../public/data/works/works.json";
-import { useRouter } from "next/router";
+import Image from "next/image";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { databaseId } from "..";
 
 export default function WorkPage({ data }) {
-
   return (
     <div className={style.main}>
       <h1>{data?.time}</h1>
       <h1>{data?.ccaRecord ? "Yes" : "No"}</h1>
-      <h1>Hi</h1>
       <p>{data?.pageContent.length}</p>
-      {data?.pageContent.map((e) => resolveBlock(e))}
-      {/* <div className={style.imgBox}>
+      <div className={style.imgBox}>
         <Image
           src={`/images/works/${data?.key}.jpg`}
           layout="fill"
@@ -22,7 +18,7 @@ export default function WorkPage({ data }) {
         />
       </div>
       <h1>{data?.full_name}</h1>
-      <ReactMarkdown className={style.md}>{data?.body}</ReactMarkdown> */}
+      {data?.pageContent.map((e) => resolveBlock(e))}
     </div>
   );
 }
@@ -69,6 +65,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSideP
 
   const data = {
     time: entryWithKey["last_edited_time"],
+    name: entryWithKey.properties["Name"].title.map((e) => e.plain_text).join(),
+    fullName: entryWithKey.properties["Full Name"].rich_text.map((e) => e.plain_text).join(),
     ccaRecord: entryWithKey.properties["CCA Record"].checkbox,
     pageContent: blocks,
     // writeUp

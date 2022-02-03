@@ -1,12 +1,8 @@
 import style from "./style.module.scss";
-import { SocialButton, SocialButtonData } from "../components/buttons/social";
-import Image from "next/image";
 import HomeHeader from "../components/home/header";
-import { useState } from "react";
 import HomeListing from "../components/home/listing";
 
 export default function HomePage() {
-  const [isCrowned, setIsCrowned] = useState(false);
 
   return (
     <div className={style.main}>
