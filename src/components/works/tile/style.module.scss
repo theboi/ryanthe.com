@@ -5,13 +5,15 @@
 // }
 
 .tile {
-  background-color: var(--bg0);
+  // background-color: var(--bg0);
   display: block;
   position: relative;
   height: 16em;
+  background-size: cover !important;
+  background-position: center !important;
 
   .desc {
-    color: map-get(theme.$colors, "black"); // TODO: white
+    color: map-get(theme.$colors, "white");
     display: flex;
     flex-direction: column;
     height: 100%;

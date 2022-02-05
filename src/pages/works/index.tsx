@@ -28,14 +28,25 @@ export async function getStaticProps(ctx: GetStaticPropsContext) {
 
   const data = {
     entries: entries.results.reverse().map((entry) => ({
-      name: entry.properties["Name"].title.reduce((a,c) => a+c.plain_text, ""),
+      name: entry.properties["Name"].title.reduce(
+        (a, c) => a + c.plain_text,
+        ""
+      ),
       discipline: entry.properties["Discipline"].multi_select
         .map((e) => e.name)
         .join(", "),
       notability: entry.properties["Notability"]?.select?.name ?? "Low",
+      media: entry.properties["Media"]?.files,
       id:
-        entry.properties["ID"]?.rich_text.reduce((a,c) => a+c.plain_text, "") ??
-        entry.properties["Name"]?.title.reduce((a,c) => a+c.plain_text, ""),
+        entry.properties["ID"]?.rich_text.reduce(
+          (a, c) => a + c.plain_text,
+          ""
+        ) ||
+        entry.properties["Name"]?.title.reduce(
+          (a, c) => a + c.plain_text,
+          ""
+        ) ||
+        entry["id"],
     })),
   };
 

@@ -122,8 +122,9 @@ export const getStaticProps: GetStaticProps = async (
     ccaRecord: entry.properties["CCA Record"].checkbox,
     pageContent: blocks,
     id:
-      entry.properties["ID"]?.rich_text.reduce((a,c) => a+c.plain_text, "") ??
-      entry.properties["Name"]?.title.reduce((a,c) => a+c.plain_text, ""),
+    entry.properties["ID"]?.rich_text.reduce((a,c) => a+c.plain_text, "") ||
+    entry.properties["Name"]?.title.reduce((a,c) => a+c.plain_text, "") ||
+    entry["id"]
     // writeUp
     // recognition
   };

@@ -5,11 +5,9 @@ import style from "./style.module.scss";
 import { useState } from "react";
 
 export default function HomeHeader() {
-  const [isCrowned, setIsCrowned] = useState(false);
-
   return (
     <header className={style.header}>
-      <Image src="/images/crowns/me.jpg" alt="Me, Ryan Theodore The" width={250} height={350} className={style.image} />
+      <Image src="/images/me.jpg" alt="Me, Ryan Theodore The" width={250} height={350} className={style.image} />
       <div className={style.info}>
         <h1 className={style.title}>Hey, I&apos;m Ryan</h1>
         <h2>
