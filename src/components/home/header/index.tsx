@@ -1,13 +1,29 @@
 import { SocialButton, SocialButtonData } from "../../buttons/social";
 import Image from "next/image";
+import Confetti from "react-confetti";
 
 import style from "./style.module.scss";
 import { useState } from "react";
 
 export default function HomeHeader() {
+  const [confettiOn, setConfettiOn] = useState(false);
+
   return (
     <header className={style.header}>
-      <Image src="/images/me.jpg" alt="Me, Ryan Theodore The" width={250} height={350} className={style.image} />
+      <div className={style.me}>
+        <div onClick={() => {
+          setConfettiOn(true)
+        }} />
+      <Image
+        src="/images/me.jpg"
+        alt="Me, Ryan Theodore The"
+        width={250}
+        height={350}
+      />
+      </div>
+      {confettiOn && (
+        <Confetti width={window.innerWidth} height={window.innerHeight} numberOfPieces={700} recycle={false} onConfettiComplete={() => setConfettiOn(false)} />
+      )}
       <div className={style.info}>
         <h1 className={style.title}>Hey, I&apos;m Ryan</h1>
         <h2>

@@ -17,10 +17,23 @@
   column-gap: 25px;
 }
 
-.image {
-  object-fit: cover;
-  min-width: 700px;
+
+.me {
+  position: relative;
   cursor: url(../../../../public/images/crown.png), pointer;
+  & > div {
+    position: absolute;
+    z-index: 1;
+    top: 20px;
+    bottom: 290px;
+    left: 90px;
+    right: 100px;
+  }
+  & > img {
+    object-fit: cover;
+    min-width: 700px;
+    
+  }
 }
 
 .info {
