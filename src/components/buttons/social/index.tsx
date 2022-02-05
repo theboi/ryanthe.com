@@ -10,7 +10,7 @@ export function SocialButton({ data }: { data: SocialButtonData }) {
   return (
     <Link href={data.link}>
       <a className={style.button} target="_blank" rel="noreferrer">
-        <i className={`fab fa-${data.icon}`} />
+        <i className={data.icon} />
       </a>
     </Link>
   );

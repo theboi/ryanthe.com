@@ -50,6 +50,11 @@
   li:last-child {
     margin-bottom: 20px;
   }
+
+  .isCurrentPath {
+    transition: all 250ms ease-in-out;
+    color: map-get(theme.$colors, "blue");
+  }
 }
 
 .icon {
@@ -103,7 +108,8 @@
 
   &.open {
     transform: rotate(225deg);
-    &::before, &::after {
+    &::before,
+    &::after {
       width: 100%;
     }
     &::before {

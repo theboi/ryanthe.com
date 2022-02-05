@@ -4,10 +4,12 @@ import style from "./style.module.scss";
 import { useState } from "react";
 import { useMinWidth } from "../../../hooks/useDeviceType";
 import clsx from "clsx";
+import { useRouter } from "next/dist/client/router";
 
 export default function NavBar() {
   const isDesktop = useMinWidth();
-
+  const router = useRouter();
+  console.log(router.pathname)
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
   return (
@@ -30,11 +32,11 @@ export default function NavBar() {
           if (!isDesktop) setMenuIsOpen(!menuIsOpen);
         }}
       >
-        {["works", "resources"].map((v) => {
+        {paths.map((p) => {
           return (
-            <li key={v}>
-              <Link href={`/${v.toLowerCase()}`}>
-                <a>{v.toUpperCase()}</a>
+            <li key={p.name} className={router.pathname === p.url && style.isCurrentPath}>
+              <Link href={p.url}>
+                <a>{p.name.toUpperCase()}</a>
               </Link>
             </li>
           );
@@ -54,3 +56,14 @@ export default function NavBar() {
     </ul>
   );
 }
+
+const paths = [
+  {
+    name: "Home",
+    url: "/"
+  },
+  {
+    name: "Works",
+    url: "/works"
+  }
+]

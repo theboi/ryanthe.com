@@ -22,10 +22,10 @@ export default function HomeHeader() {
       />
       </div>
       {confettiOn && (
-        <Confetti width={window.innerWidth} height={window.innerHeight} numberOfPieces={700} recycle={false} onConfettiComplete={() => setConfettiOn(false)} />
+        <Confetti width={window.innerWidth} height={window.innerHeight} numberOfPieces={571} recycle={false} onConfettiComplete={() => setConfettiOn(false)} />
       )}
       <div className={style.info}>
-        <h1 className={style.title}>Hey, I&apos;m Ryan</h1>
+        <h1 className={style.title}>Hey, I&apos;m Ryan 👋</h1>
         <h2>
           I am a <span>student</span>, self-taught software{" "}
           <span>developer</span> and <span>designer</span> based in Singapore,
@@ -43,17 +43,21 @@ export default function HomeHeader() {
 }
 
 const socialData: SocialButtonData[] = [
-  { icon: "github", link: "https://github.com/theboi" },
+  { icon: "fab fa-github", link: "https://github.com/theboi" },
   {
-    icon: "linkedin",
-    link: "https://www.linkedin.com/in/ryan-the/",
+    icon: "fab fa-linkedin",
+    link: "https://www.linkedin.com/in/ryanthe/",
   },
   // {
-  //   icon: "instagram",
+  //   icon: "fab fa-instagram",
   //   link: "https://www.instagram.com/theboi_io/",
   // },
   {
-    icon: "medium-m",
+    icon: "fab fa-medium-m",
     link: "https://medium.com/@theboi",
   },
+  {
+    icon: "fas fa-at",
+    link: "mailto:ryan@ryanthe.com"
+  }
 ];
