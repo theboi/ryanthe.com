@@ -9,7 +9,7 @@ export default function WorksPage({ data }) {
     <div className={style.main}>
       <section>
         <div className={style.grid}>
-          {data.entries?.map((e, i) => (
+          {data.entries?.map((e) => (
             <HomeTile key={e.id} data={e} />
           ))}
         </div>

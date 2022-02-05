@@ -3,6 +3,7 @@ import Image from "next/image";
 import style from "./style.module.scss";
 import { useState } from "react";
 import { useMinWidth } from "../../../hooks/useDeviceType";
+import clsx from "clsx";
 
 export default function NavBar() {
   const isDesktop = useMinWidth();
@@ -24,20 +25,16 @@ export default function NavBar() {
         </Link>
       </li>
       <div
-        className={`${style.links} ${menuIsOpen ? style.open : null}`}
+        className={clsx(style.links, menuIsOpen && style.open)}
         onClick={() => {
           if (!isDesktop) setMenuIsOpen(!menuIsOpen);
         }}
-        style={{ backgroundColor: "rgba(255, 255, 255, 0.7)" }}
       >
-        {["WORKS"].map((v) => {
+        {["works", "resources"].map((v) => {
           return (
-            <li
-              key={v}
-              style={{ color: "rgb(7, 7, 7)" }}
-            >
+            <li key={v}>
               <Link href={`/${v.toLowerCase()}`}>
-                <a>{v}</a>
+                <a>{v.toUpperCase()}</a>
               </Link>
             </li>
           );
