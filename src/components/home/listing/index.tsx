@@ -34,4 +34,15 @@ const data = [
       },
     ],
   },
+  {
+    title: "Leadership",
+    entries: [
+      {
+        title: "School of Science and Technology, Singapore",
+        desc: "some desc here lorem ipsum blah blah blah some desc here lorem ipsum blah blah blah some desc here lorem ipsum blah blah blah some desc here lorem ipsum blah blah blahsome desc here lorem ipsum blah blah blah some desc here lorem ipsum blah blah blah some desc here lorem ipsum blah blah blah",
+        period: "2019-2022",
+        img: "sst.png",
+      },
+    ],
+  },
 ];

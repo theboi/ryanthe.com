@@ -1,3 +1,5 @@
+@use "src/styles/fonts";
+
 $colors: (
   "blue": #007bff,
   "indigo": #6610f2,
@@ -21,6 +23,8 @@ $colors: (
   "danger": #dc3545,
   "light": #f8f9fa,
   "dark": #343a40,
+
+  "highlight": #ff0000,
 );
 
 $shadows: ( // shadows from Tailwind CSS

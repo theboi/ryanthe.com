@@ -1,63 +1,6 @@
 @use "src/styles/theme";
 
-@font-face {
-  font-family: "Nimbus Sans"; // navbar font
-  src: url("../../public/fonts/NimbusSans/NimbusSans-BoldExtended.ttf")
-      format("truetype"),
-    url("../../public/fonts/NimbusSans/NimbusSans-BoldExtended.woff")
-      format("woff");
-}
-@font-face {
-  font-family: "Menlo"; // code font
-  src: url("../../public/fonts/Menlo/Menlo-Regular.ttf") format("truetype"),
-    url("../../public/fonts/Menlo/Menlo-Italic.ttf") format("truetype"),
-    url("../../public/fonts/Menlo/Menlo-Bold.ttf") format("truetype"),
-    url("../../public/fonts/Menlo/Menlo-BoldItalic.ttf") format("truetype");
-}
-// @font-face {
-//   font-family: "Aeonik"; // header font
-//   src: url("../../public/fonts/Aeonik/Aeonik-Medium.woff") format("woff");
-//   font-weight: 500;
-// }
-// @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap'); // h1
-
-// paragraph font
-@font-face { font-family: "Proxima Nova"; src: url("https://use.typekit.net/af/efe4a5/00000000000000007735e609/30/l?subset_id=2&fvd=n4&v=3") format("woff2"), url("https://use.typekit.net/af/efe4a5/00000000000000007735e609/30/d?subset_id=2&fvd=n4&v=3") format("woff"), url("https://use.typekit.net/af/efe4a5/00000000000000007735e609/30/a?subset_id=2&fvd=n4&v=3") format("opentype"); font-style: normal; font-weight: 400; font-display: auto; }
-@font-face { font-family: "Proxima Nova"; src: url("https://use.typekit.net/af/3322cc/00000000000000007735e616/30/l?subset_id=2&fvd=i4&v=3") format("woff2"), url("https://use.typekit.net/af/3322cc/00000000000000007735e616/30/d?subset_id=2&fvd=i4&v=3") format("woff"), url("https://use.typekit.net/af/3322cc/00000000000000007735e616/30/a?subset_id=2&fvd=i4&v=3") format("opentype"); font-style: italic; font-weight: 400; font-display: auto; }
-@font-face { font-family: "Proxima Nova"; src: url("https://use.typekit.net/af/2555e1/00000000000000007735e603/30/l?subset_id=2&fvd=n7&v=3") format("woff2"), url("https://use.typekit.net/af/2555e1/00000000000000007735e603/30/d?subset_id=2&fvd=n7&v=3") format("woff"), url("https://use.typekit.net/af/2555e1/00000000000000007735e603/30/a?subset_id=2&fvd=n7&v=3") format("opentype"); font-style: normal; font-weight: 700; font-display: auto; }
-@font-face { font-family: "Proxima Nova"; src: url("https://use.typekit.net/af/4de20a/00000000000000007735e604/30/l?subset_id=2&fvd=i7&v=3") format("woff2"), url("https://use.typekit.net/af/4de20a/00000000000000007735e604/30/d?subset_id=2&fvd=i7&v=3") format("woff"), url("https://use.typekit.net/af/4de20a/00000000000000007735e604/30/a?subset_id=2&fvd=i7&v=3") format("opentype"); font-style: italic; font-weight: 700; font-display: auto; }
-
-/* /////////////////////////////////////////////////////////////////////////////
-Variables
-//////////////////////////////////////////////////////////////////////////////*/
-
 :root {
-  --blue: #007bff;
-  --indigo: #6610f2;
-  --purple: #6f42c1;
-  --pink: #e83e8c;
-  --red: #dc3545;
-  --orange: #fd7e14;
-  --yellow: #ffc107;
-  --green: #28a745;
-  --teal: #20c997;
-  --cyan: #17a2b8;
-  --white: #fff;
-  --gray: #6c757d;
-  --gray-dark: #343a40;
-  --black: #070707;
-  --primary: #007bff;
-  --secondary: #6c757d;
-  --success: #28a745;
-  --info: #17a2b8;
-  --warning: #ffc107;
-  --danger: #dc3545;
-  --light: #f8f9fa;
-  --dark: #343a40;
-
-  --crown1: url(../../public/images/crowns/light-crown.png);
-  --crown2: url(../../public/images/crowns/light-crown-select.png);
-
   --bgtrans: rgba(255, 255, 255, 0.7);
   --bg0: rgb(248, 248, 248);
   --bg1: rgb(255, 255, 255);
@@ -69,7 +12,6 @@ Variables
   --link2: rgb(28, 84, 206);
   --link3: rgb(17, 60, 154);
 
-  --highlight: rgb(255, 0, 0);
   --shadow: 0 0 5px 0px rgba(138, 138, 138, 0.1),
     0 0 10px 5px rgba(138, 138, 138, 0.05);
   --border: rgb(242, 242, 242);
@@ -80,9 +22,6 @@ Variables
 
 // @media (prefers-color-scheme: dark) {
 //   :root {
-//     --crown1: url(../../public/images/crowns/dark-crown.png);
-//     --crown2: url(../../public/images/crowns/dark-crown-select.png);
-
 //     --bgtrans: rgba(31, 31, 31, 0.7);
 //     --bg0: rgb(38, 38, 38);
 //     --bg1: rgb(31, 31, 31);
@@ -120,7 +59,7 @@ h1 {
 }
 
 *::selection {
-  color: var(--highlight);
+  color: map-get(theme.$colors, "highlight");
 }
 
 *:not(input):focus-visible {
