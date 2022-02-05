@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 import style from "./style.module.scss";
 
@@ -11,14 +12,6 @@ export default function HomeTile({
       className={style.tile}
       style={{
         gridColumn: `span ${data.notability === "High" ? 2 : 1}`,
-        background: (() => {
-          const url = data.media[0]?.file.url
-          let img = ""
-          if (!!url) {
-            img = `, url(${data.media[0]?.file.url})`
-          }
-          return "linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0) 66%, rgba(0, 0, 0, 0.6))" + img
-        })(),
       }}
     >
       <Link href={`/works/${data.id}`}>
@@ -40,6 +33,7 @@ export default function HomeTile({
           </div> */}
         </a>
       </Link>
+      {data.media[0]?.file.url && <Image src={data.media[0]?.file.url} alt="hi" layout="fill" className={style.img}/>}
     </div>
   );
 }
