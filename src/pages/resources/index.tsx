@@ -1,3 +1,9 @@
+import style from "./style.module.scss";
+
 export default function ResourcesPage() {
-  return <div>hi</div>
+  return (
+    <div className={style.main}>
+      <h1></h1>
+    </div>
+  )
 }
