@@ -26,7 +26,7 @@ export default function NavBar() {
       <div
         className={`${style.links} ${menuIsOpen ? style.open : null}`}
         onClick={() => {
-          if (isDesktop) setMenuIsOpen(!menuIsOpen);
+          if (!isDesktop) setMenuIsOpen(!menuIsOpen);
         }}
         style={{ backgroundColor: "rgba(255, 255, 255, 0.7)" }}
       >
