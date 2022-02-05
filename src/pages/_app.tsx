@@ -36,11 +36,7 @@ export default function App({ Component, pageProps }: AppProps) {
         />
         <link
           rel="icon"
-          href={
-            isDarkMode
-              ? "./favicons/favicon-dark.ico"
-              : "./favicons/favicon-light.ico"
-          }
+          href="/favicons/favicon-light.ico"
         />
         <link
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"

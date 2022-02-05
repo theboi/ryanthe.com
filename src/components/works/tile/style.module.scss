@@ -9,8 +9,6 @@
   display: block;
   position: relative;
   height: 16em;
-  border-radius: 0.5em;
-  box-shadow: #{map-get(theme.$shadows, "4")};
 
   .desc {
     color: map-get(theme.$colors, "black"); // TODO: white

@@ -9,8 +9,8 @@ export default function WorksPage({ data }) {
     <div className={style.main}>
       <section>
         <div className={style.grid}>
-          {data.entries?.map((e,i) => (
-            <HomeTile key={i} data={e} /> // TODO: use "ID" as key
+          {data.entries?.map((e, i) => (
+            <HomeTile key={e.id} data={e} />
           ))}
         </div>
       </section>
@@ -20,19 +20,22 @@ export default function WorksPage({ data }) {
 
 export async function getStaticProps(ctx: GetStaticPropsContext) {
   const { Client } = require("@notionhq/client");
-
   const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
-  const response = await notion.databases.query({
+  const entries = await notion.databases.query({
     database_id: databaseId,
   });
 
   const data = {
-    entries: response.results.reverse().map((e) => ({
-      name: e.properties["Name"].title.map((e) => e.plain_text).join(),
-      discipline: e.properties["Discipline"].multi_select.map((e) => e.name).join(", "),
-      notability: e.properties["Notability"]?.select?.name ?? "Low",
-      id: e.properties["ID"]?.rich_text[0]?.plain_text ?? e.properties["Name"].title.map((e) => e.plain_text).join(),
+    entries: entries.results.reverse().map((entry) => ({
+      name: entry.properties["Name"].title.reduce((a,c) => a+c.plain_text, ""),
+      discipline: entry.properties["Discipline"].multi_select
+        .map((e) => e.name)
+        .join(", "),
+      notability: entry.properties["Notability"]?.select?.name ?? "Low",
+      id:
+        entry.properties["ID"]?.rich_text.reduce((a,c) => a+c.plain_text, "") ??
+        entry.properties["Name"]?.title.reduce((a,c) => a+c.plain_text, ""),
     })),
   };
 
