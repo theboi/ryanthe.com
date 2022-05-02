@@ -3,6 +3,7 @@ import Image from "next/image";
 import style from "./style.module.scss";
 
 export default function HomeListing() {
+
   return (
     <section className={style.listing}>
       {data.map((category) => (

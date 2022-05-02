@@ -4,25 +4,47 @@ import Confetti from "react-confetti";
 
 import style from "./style.module.scss";
 import { useState } from "react";
+import { useMediaQuery } from "../../../hooks/useMediaQuery";
+import clsx from "clsx";
 
 export default function HomeHeader() {
   const [confettiOn, setConfettiOn] = useState(false);
+  const isTouch = useMediaQuery("(hover: none)", false);
+  const [isCrowned, setIsCrowned] = useState(false);
+
+  const handleCrowning = () => {
+    setConfettiOn(true);
+    setIsCrowned(true);
+  };
 
   return (
     <header className={style.header}>
-      <div className={style.me}>
-        <div onClick={() => {
-          setConfettiOn(true)
-        }} />
-      <Image
-        src="/images/me.jpg"
-        alt="Me, Ryan Theodore The"
-        width={250}
-        height={350}
-      />
+      <div
+        className={clsx(style.me, isCrowned ? style.crowned : null)}
+        onClick={() => {
+          if (isTouch) handleCrowning();
+        }}
+      >
+        <div
+          onClick={() => {
+            if (!isTouch) handleCrowning();
+          }}
+        />
+        <Image
+          src="/images/me.jpg"
+          alt="Me, Ryan Theodore The"
+          width={250}
+          height={350}
+        />
       </div>
       {confettiOn && (
-        <Confetti width={window.innerWidth} height={window.innerHeight} numberOfPieces={571} recycle={false} onConfettiComplete={() => setConfettiOn(false)} />
+        <Confetti
+          width={window.innerWidth}
+          height={window.innerHeight}
+          numberOfPieces={571}
+          recycle={false}
+          onConfettiComplete={() => setConfettiOn(false)}
+        />
       )}
       <div className={style.info}>
         <h1 className={style.title}>Hey, I&apos;m Ryan 👋</h1>
@@ -58,6 +80,6 @@ const socialData: SocialButtonData[] = [
   },
   {
     icon: "fas fa-at",
-    link: "mailto:ryan@ryanthe.com"
-  }
+    link: "mailto:ryan@ryanthe.com",
+  },
 ];
