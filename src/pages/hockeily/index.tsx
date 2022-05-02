@@ -68,6 +68,10 @@ export async function getStaticProps() {
   return {
     props: {
       noLayout: true,
+      meta: {
+        title: "An electric field hockey game!",
+        desc: "By ryan!!",
+      }
     },
   };
 }
