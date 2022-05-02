@@ -1,10 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useWindowSize } from "../../hooks/useWindowSize";
 import style from "./style.module.scss";
 
 export default function HockeilyPage() {
   const size = useWindowSize();
   const game = useRef(null);
+  const [isDoneLoading, setIsDoneLoading] = useState(false)
 
   useEffect(() => {
     (async () => {
@@ -39,8 +40,8 @@ export default function HockeilyPage() {
 
       const config = {
         type: Phaser.AUTO,
-        width: 1920,
-        height: 1080,
+        width: 0,
+        height: 0,
         physics: {
           default: "arcade",
           arcade: {
@@ -53,13 +54,13 @@ export default function HockeilyPage() {
         },
       };
       game.current = new Phaser.Game(config);
+      setIsDoneLoading(true)
     })();
   }, []);
 
   useEffect(() => {
-    if (!!game.current && !!size.width && !!size.height)
-      game.current.scale.resize(size.width, size.height);
-  }, [size]);
+    if (isDoneLoading) game.current.scale.resize(size.width, size.height);
+  }, [size, isDoneLoading]);
 
   return <div className={style.main}></div>;
 }
