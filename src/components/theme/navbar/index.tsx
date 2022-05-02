@@ -34,7 +34,7 @@ export default function NavBar() {
       >
         {paths.map((p) => {
           return (
-            <li key={p.name} className={router.pathname === p.url && style.isCurrentPath}>
+            <li key={p.name} className={router.pathname === p.url ? style.isCurrentPath : undefined}>
               <Link href={p.url}>
                 <a>{p.name.toUpperCase()}</a>
               </Link>
