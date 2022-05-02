@@ -10,8 +10,7 @@ export default function HockeilyPage() {
   // http://phaser.io/tutorials/making-your-first-phaser-3-game/part3
   useEffect(() => {
     (async () => {
-      const Phaser = await import("phaser");
-      const { preload, create, update } = await import("../../games/hockeily/game");
+      const { Phaser, preload, create, update } = await import("../../games/hockeily/game");
       const config = {
         type: Phaser.AUTO,
         width: 0,

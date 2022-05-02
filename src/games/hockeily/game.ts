@@ -38,4 +38,4 @@ function force() {
   // returns 
 }
 
-export { preload, create, update };
+export { Phaser, preload, create, update };
