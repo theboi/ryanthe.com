@@ -28,7 +28,7 @@ const data = [
     entries: [
       {
         title: "School of Science and Technology, Singapore",
-        desc: "some desc here lorem ipsum blah blah blah some desc here lorem ipsum blah blah blah some desc here lorem ipsum blah blah blah some desc here lorem ipsum blah blah blahsome desc here lorem ipsum blah blah blah some desc here lorem ipsum blah blah blah some desc here lorem ipsum blah blah blah",
+        desc: "In the School of Science and Technology, Singapore (SST), I learnt various technical and soft skills",
         period: "2019-2022",
         img: "sst.png",
       },
@@ -38,9 +38,27 @@ const data = [
     title: "Leadership",
     entries: [
       {
-        title: "School of Science and Technology, Singapore",
+        title: "President, SST Inc TDP",
+        desc: "As a leader in SST Inc, I led the talent development programme (TDP)",
+        period: "2021-2022",
+        img: "sstinc.png",
+      },
+      {
+        title: "ExCo, Robotics @APEX CCA",
+        desc: "As the Head of Training within my CCA's ExCo, I started and utilised a project management platform called Notion to",
+        period: "2021-2022",
+        img: "roboapex.png",
+      },
+      {
+        title: "ExCo, SST Inc TDP",
         desc: "some desc here lorem ipsum blah blah blah some desc here lorem ipsum blah blah blah some desc here lorem ipsum blah blah blah some desc here lorem ipsum blah blah blahsome desc here lorem ipsum blah blah blah some desc here lorem ipsum blah blah blah some desc here lorem ipsum blah blah blah",
-        period: "2019-2022",
+        period: "2020-2021",
+        img: "sstinc.png",
+      },
+      {
+        title: "Vice-Chair, Class S201",
+        desc: "some desc here lorem ipsum blah blah blah some desc here lorem ipsum blah blah blah some desc here lorem ipsum blah blah blah some desc here lorem ipsum blah blah blahsome desc here lorem ipsum blah blah blah some desc here lorem ipsum blah blah blah some desc here lorem ipsum blah blah blah",
+        period: "2020",
         img: "sst.png",
       },
     ],
