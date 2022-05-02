@@ -119,7 +119,6 @@ export const getStaticProps: GetStaticProps = async (
     time: entry["last_edited_time"],
     name: entry.properties["Name"].title.reduce((a,c) => a+c.plain_text, ""),
     fullName: entry.properties["Full Name"].rich_text.reduce((a,c) => a+c.plain_text, ""),
-    ccaRecord: entry.properties["CCA Record"].checkbox,
     pageContent: blocks,
     id:
     entry.properties["ID"]?.rich_text.reduce((a,c) => a+c.plain_text, "") ||
