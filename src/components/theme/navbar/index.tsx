@@ -2,12 +2,12 @@ import Link from "next/link";
 import Image from "next/image";
 import style from "./style.module.scss";
 import { useState } from "react";
-import { useMinWidth } from "../../../hooks/useDeviceType";
 import clsx from "clsx";
 import { useRouter } from "next/dist/client/router";
+import { useWindowSize } from "../../../hooks/useWindowSize";
 
 export default function NavBar() {
-  const isDesktop = useMinWidth();
+  const isDesktop = useWindowSize().width > 768
   const router = useRouter();
 
   const [menuIsOpen, setMenuIsOpen] = useState(false);

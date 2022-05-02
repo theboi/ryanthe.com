@@ -1,7 +1,4 @@
 import Link from "next/link";
-import { useDarkMode } from "../../../hooks/useDarkMode";
-import { useState } from "react";
-import { useMinWidth } from "../../../hooks/useDeviceType";
 
 import style from "./style.module.scss";
 
