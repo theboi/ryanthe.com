@@ -9,8 +9,10 @@ import style from "./_app.module.scss";
 import Footer from "../components/theme/footer";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const isDarkMode = useDarkMode();
 
+  if (pageProps.noLayout) {
+    return <Component {...pageProps} />
+  }
   return (
     <>
       <Head>

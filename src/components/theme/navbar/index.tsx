@@ -9,7 +9,7 @@ import { useRouter } from "next/dist/client/router";
 export default function NavBar() {
   const isDesktop = useMinWidth();
   const router = useRouter();
-  console.log(router.pathname)
+
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
   return (

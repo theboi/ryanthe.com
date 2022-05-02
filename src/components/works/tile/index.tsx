@@ -2,11 +2,11 @@ import Link from "next/link";
 import Image from "next/image";
 
 import style from "./style.module.scss";
+import ThemeBadge from "../../theme/badge";
 
 export default function HomeTile({
   data,
 }) {
-  // https://stackoverflow.com/questions/53662208/types-from-both-keys-and-values-of-object-in-typescript
   return (
     <div
       className={style.tile}
@@ -19,7 +19,9 @@ export default function HomeTile({
           className={style.desc}
         >
           <h1>{data.name}</h1>
-          <p>{data.discipline}</p>
+          <p>{data.discipline.map((e,i) => (
+            <ThemeBadge key={i}>{e}</ThemeBadge>
+          ))}</p>
           {/* <Image
             src={}
             layout="fill"
@@ -33,7 +35,7 @@ export default function HomeTile({
           </div> */}
         </a>
       </Link>
-      {data.media[0]?.file.url && <Image src={data.media[0]?.file.url} alt="hi" layout="fill" className={style.img}/>}
+      {data.media[0]?.file.url && <Image src={data.media[0]?.file.url} alt={data.name} layout="fill" className={style.img}/>}
     </div>
   );
 }

@@ -33,8 +33,7 @@ export async function getStaticProps(ctx: GetStaticPropsContext) {
         ""
       ),
       discipline: entry.properties["Discipline"].multi_select
-        .map((e) => e.name)
-        .join(", "),
+        .map((e) => e.name),
       notability: entry.properties["Notability"]?.select?.name ?? "Low",
       media: entry.properties["Media"]?.files,
       id:
