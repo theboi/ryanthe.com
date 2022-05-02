@@ -5,39 +5,13 @@ import style from "./style.module.scss";
 export default function HockeilyPage() {
   const size = useWindowSize();
   const game = useRef(null);
-  const [isDoneLoading, setIsDoneLoading] = useState(false)
+  const [isDoneLoading, setIsDoneLoading] = useState(false);
 
+  // http://phaser.io/tutorials/making-your-first-phaser-3-game/part3
   useEffect(() => {
     (async () => {
       const Phaser = await import("phaser");
-      function preload() {
-        this.load.setBaseURL("http://labs.phaser.io");
-
-        this.load.image("sky", "assets/skies/space3.png");
-        this.load.image("logo", "assets/sprites/phaser3-logo.png");
-        this.load.image("red", "assets/particles/red.png");
-      }
-
-      function create() {
-        this.add.image(400, 300, "sky");
-
-        var particles = this.add.particles("red");
-
-        var emitter = particles.createEmitter({
-          speed: 100,
-          scale: { start: 1, end: 0 },
-          blendMode: "ADD",
-        });
-
-        var logo = this.physics.add.image(400, 100, "logo");
-
-        logo.setVelocity(100, 200);
-        logo.setBounce(1, 1);
-        logo.setCollideWorldBounds(true);
-
-        emitter.startFollow(logo);
-      }
-
+      const { preload, create, update } = await import("../../games/hockeily/game");
       const config = {
         type: Phaser.AUTO,
         width: 0,
@@ -49,12 +23,15 @@ export default function HockeilyPage() {
           },
         },
         scene: {
-          preload: preload,
-          create: create,
+          preload,
+          create,
+          update,
         },
       };
       game.current = new Phaser.Game(config);
-      setIsDoneLoading(true)
+      console.log(game.current);
+
+      setIsDoneLoading(true);
     })();
   }, []);
 
@@ -72,7 +49,7 @@ export async function getStaticProps() {
       meta: {
         title: "An electric field hockey game!",
         desc: "By ryan!!",
-      }
+      },
     },
   };
 }
