@@ -2,7 +2,7 @@ require('dotenv').config()
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['picsum.photos', 's3.us-west-2.amazonaws.com'],
+    domains: ['picsum.photos', 's3.us-west-1.amazonaws.com', 's3.us-west-2.amazonaws.com'],
   },
   async redirects() {
     return [

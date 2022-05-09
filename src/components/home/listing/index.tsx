@@ -36,6 +36,17 @@ const data = [
     ],
   },
   {
+    title: "Experience",
+    entries: [
+      {
+        title: "",
+        desc: "",
+        period: "2021-2022",
+        img: "sstinc.png",
+      },
+    ],
+  },
+  {
     title: "Leadership",
     entries: [
       {
@@ -61,6 +72,17 @@ const data = [
         desc: "My first opportunity to lead as a Vice-chairperson",
         period: "2020",
         img: "sst.png",
+      },
+    ],
+  },
+  {
+    title: "Service",
+    entries: [
+      {
+        title: "",
+        desc: "",
+        period: "2021-2022",
+        img: "sstinc.png",
       },
     ],
   },
