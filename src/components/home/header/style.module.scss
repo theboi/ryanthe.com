@@ -48,7 +48,7 @@
   h2 span {
     transition: all 250ms ease-in-out;
     color: map-get(theme.$colors, "blue");
-    cursor: pointer;
+    // cursor: pointer;
 
     &:hover {
       color: lighten(map-get(theme.$colors, "blue"), 10%); // saturate(map-get(theme.$colors, "red"), 50%);
