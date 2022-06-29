@@ -7,11 +7,10 @@ export default function Footer() {
   return (
     <div className={style.footer}>
       <p>
-        Copyright © 2022 Ryan Theodore The.{" "}
+        Copyright © 2022 Ryan Theodore The. Open-sourced on{" "}
         <Link href="https://github.com/theboi/ryanthe.com">
-          <a target="_blank">Open-sourced</a>
-        </Link>{" "}
-        on GitHub.
+          <a target="_blank">GitHub</a>
+        </Link>.
       </p>
     </div>
   );

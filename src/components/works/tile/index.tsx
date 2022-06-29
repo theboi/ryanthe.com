@@ -6,7 +6,7 @@ import ThemeBadge from "../../theme/badge";
 
 export default function HomeTile({
   data,
-}) {
+}) {  
   return (
     <div
       className={style.tile}
@@ -14,7 +14,7 @@ export default function HomeTile({
         gridColumn: `span ${data.notability === "High" ? 2 : 1}`,
       }}
     >
-      <Link href={`/works/${data.id}`}>
+      <Link href={data.url || `/works/${data.id}`}>
         <a
           className={style.desc}
         >

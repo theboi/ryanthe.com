@@ -52,7 +52,7 @@ export default function HomeHeader() {
           I am a <span>student</span>, self-taught software{" "}
           <span>developer</span> and <span>designer</span> based in Singapore,
           passionate about harnessing technology to improve society through
-          Science and Technology.
+          engineering solutions to solve real-world problems
         </h2>
         <div className={style.social}>
           {socialData.map((g, i) => (

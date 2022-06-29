@@ -25,13 +25,14 @@ export async function getStaticProps(ctx: GetStaticPropsContext) {
   const entries = await notion.databases.query({
     database_id: databaseId,
   });
-
+  
   const data = {
     entries: entries.results.reverse().map((entry) => ({
       name: entry.properties["Name"].title.reduce(
         (a, c) => a + c.plain_text,
         ""
       ),
+      url: entry.properties["URL"]?.url ?? "",
       discipline: entry.properties["Discipline"].multi_select
         .map((e) => e.name),
       notability: entry.properties["Notability"]?.select?.name ?? "Low",
