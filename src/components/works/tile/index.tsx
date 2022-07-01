@@ -5,27 +5,29 @@ import style from "./style.module.scss";
 import ThemeBadge from "../../theme/badge";
 
 export default function HomeTile({
-  data,
-}) {  
+  entryProps,
+}) {
+  console.log(entryProps);
+  
   return (
     <div
       className={style.tile}
       style={{
-        gridColumn: `span ${data.notability === "High" ? 2 : 1}`,
+        gridColumn: `span ${entryProps.notability === "High" ? 2 : 1}`,
       }}
     >
-      <Link href={data.url || `/works/${data.id}`}>
+      <Link href={entryProps.url || `/works/${entryProps.id}`}>
         <a
           className={style.desc}
         >
-          <h1>{data.name}</h1>
-          <p>{data.discipline.map((e,i) => (
+          <h1>{entryProps.name}</h1>
+          <p>{entryProps.discipline.map((e,i) => (
             <ThemeBadge key={i}>{e}</ThemeBadge>
           ))}</p>
           {/* <Image
             src={}
             layout="fill"
-            alt={data.properties.full_name}
+            alt={entryProps.properties.full_name}
             className={style.img}
           /> */}
           {/* <div className={style.overlay}>
@@ -35,7 +37,7 @@ export default function HomeTile({
           </div> */}
         </a>
       </Link>
-      {data.media[0]?.file.url && <Image src={data.media[0]?.file.url} alt={data.name} layout="fill" className={style.img}/>}
+      {entryProps.media[0]?.url && <Image src={entryProps.media[0].url} alt={entryProps.name} layout="fill" className={style.img}/>}
     </div>
   );
 }

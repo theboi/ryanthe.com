@@ -8,29 +8,30 @@ import {
 } from "next";
 import { databaseId } from "..";
 import React from "react";
+import { getWorkProperties } from "../../../data/works";
 
 export default function WorkPage({ data }) {
   return (
     <div className={style.main}>
       <h3>
-        {new Date(data?.time).toLocaleString("default", {
+        {new Date(data?.props.date).toLocaleString("default", {
           month: "long",
           year: "numeric",
         })}
       </h3>
-      <h1>{data?.fullName}</h1>
-      <p>{data?.pageContent.length}</p>
+      <h1>{data?.props.fullName}</h1>
+      <p>{data?.props.length}</p>
       <div className={style.imgBox}>
         <Image
-          src={`/images/works/${data?.key}.jpg`}
+          src={`/images/works/${data?.props.key}.jpg`}
           layout="fill"
-          alt={data?.full_name}
+          alt={data?.props.full_name}
           className={style.img}
         />
       </div>
-      <h1>{data?.full_name}</h1>
-      <div className={style.pageContent}>
-        {/* {data?.pageContent.map((e) => resolveBlock(e))} */}
+      <h1>{data?.props.full_name}</h1>
+      <div className={style.content}>
+        {/* {data?.content.map((e) => resolveBlock(e))} */}
       </div>
     </div>
   );
@@ -116,30 +117,9 @@ export const getStaticProps: GetStaticProps = async (
   }
 
   const data = {
-    time: entry["last_edited_time"],
-    name: entry.properties["Name"].title.reduce((a,c) => a+c.plain_text, ""),
-    fullName: entry.properties["Full Name"].rich_text.reduce((a,c) => a+c.plain_text, ""),
-    pageContent: blocks,
-    id:
-    entry.properties["ID"]?.rich_text.reduce((a,c) => a+c.plain_text, "") ||
-    entry.properties["Name"]?.title.reduce((a,c) => a+c.plain_text, "") ||
-    entry["id"]
-    // writeUp
-    // recognition
+    props: getWorkProperties(entry),
+    content: blocks,
   };
-
-  // 'CCA Record': { id: '%3Bu%60a', type: 'checkbox', checkbox: false },
-  //   'Write-up': { id: '%3Con%5B', type: 'rich_text', rich_text: [] },
-  //   Recognition: { id: '%3C%7DGl', type: 'rich_text', rich_text: [Array] },
-  //   URL: { id: 'JpWR', type: 'url', url: null },
-  //   'Full Name': { id: 'XKQA', type: 'rich_text', rich_text: [Array] },
-  //   Media: { id: 'jl%3FA', type: 'files', files: [Array] },
-  //   Date: { id: 'nSX%3F', type: 'date', date: null },
-  //   Notability: { id: 'qacy', type: 'select', select: [Object] },
-  //   New: { id: 't%5E%7B%3D', type: 'checkbox', checkbox: true },
-  //   Key: { id: 'yhBt', type: 'rich_text', rich_text: [Array] },
-  //   Discipline: { id: '%7DRzq', type: 'multi_select', multi_select: [Array] },
-  //   Name: { id: 'title', type: 'title', title: [Array] }
 
   return {
     revalidate: 10,

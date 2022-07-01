@@ -1,6 +1,9 @@
+import Link from "next/link";
 import style from "./style.module.scss";
 
 export default function HomePersonalResponse() {
+  const w = (path) => `/works/${path}`;
+
   return (
     <section className={style.pr}>
       <p>
@@ -14,17 +17,17 @@ export default function HomePersonalResponse() {
         development in JavaScript React.js and app development with Swift and
         React Native. In my Co-curricular Activity (CCA), Robotics Club, I
         always strive to find novel ways to better myself and do well in
-        competitions by staying resilient and learning from setbacks. In
-        RoboCup, despite my team&apos;s line tracing algorithm not being most
-        optimal due to little time for testing and programming, we returned to
-        school whenever possible and innovated creative solutions, eventually
-        pulling through with 2nd Place. My motivation and enthusiasm to keep up
-        with new trends in technology also allow me to excel in the fast-paced
-        information technology (ICT) field. In my ICT Talent Development
-        Programme, SST Inc, I strive to pick up new skills through projects that
-        solve real-world problems in the community, such as developing a
-        React.js web application to more efficiently take attendance for club
-        members.
+        competitions by staying resilient and learning from setbacks. In{" "}
+        <Link href={w("robocup-2021")}>RoboCup 2021</Link>, despite my
+        team&apos;s line tracing algorithm not being most optimal due to little
+        time for testing and programming, we returned to school whenever
+        possible and innovated creative solutions, eventually pulling through
+        with 2nd Place. My motivation and enthusiasm to keep up with new trends
+        in technology also allow me to excel in the fast-paced information
+        technology (ICT) field. In my ICT Talent Development Programme, SST Inc,
+        I strive to pick up new skills through projects that solve real-world
+        problems in the community, such as developing a React.js web application
+        to more efficiently take attendance for club members.
       </p>
       <p>
         In robotics and competitive programming competitions, many inevitable
@@ -32,19 +35,24 @@ export default function HomePersonalResponse() {
         resourcefulness and natural curiosity to learn more allows me to
         persevere in solving challenges by picking up new skills. For example, I
         would use online learning resources like Udemy or ask my experienced
-        seniors to expand my knowledge. In the NRC Future Engineers Category, I
+        seniors to expand my knowledge. In the{" "}
+        <Link href={w("nrc-2021")}>NRC 2021 Future Engineers Category</Link>, I
         learned to utilise OpenCV and TensorFlow to program the robot to detect
         objects and react accordingly using Computer Vision (CV) through machine
         learning. With the new abilities equipped, critical and creative
         thinking allows me to develop innovative strategies and ideas to tackle
         problems. For instance, using Python skills I picked up online, my team
         and I created a prototype of a tour glasses that won 1st Runner-up at
-        the Splash Awards 2021 and Champions at my school&apos;s annual InnoFest
-        Challenge. Despite facing many impediments through the engineering
-        process, such as each of us specialising in a different area and not all
-        of us being technically equipped, I had to communicate my ideas with
-        others effectively to overcome struggles efficiently. Ultimately, we
-        adapted well to our situation and stayed determined, proving the effort
+        the <Link href={w("splash-2021")}>Splash Awards 2021</Link> and
+        Champions at my school&apos;s annual{" "}
+        <Link href={w("cm-innofest-2020")}>
+          ChangeMakers InnoFest Challenge 2020
+        </Link>
+        . Despite facing many impediments through the engineering process, such
+        as each of us specialising in a different area and not all of us being
+        technically equipped, I had to communicate my ideas with others
+        effectively to overcome struggles efficiently. Ultimately, we adapted
+        well to our situation and stayed determined, proving the effort
         worthwhile.
       </p>
       <p>
