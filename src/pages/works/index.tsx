@@ -1,7 +1,7 @@
 import style from "./style.module.scss";
 import HomeTile from "../../components/works/tile";
 import { GetStaticPropsContext } from "next";
-import { getWorkProperties } from "../../data/works";
+import { getWorkProperties, WorksNotability } from "../../data/works";
 
 export const databaseId = "12c16582503441148d442bbab9528bdd";
 
@@ -29,7 +29,7 @@ export async function getStaticProps(ctx: GetStaticPropsContext) {
 
   return {
     props: {
-      entries: entries.results.reverse().map((e) => getWorkProperties(e)),
+      entries: entries.results.reverse().map((e) => getWorkProperties(e)), // .filter((e) => e.notability != WorksNotability.Hidden)
     },
   };
 }

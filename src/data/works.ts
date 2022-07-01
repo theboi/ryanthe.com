@@ -1,16 +1,21 @@
-enum Notability {
-  High, Medium, Low
+export enum WorksNotability {
+  High,Medium,Low,Hidden,Incomplete
 }
 
-enum Discipline {
+export enum WorksDiscipline {
   Computing,Design,Engineering,English,Humanities,Innovation,Leadership,Math,Robotics,Science
 }
 
-enum Type {
+export enum Type {
   Certification,Competition,Project,Service,Title
 }
 
-export interface WorkProperties {
+export interface WorksFile {
+  name: string;
+  url: string;
+}
+
+export interface WorksProperties {
   lastEdited: string;
   id: string;
   name: string;
@@ -19,13 +24,20 @@ export interface WorkProperties {
   recognition: string;
   url: string;
   writeUp: string;
-  media: any;
-  notability: Notability;
-  discipline: Discipline[];
+  notability: WorksNotability;
+  discipline: WorksDiscipline[];
   type: Type[];
+  media: WorksFile[];
+  blurImageURL: string;
+  coverImageURL: string;
 }
 
-export function getWorkProperties(entry): WorkProperties {
+function getNotionFileURL(f): string {
+  if (f == undefined) return null
+  return f.type == "external" ? f.external.url : f.file.url
+}
+
+export function getWorkProperties(entry): WorksProperties {
   return ({
     lastEdited: entry.properties["Last Edited"]?.last_edited_time,
     id: entry.properties["ID"]?.rich_text.reduce((a,c) => a+c.plain_text, "") ||
@@ -37,12 +49,14 @@ export function getWorkProperties(entry): WorkProperties {
     recognition: entry.properties["Recognition"]?.rich_text.reduce((a,c) => a+c.plain_text, ""),
     url: entry.properties["URL"]?.url ?? "",
     writeUp: entry.properties["Write-up"]?.rich_text.reduce((a,c) => a+c.plain_text, ""),
+    notability: WorksNotability[(entry.properties["Notability"]?.select?.name ?? "Low") as keyof typeof WorksNotability],
+    discipline: entry.properties["Discipline"]?.multi_select.map(o => WorksDiscipline[o?.name] ?? "") ?? [],
+    type: entry.properties["Type"]?.multi_select.map(o => Type[o?.name] ?? "") ?? [],
     media: entry.properties["Media"]?.files.map((f) => ({
       name: f.name,
-      url: f.external == "external" ? f.external.url : f.file.url
+      url: getNotionFileURL(f)
     })),
-    notability: entry.properties["Notability"]?.select?.name ?? "Low",
-    discipline: entry.properties["Discipline"]?.multi_select.map(o => o?.name ?? "") ?? [],
-    type: entry.properties["Type"]?.multi_select.map(o => o?.name ?? "") ?? [],
+    blurImageURL: getNotionFileURL(entry.properties["Blur Image"]?.files[0]),
+    coverImageURL: getNotionFileURL(entry.properties["Cover Image"]?.files[0])
   })
 }
