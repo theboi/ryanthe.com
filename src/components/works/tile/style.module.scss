@@ -13,7 +13,7 @@
   display: block;
   position: relative;
   height: 16em;
-  background: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0) 66%, rgba(0, 0, 0, 0.6));
+  background: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0) 66%, rgba(0, 0, 0, 0.6)), map-get(theme.$colors, "lightergrey");
 
   .desc {
     // to make link clickable because of absolute NextJS Image
