@@ -2,7 +2,13 @@
 
 .wrapper {
   padding: 0 10px;
-  background-color: rgba(map-get(theme.$colors, "black"), 0.5);
+  color: map-get(theme.$colors, "white");
   border-radius: 5px;
   display: inline;
+}
+
+@each $color, $value in theme.$colors {
+  .wrapper[class*="#{$color}"] {
+    background-color: $value;
+  }
 }
