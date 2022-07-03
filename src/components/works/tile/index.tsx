@@ -22,7 +22,7 @@ export default function HomeTile({
         <a className={style.desc}>
           <h1>{entryProps.name}</h1>
           <h3>{entryProps.recognition}</h3>
-          <p>
+          <p className={style.badges}>
           {entryProps.discipline.map((e, i) => (
               <ThemeBadge key={i} discipline={e}>{WorksDiscipline[e]}</ThemeBadge>
             ))}

@@ -1,8 +1,9 @@
 @use "src/styles/theme";
 
-// .img {
-//   object-fit: cover;
-// }
+.badges {
+  display: flex;
+  gap: 5px;
+}
 
 .img {
   z-index: -100;
@@ -52,32 +53,6 @@
     max-height: 1000px; // auto
   }
 }
-
-// .overlay {
-//   transition: all 250ms ease-in-out;
-//   position: absolute;
-
-//   font-size: 20px;
-//   inset: 0;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: stretch;
-// }
-
-// .overlay h1 {
-//   div {
-//     margin: auto 20px 10px 20px;
-
-//     h1 {
-      
-//     }
-//     p {
-
-//     }
-//   }
-// }
-
-
 
 @media screen and (max-width: 500px) { // MOBILE
   .tile {
