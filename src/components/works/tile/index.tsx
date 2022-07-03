@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/future/image";
 
 import style from "./style.module.scss";
 import ThemeBadge from "../../theme/badge";
@@ -47,8 +47,8 @@ export default function HomeTile({
         <Image
           src={entryProps.coverImageURL}
           alt={entryProps.name}
-          layout="fill"
           className={style.img}
+          unoptimized
         />
       )}
     </div>
