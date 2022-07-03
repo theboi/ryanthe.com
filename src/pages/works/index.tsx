@@ -29,7 +29,7 @@ export async function getStaticProps(ctx: GetStaticPropsContext) {
 
   return {
     props: {
-      entries: entries.results.reverse().map((e) => getWorkProperties(e)), // .filter((e) => e.notability != WorksNotability.Hidden)
+      entries: entries.results.reverse().map((e) => getWorkProperties(e)).filter((e) => !(e.notability == WorksNotability.Hidden || e.notability == WorksNotability.Incomplete)),
     },
   };
 }
