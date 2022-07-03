@@ -13,7 +13,14 @@
   display: block;
   position: relative;
   height: 16em;
-  background: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0) 66%, rgba(0, 0, 0, 0.6));
+
+  background: #f8f8f8;
+  &.imgLoaded {
+    background: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.2) 33%, rgba(0, 0, 0, 0.7));
+    .desc {
+      color: map-get(theme.$colors, "white");
+    }
+  }
 
   .desc {
     // to make link clickable because of absolute NextJS Image
@@ -21,7 +28,7 @@
     inset: 0;
     z-index: 1;
 
-    color: map-get(theme.$colors, "white");
+    color: map-get(theme.$colors, "black");
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -31,14 +38,14 @@
       margin-top: auto;
       font-size: 2rem;
     }
-    p {
+    .expandable {
       transition: all 500ms ease-out;
       max-height: 0;
       overflow: hidden;
     }
   }
 
-  &:hover .desc p {
+  &:hover .desc .expandable {
     max-height: 1000px; // auto
   }
 }

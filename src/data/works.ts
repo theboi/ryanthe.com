@@ -28,7 +28,6 @@ export interface WorksProperties {
   discipline: WorksDiscipline[];
   type: Type[];
   media: WorksFile[];
-  blurImageURL: string;
   coverImageURL: string;
 }
 
@@ -56,7 +55,6 @@ export function getWorkProperties(entry): WorksProperties {
       name: f.name,
       url: getNotionFileURL(f)
     })),
-    blurImageURL: getNotionFileURL(entry.properties["Blur Image"]?.files[0]),
     coverImageURL: getNotionFileURL(entry.properties["Cover Image"]?.files[0])
   })
 }

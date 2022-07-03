@@ -4,6 +4,7 @@ import Image from "next/image";
 import style from "./style.module.scss";
 import ThemeBadge from "../../theme/badge";
 import { WorksDiscipline, WorksNotability, WorksProperties } from "../../../data/works";
+import clsx from "clsx";
 
 export default function HomeTile({
   entryProps,
@@ -12,19 +13,22 @@ export default function HomeTile({
 }) {
   return (
     <div
-      className={style.tile}
+      className={clsx(style.tile, entryProps?.coverImageURL && style.imgLoaded)}
       style={{
         gridColumn: `span ${entryProps.notability === WorksNotability.High ? 2 : 1}`,
-        backgroundColor: !entryProps?.coverImageURL && "#f8f8f8"
       }}
     >
       <Link href={entryProps.url || `/works/${entryProps.id}`}>
         <a className={style.desc}>
           <h1>{entryProps.name}</h1>
+          <h3>{entryProps.recognition}</h3>
           <p>
-            {entryProps.discipline.map((e, i) => (
-              <ThemeBadge key={i}>{WorksDiscipline[e]}</ThemeBadge>
+          {entryProps.discipline.map((e, i) => (
+              <ThemeBadge key={i} discipline={e}>{WorksDiscipline[e]}</ThemeBadge>
             ))}
+          </p>
+          <p className={style.expandable}>
+            {entryProps.writeUp}
           </p>
           {/* <Image
             src={}
@@ -41,10 +45,6 @@ export default function HomeTile({
       </Link>
       {entryProps?.coverImageURL && (
         <Image
-          {...(entryProps?.blurImageURL ? {
-            placeholder: "blur",
-            blurDataURL: entryProps.blurImageURL
-          } : {})}
           src={entryProps.coverImageURL}
           alt={entryProps.name}
           layout="fill"
