@@ -1,6 +1,6 @@
 import style from "./style.module.scss";
 import HomeTile from "../../components/works/tile";
-import { GetStaticPropsContext } from "next";
+import { GetServerSidePropsContext, GetStaticPropsContext } from "next";
 import { getWorkProperties, WorksNotability } from "../../data/works";
 
 export const databaseId = "12c16582503441148d442bbab9528bdd";
@@ -19,7 +19,7 @@ export default function WorksPage({ entries }) {
   );
 }
 
-export async function getStaticProps(ctx: GetStaticPropsContext) {
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   const { Client } = require("@notionhq/client");
   const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
