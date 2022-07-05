@@ -23,7 +23,7 @@ export interface WorksProperties {
   date: string;
   recognition: string;
   url: string;
-  writeUp: string;
+  description: string;
   notability: WorksNotability;
   discipline: WorksDiscipline[];
   type: Type[];
@@ -47,7 +47,7 @@ export function getWorkProperties(entry): WorksProperties {
     date: entry.properties["Date"]?.date?.start ?? "",
     recognition: entry.properties["Recognition"]?.rich_text.reduce((a,c) => a+c.plain_text, ""),
     url: entry.properties["URL"]?.url ?? "",
-    writeUp: entry.properties["Write-up"]?.rich_text.reduce((a,c) => a+c.plain_text, ""),
+    description: entry.properties["Description"]?.rich_text.reduce((a,c) => a+c.plain_text, ""),
     notability: WorksNotability[(entry.properties["Notability"]?.select?.name ?? "Low") as keyof typeof WorksNotability],
     discipline: entry.properties["Discipline"]?.multi_select.map(o => WorksDiscipline[o?.name] ?? "") ?? [],
     type: entry.properties["Type"]?.multi_select.map(o => Type[o?.name] ?? "") ?? [],

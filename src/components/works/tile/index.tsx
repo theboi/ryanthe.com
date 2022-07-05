@@ -35,7 +35,7 @@ export default function HomeTile({
               </ThemeBadge>
             ))}
           </p>
-          <p className={style.expandable}>{entryProps.writeUp}</p>
+          <p className={style.expandable}>{entryProps.description}</p>
           {/* <Image
             src={}
             layout="fill"
@@ -51,6 +51,7 @@ export default function HomeTile({
       </Link>
       {entryProps?.coverImageURL && (
         // NextJS requires usage of Image from 'next/image' instead of img but Notion image URLs are not permanent and hence will fail to work
+        // TODO: revert the above since issue was found to be with using SSG instead of SSR
         // eslint-disable-next-line
         <img
           src={entryProps.coverImageURL}
