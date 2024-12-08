@@ -8,10 +8,14 @@ export interface SocialButtonData {
 
 export function SocialButton({ data }: { data: SocialButtonData }) {
   return (
-    <Link href={data.link}>
-      <a className={style.button} target="_blank" rel="noreferrer">
-        <i className={data.icon} />
-      </a>
+    <Link
+      className={style.button}
+      passHref
+      href={data.link}
+      target="_blank"
+      rel="noreferrer"
+    >
+      <i className={data.icon} />
     </Link>
   );
 }

@@ -8,8 +8,8 @@ export default function Footer() {
     <div className={style.footer}>
       <p>
         Copyright © 2022 Ryan Theodore The. Open-sourced on{" "}
-        <Link href="https://github.com/theboi/ryanthe.com">
-          <a target="_blank">GitHub</a>
+        <Link href="https://github.com/theboi/ryanthe.com" target="_blank">
+          GitHub
         </Link>.
       </p>
     </div>

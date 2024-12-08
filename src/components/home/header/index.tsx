@@ -1,6 +1,6 @@
 import { SocialButton, SocialButtonData } from "../../buttons/social";
-import Image from "next/image";
-import Confetti from "react-confetti";
+import Image from "next/legacy/image";
+// import Confetti from "react-confetti";
 
 import style from "./style.module.scss";
 import { useState } from "react";
@@ -38,13 +38,14 @@ export default function HomeHeader() {
         />
       </div>
       {confettiOn && (
-        <Confetti
-          width={window.innerWidth}
-          height={window.innerHeight}
-          numberOfPieces={571}
-          recycle={false}
-          onConfettiComplete={() => setConfettiOn(false)}
-        />
+        <></>
+        // <Confetti
+        //   width={window.innerWidth}
+        //   height={window.innerHeight}
+        //   numberOfPieces={571}
+        //   recycle={false}
+        //   onConfettiComplete={() => setConfettiOn(false)}
+        // />
       )}
       <div className={style.info}>
         <h1 className={style.title}>Hey, I&apos;m Ryan 👋</h1>

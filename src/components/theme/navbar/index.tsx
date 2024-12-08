@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import style from "./style.module.scss";
 import { useState } from "react";
 import clsx from "clsx";
@@ -7,7 +7,7 @@ import { useRouter } from "next/dist/client/router";
 import { useWindowSize } from "../../../hooks/useWindowSize";
 
 export default function NavBar() {
-  const isDesktop = useWindowSize().width > 768
+  const isDesktop = useWindowSize().width > 768;
   const router = useRouter();
 
   const [menuIsOpen, setMenuIsOpen] = useState(false);
@@ -15,15 +15,13 @@ export default function NavBar() {
   return (
     <ul className={style.navbar} role="list">
       <li className={style.icon}>
-        <Link href="/">
-          <a>
-            <Image
-              src="/icons/logo192-light.png"
-              alt="Ryan's Icon"
-              width={50}
-              height={50}
-            />
-          </a>
+        <Link href="/" passHref={true}>
+          <Image
+            src="/icons/logo192-light.png"
+            alt="Ryan's Icon"
+            width={50}
+            height={50}
+          />
         </Link>
       </li>
       <div
@@ -34,10 +32,13 @@ export default function NavBar() {
       >
         {paths.map((p) => {
           return (
-            <li key={p.name} className={router.pathname === p.url ? style.isCurrentPath : undefined}>
-              <Link href={p.url}>
-                <a>{p.name.toUpperCase()}</a>
-              </Link>
+            <li
+              key={p.name}
+              className={
+                router.pathname === p.url ? style.isCurrentPath : undefined
+              }
+            >
+              <Link href={p.url}>{p.name.toUpperCase()}</Link>
             </li>
           );
         })}
@@ -60,10 +61,10 @@ export default function NavBar() {
 const paths = [
   {
     name: "Home",
-    url: "/"
+    url: "/",
   },
   {
     name: "Works",
-    url: "/works"
-  }
-]
+    url: "/works",
+  },
+];

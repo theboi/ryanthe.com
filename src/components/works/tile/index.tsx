@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/future/image";
 
 import style from "./style.module.scss";
 import ThemeBadge from "../../theme/badge";
@@ -24,30 +23,32 @@ export default function HomeTile({
         }`,
       }}
     >
-      <Link href={entryProps.url || `/works/${entryProps.id}`}>
-        <a className={style.desc}>
-          <h1>{entryProps.name}</h1>
-          <h3>{entryProps.recognition}</h3>
-          <p className={style.badges}>
-            {entryProps.discipline.map((e, i) => (
-              <ThemeBadge key={i} discipline={e}>
-                {WorksDiscipline[e]}
-              </ThemeBadge>
-            ))}
-          </p>
-          <p className={style.expandable}>{entryProps.description}</p>
-          {/* <Image
+      <Link
+        className={style.desc}
+        passHref
+        href={entryProps.url || `/works/${entryProps.id}`}
+      >
+        <h1>{entryProps.name}</h1>
+        <h3>{entryProps.recognition}</h3>
+        <p className={style.badges}>
+          {entryProps.discipline.map((e, i) => (
+            <ThemeBadge key={i} discipline={e}>
+              {WorksDiscipline[e]}
+            </ThemeBadge>
+          ))}
+        </p>
+        <p className={style.expandable}>{entryProps.description}</p>
+        {/* <Image
             src={}
             layout="fill"
             alt={entryProps.properties.full_name}
             className={style.img}
           /> */}
-          {/* <div className={style.overlay}>
+        {/* <div className={style.overlay}>
             <div>
               
             </div>
           </div> */}
-        </a>
       </Link>
       {entryProps?.coverImageURL && (
         // NextJS requires usage of Image from 'next/image' instead of img but Notion image URLs are not permanent and hence will fail to work

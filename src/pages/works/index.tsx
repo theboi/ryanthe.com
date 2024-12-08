@@ -27,9 +27,28 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
     database_id: databaseId,
   });
 
+  // const options = {
+  //   method: "GET",
+  //   headers: {
+  //     accept: "application/json",
+  //     "Notion-Version": "2022-06-28",
+  //     authorization:
+  //       "Bearer secret_Vq6wBqB5dogkvtFigBExmIUlhHCWkGWrWf1MJlCXr7k",
+  //   },
+  // };
+
   return {
     props: {
-      entries: entries.results.reverse().map((e) => getWorkProperties(e)).filter((e) => !(e.notability == WorksNotability.Hidden || e.notability == WorksNotability.Incomplete)),
+      entries: entries.results
+        .reverse()
+        .map((e) => getWorkProperties(e))
+        .filter(
+          (e) =>
+            !(
+              e.notability == WorksNotability.Hidden ||
+              e.notability == WorksNotability.Incomplete
+            )
+        ),
     },
   };
 }

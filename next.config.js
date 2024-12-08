@@ -4,11 +4,6 @@ module.exports = {
   images: {
     domains: ['picsum.photos', 's3.us-west-1.amazonaws.com', 's3.us-west-2.amazonaws.com'],
   },
-  experimental: {
-    images: {
-      allowFutureImage: true,
-    },
-  },
   async redirects() {
     return [
       {
