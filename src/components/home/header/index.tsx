@@ -1,9 +1,9 @@
 import { SocialButton, SocialButtonData } from "../../buttons/social";
 import Image from "next/legacy/image";
-// import Confetti from "react-confetti";
+import Confetti from "react-confetti-boom";
 
 import style from "./style.module.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMediaQuery } from "../../../hooks/useMediaQuery";
 import clsx from "clsx";
 
@@ -15,6 +15,9 @@ export default function HomeHeader() {
   const handleCrowning = () => {
     setConfettiOn(true);
     setIsCrowned(true);
+    setTimeout(() => {
+      setConfettiOn(false);
+    }, 3000);
   };
 
   return (
@@ -37,16 +40,12 @@ export default function HomeHeader() {
           height={350}
         />
       </div>
-      {confettiOn && (
-        <></>
-        // <Confetti
-        //   width={window.innerWidth}
-        //   height={window.innerHeight}
-        //   numberOfPieces={571}
-        //   recycle={false}
-        //   onConfettiComplete={() => setConfettiOn(false)}
-        // />
-      )}
+      <Confetti
+          mode="fall"
+          particleCount={confettiOn ? 400 : 0}
+          colors={["#ff577f", "#ff884b", "#ffd384", "#fff9b0"]}
+          shapeSize={20}
+        />
       <div className={style.info}>
         <h1 className={style.title}>Hey, I&apos;m Ryan 👋</h1>
         <h2>

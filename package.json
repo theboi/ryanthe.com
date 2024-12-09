@@ -16,6 +16,7 @@
     "next": "^15.0.4",
     "phaser": "^3.55.2",
     "react": "^19.0.0",
+    "react-confetti-boom": "^1.1.0",
     "react-dom": "^19.0.0",
     "sass": "^1.43.4",
     "sharp": "^0.29.3"

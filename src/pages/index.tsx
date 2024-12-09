@@ -8,7 +8,7 @@ export default function HomePage() {
     <div className={style.main}>
       <HomeHeader />
       <hr />
-      <HomePersonalResponse />
+      {/* <HomePersonalResponse /> */}
       <HomeListing />
     </div>
   );
