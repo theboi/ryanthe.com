@@ -33,14 +33,23 @@ const data = [
       {
         title: "Eunoia Junior College",
         url: "https://www.eunoiajc.moe.edu.sg/",
-        desc: "",
+        desc: `At Eunoia Junior College (EJC), I completed my Singapore-Cambridge GCE A-Level examinations,
+        while still broadening my horizons in the technology space, such as via my school's
+        Data Analytics and Visualisation module.`,
         period: "2022-2024",
         img: "ejc.png",
       },
       {
         title: "School of Science and Technology, Singapore",
         url: "https://www.sst.edu.sg/",
-        desc: "In my four years at the School of Science and Technology, Singapore (SST), I learned various soft skills—including effective collaboration, adaptability in leadership, presentation skills—and technical skills—including design and programming. SST's self-driven learning culture taught me to overcome challenges through critical and creative thinking while staying committed and resilient. In overcoming these challenges, I also learned the value of teamwork and communicating effectively with teammates. As part of the O-Level examinations, I specialised in Computing+ for my Applied Subject, which equipped me with skills for solving problems through computational thinking.",
+        desc: `In my four years at the School of Science and Technology, Singapore (SST),
+        I learned various soft skills—including effective collaboration, adaptability in
+        leadership, presentation skills—and technical skills—including design and programming.
+        SST's self-driven learning culture taught me to overcome challenges through critical
+        and creative thinking while staying committed and resilient. In overcoming these challenges,
+        I also learned the value of teamwork and communicating effectively with teammates.
+        As part of the Singapore-Cambridge GCE O-Level examinations, I specialised in Computing+ as my Applied Subject,
+        which equipped me with skills for solving problems through computational thinking.`,
         period: "2019-2022",
         img: "sst.png",
       },
