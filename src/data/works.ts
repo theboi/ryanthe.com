@@ -32,7 +32,7 @@ export interface WorksProperties {
 }
 
 function getNotionFileURL(f): string {
-  if (f == undefined) return null
+  if (f == undefined) return ""
   return f.type == "external" ? f.external.url : f.file.url
 }
 

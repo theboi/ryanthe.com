@@ -38,7 +38,7 @@ export default function WorkPage({ data }) {
 }
 
 const resolveBlock = (block) => {
-  const jsx = [];
+  const jsx: any[] = [];
 
   switch (block.type) {
     case "paragraph":
@@ -74,7 +74,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (
   ctx: GetStaticPropsContext
 ) => {
-  const id = ctx.params["id"] as string;
+  const id = ctx.params?.["id"] as string;
 
   const { Client } = require("@notionhq/client");
   const notion = new Client({ auth: process.env.NOTION_API_KEY });
@@ -103,7 +103,7 @@ export const getStaticProps: GetStaticProps = async (
 
   let start = true;
   let cursor = undefined;
-  const blocks = [];
+  const blocks: any[] = [];
 
   while (cursor != undefined || start === true) {
     const blockWithKey = await notion.blocks.children.list({
