@@ -17,31 +17,6 @@
   column-gap: 25px;
 }
 
-
-.me {
-  position: relative;
-  cursor: url(../../../../public/images/crown.png), pointer;
-  & > div {
-    position: absolute;
-    z-index: 1;
-    top: 20px;
-    bottom: 290px;
-    left: 90px;
-    right: 100px;
-
-    &::after {
-      display: none;
-      position: relative;
-      top: 15px;
-      left: 15px;
-      content: url(../../../../public/images/crown.png);
-    }
-  }
-  &.crowned > div::after {
-    display: block;
-  }
-}
-
 .info {
   max-width: 50ch;
 

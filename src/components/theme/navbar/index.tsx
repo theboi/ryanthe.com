@@ -1,14 +1,30 @@
+"use client";
+
+import clsx from "clsx";
+
 import Link from "next/link";
 import Image from "next/legacy/image";
-import style from "./style.module.scss";
 import { useState } from "react";
-import clsx from "clsx";
-import { useRouter } from "next/dist/client/router";
+import { usePathname } from "next/navigation";
 import { useWindowSize } from "../../../hooks/useWindowSize";
+
+import style from "./style.module.scss";
+
+const paths = [
+  {
+    name: "Home",
+    url: "/",
+  },
+  {
+    name: "Works",
+    url: "/works",
+  },
+];
+
 
 export default function NavBar() {
   const isDesktop = useWindowSize().width > 768;
-  const router = useRouter();
+  const pathname = usePathname();
 
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
@@ -35,7 +51,7 @@ export default function NavBar() {
             <li
               key={p.name}
               className={
-                router.pathname === p.url ? style.isCurrentPath : undefined
+                pathname === p.url ? style.isCurrentPath : undefined
               }
             >
               <Link href={p.url}>{p.name.toUpperCase()}</Link>
@@ -57,14 +73,3 @@ export default function NavBar() {
     </ul>
   );
 }
-
-const paths = [
-  {
-    name: "Home",
-    url: "/",
-  },
-  {
-    name: "Works",
-    url: "/works",
-  },
-];
