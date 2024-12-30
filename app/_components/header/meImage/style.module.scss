@@ -1,20 +1,26 @@
 .me {
   position: relative;
-  cursor: url(../../../../public/images/crown.png), pointer;
+  cursor: url(../../../../public/images/crown_small.png), pointer;
   & > div {
     position: absolute;
     z-index: 1;
-    top: 20px;
-    bottom: 290px;
-    left: 90px;
-    right: 100px;
+
+    // Determines positioning of invisible div box for click area toggling isCrowned
+    top: 180px;
+    bottom: 50px;
+    left: 100px;
+    right: 90px;
+    // background-color: red;
+    // opacity: 0.4;
 
     &::after {
       display: none;
       position: relative;
-      top: 15px;
-      left: 15px;
-      content: url(../../../../public/images/crown.png);
+      content: url(../../../../public/images/crown_small.png);
+
+      // Determines positioning of crown image overlay when isCrowned, relative to parent invisible box
+      top: 0px;
+      left: 30px;
     }
   }
   &.crowned > div::after {
