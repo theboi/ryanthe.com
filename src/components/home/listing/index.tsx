@@ -34,9 +34,8 @@ const data = [
         title: "Eunoia Junior College",
         url: "https://www.eunoiajc.moe.edu.sg/",
         desc: `At Eunoia Junior College (EJC), I completed my Singapore-Cambridge GCE A-Level examinations,
-        while still broadening my horizons in the technology space, such as via my school's
-        Data Analytics and Visualisation module.`,
-        period: "2022-2024",
+        while broadening my horizons in tech such as via my school's Data Analytics and Visualisation module.`,
+        period: "2023-2024",
         img: "ejc.png",
       },
       {
