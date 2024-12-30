@@ -1,23 +1,31 @@
 {
-  "name": "ryan-personal-website",
+  "name": "ryanthe.com",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "axios": "^0.21.1",
+    "@notionhq/client": "^0.4.12",
+    "axios": "^0.21.4",
+    "clsx": "^1.1.1",
     "dotenv": "^8.2.0",
-    "firebase": "^7.15.0",
-    "next": "^10.0.9",
-    "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "next": "^15.0.4",
+    "phaser": "^3.55.2",
+    "react": "^19.0.0",
+    "react-confetti-boom": "^1.1.0",
+    "react-dom": "^19.0.0",
+    "sass": "^1.43.4",
+    "sharp": "^0.29.3"
   },
   "devDependencies": {
-    "@types/node": "^14.0.11",
-    "@types/react": "^16.9.35",
-    "typescript": "^3.9.5"
+    "@types/node": "^16.11.7",
+    "@types/react": "^17.0.34",
+    "eslint": "7",
+    "eslint-config-next": "^15.0.4",
+    "typescript": "^5.7.2"
   }
 }

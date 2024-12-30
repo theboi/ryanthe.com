@@ -1,0 +1,219 @@
+@use "src/styles/theme";
+
+:root {
+  --bgtrans: rgba(255, 255, 255, 0.7);
+  --bg0: rgb(248, 248, 248);
+  --bg1: rgb(255, 255, 255);
+  --bg2: rgb(247, 247, 247);
+  --bg3: rgb(242, 242, 242);
+  --text1: rgb(7, 7, 7);
+
+  --link1: rgb(57, 120, 255);
+  --link2: rgb(28, 84, 206);
+  --link3: rgb(17, 60, 154);
+
+  --shadow: 0 0 5px 0px rgba(138, 138, 138, 0.1),
+    0 0 10px 5px rgba(138, 138, 138, 0.05);
+  --border: rgb(242, 242, 242);
+
+  color: var(--text1);
+  background-color: var(--bg1);
+}
+
+// @media (prefers-color-scheme: dark) {
+//   :root {
+//     --bgtrans: rgba(31, 31, 31, 0.7);
+//     --bg0: rgb(38, 38, 38);
+//     --bg1: rgb(31, 31, 31);
+//     --bg2: rgb(40, 40, 40);
+//     --bg3: rgb(58, 58, 58);
+//     --text1: rgb(255, 255, 255);
+
+//     --link1: rgb(189, 210, 255);
+//     --link2: rgb(169, 196, 255);
+//     --link3: rgb(129, 169, 255);
+
+//     --highlight: rgb(255, 74, 74);
+//     --shadow: 0 0 10px 5px rgba(0, 0, 0, 0);
+//     --border: rgb(50, 50, 50);
+
+//     color: var(--text1);
+//     background-color: var(--bg1);
+//   }
+// }
+
+p, h2, h3, h4, h5, h6 {
+  font-family: 'Proxima Nova', sans-serif;
+}
+
+code {
+  font-family: 'Menlo', monospace;
+}
+
+h1 {
+  font-family: 'Merriweather', serif;
+}
+
+*::selection {
+  color: map-get(theme.$colors, "highlight");
+}
+
+*:not(input):focus-visible {
+  outline: solid 3px rgba(0, 0, 0, 0.2) !important;
+  z-index: 100;
+}
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  text-rendering: optimizeLegibility
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  clear: both;
+}
+
+hr {
+  border: 0;
+  clear:both;
+  display:block;
+  width: 96%;               
+  background-color: rgba(map-get(theme.$colors, "grey"), 0.1);
+  height: 1px;
+}
+
+blockquote {
+  quotes: none;
+}
+blockquote::before,
+blockquote::after {
+  content: none;
+}
+del {
+  text-decoration: line-through;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+a img {
+  border: none;
+}
+
+a {
+  font-style: none;
+  color: var(--link1);
+}
+
+a:hover {
+  color: var(--link2);
+}
+
+a:active {
+  color: var(--link3);
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+}
+
+textarea,
+input.text,
+input[type="text"],
+input[type="button"],
+input[type="submit"],
+.input-checkbox {
+  -webkit-appearance: none;
+  resize: none;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+i {
+  color: white;
+}

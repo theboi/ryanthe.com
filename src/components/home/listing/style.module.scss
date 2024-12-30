@@ -1,0 +1,18 @@
+@use "src/styles/theme";
+
+.period {
+
+}
+
+.image {
+  object-fit: contain;
+}
+
+.listing {
+    & > div:not(:first-child) {
+      margin: 70px 0 0 0;
+    }
+    p {
+      margin: 10px 0 30px 0;
+    }
+}

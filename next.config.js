@@ -1,11 +1,15 @@
 require('dotenv').config()
 module.exports = {
+  reactStrictMode: true,
+  images: {
+    domains: ['picsum.photos', 's3.us-west-1.amazonaws.com', 's3.us-west-2.amazonaws.com'],
+  },
   async redirects() {
     return [
-      { /// Workaround for nextjs bug
-        source: '/',
-        destination: '/home',
-        permanent: false,
+      {
+        source: '/home',
+        destination: '/',
+        permanent: false
       },
       {
         source: '/rick',
@@ -15,6 +19,6 @@ module.exports = {
     ]
   },
   env: {
-    GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
+    NOTION_API_KEY: process.env.NOTION_API_KEY,
   },
 }

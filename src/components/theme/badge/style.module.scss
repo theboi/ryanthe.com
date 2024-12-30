@@ -1,0 +1,14 @@
+@use "src/styles/theme";
+
+.wrapper {
+  padding: 0 10px;
+  color: map-get(theme.$colors, "white");
+  border-radius: 5px;
+  display: inline;
+}
+
+@each $color, $value in theme.$colors {
+  .wrapper[class*="#{$color}"] {
+    background-color: $value;
+  }
+}

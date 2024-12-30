@@ -1,0 +1,62 @@
+@use "src/styles/theme";
+
+.badges {
+  display: flex;
+  gap: 5px;
+}
+
+.img {
+  z-index: -100;
+  position: absolute;
+  object-fit: cover;
+  object-position: 50% 50%; // TODO: Add option for image positioning
+  height: 100%;
+  width: 100%;
+}
+
+.tile {
+  display: block;
+  position: relative;
+  height: 16em;
+
+  background: #f8f8f8;
+  &.imgLoaded {
+    background: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.2) 33%, rgba(0, 0, 0, 0.7));
+    .desc {
+      color: map-get(theme.$colors, "white");
+    }
+  }
+
+  .desc {
+    // to make link clickable because of absolute NextJS Image
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    color: map-get(theme.$colors, "black");
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 15px;
+
+    h1 {
+      margin-top: auto;
+      font-size: 2rem;
+    }
+    .expandable {
+      transition: all 500ms ease-out;
+      max-height: 0;
+      overflow: hidden;
+    }
+  }
+
+  &:hover .desc .expandable {
+    max-height: 1000px; // auto
+  }
+}
+
+@media screen and (max-width: 500px) { // MOBILE
+  .tile {
+    grid-column: 1 / -1 !important;
+  }
+}

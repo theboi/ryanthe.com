@@ -1,0 +1,62 @@
+@use "src/styles/theme";
+
+.main {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.title {
+  font-family: "Nimbus Sans", sans-serif;
+  text-align: center;
+}
+
+.imgBox {
+  left: calc(-1*map-get(theme.$margins, "mobile"));
+  right: calc(-1*map-get(theme.$margins, "mobile"));
+  width: 100vw;
+  height: 200px;
+  position: relative;
+}
+
+.img {
+  position: static;
+  height: 100px;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.pageContent {
+  max-width: 80ch;
+  
+  p {
+    font-size: 18px;
+    line-height: 1.5em;
+    margin: 0.75em 0 1.6em 0;
+  }
+  p + p {
+    margin: 1.25em 0 1.6em 0;
+  }
+  h1 {
+    font-size: 40px;
+    line-height: 1.3em;
+    margin: .67em 0;
+  }
+  h2 {
+    font-size: 28px;
+    line-height: 1.3em;
+  }
+  h3 {
+    font-size: 14px;
+    line-height: 1.6em;
+    letter-spacing: .17em;
+    text-transform: uppercase;
+    margin: .67em 0;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .imgBox {
+    left: calc(-1*map-get(theme.$margins, "desktop"));
+    right: calc(-1*map-get(theme.$margins, "desktop"));
+  }
+}

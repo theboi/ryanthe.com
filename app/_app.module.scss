@@ -1,0 +1,20 @@
+@use "src/styles/theme";
+
+.main {
+  max-height: 100vh;
+  margin-bottom: 300px;
+}
+
+.content {
+  padding: 0 map-get(theme.$margins, "mobile");
+}
+
+@media screen and (min-width: 768px) {
+  .main {
+    margin-bottom: 0;
+  }
+
+  .content {
+    padding: 0 map-get(theme.$margins, "desktop");
+  }
+}

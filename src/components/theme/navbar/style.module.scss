@@ -1,0 +1,152 @@
+@use "src/styles/theme";
+
+.navbar {
+  position: relative;
+  justify-content: flex-end;
+  place-items: center;
+  display: flex;
+  margin: 40px 30px;
+  height: 50px;
+}
+
+.navbar li a {
+  cursor: pointer;
+  transition: all 250ms ease-in-out;
+  color: var(--text);
+  padding: 10px 0;
+  font-family: "Nimbus Sans", sans-serif;
+  &:hover {
+    opacity: 0.7;
+  }
+  &:active {
+    opacity: 0.5;
+  }
+}
+
+.links {
+  background-color: map-get(theme.$colors, "white");
+  transition: all 250ms ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: absolute;
+  top: -40px;
+  left: -30px;
+  right: -30px;
+  padding: 0 30px;
+  text-align: right;
+  z-index: 10;
+  height: 0;
+  overflow: hidden;
+
+  &.open {
+    height: 250px;
+  }
+
+  a {
+    display: block;
+  }
+
+  li:last-child {
+    margin-bottom: 20px;
+  }
+
+  .isCurrentPath {
+    transition: all 250ms ease-in-out;
+    color: map-get(theme.$colors, "blue");
+  }
+}
+
+.icon {
+  margin-right: auto;
+  z-index: 11;
+}
+
+.hamBox {
+  z-index: 11;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+  transition: all 250ms ease-in-out;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
+}
+
+.ham {
+  position: relative;
+  transition: all 200ms ease-in-out;
+  margin: 17.5px 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+  height: 4px;
+  border-radius: 10px;
+
+  &::before,
+  &::after {
+    transition: top 100ms, bottom 100ms;
+    content: "";
+    position: absolute;
+    width: 75%;
+    height: 4px;
+    background-color: inherit;
+    border-radius: 10px;
+    right: 0;
+  }
+  &::before {
+    top: 10px;
+  }
+  &::after {
+    bottom: 10px;
+  }
+
+  &.open {
+    transform: rotate(225deg);
+    &::before,
+    &::after {
+      width: 100%;
+    }
+    &::before {
+      top: 0;
+      transform: rotate(90deg);
+    }
+    &::after {
+      bottom: 0;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .navbar {
+    margin: 50px 70px;
+  }
+
+  .links {
+    gap: 30px;
+    background-color: transparent !important;
+    padding: 0;
+    width: auto;
+    position: static;
+    display: flex;
+    place-items: center;
+    flex-direction: row;
+    height: 50px;
+
+    li:last-child {
+      margin-bottom: 0;
+    }
+    li > * {
+      padding: 10px;
+    }
+  }
+
+  .hamBox {
+    display: none;
+  }
+}

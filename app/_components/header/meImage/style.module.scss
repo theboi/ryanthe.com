@@ -1,0 +1,29 @@
+.me {
+  position: relative;
+  cursor: url(../../../../public/images/crown_small.png), pointer;
+  & > div {
+    position: absolute;
+    z-index: 1;
+
+    // Determines positioning of invisible div box for click area toggling isCrowned
+    top: 180px;
+    bottom: 50px;
+    left: 100px;
+    right: 90px;
+    // background-color: red;
+    // opacity: 0.4;
+
+    &::after {
+      display: none;
+      position: relative;
+      content: url(../../../../public/images/crown_small.png);
+
+      // Determines positioning of crown image overlay when isCrowned, relative to parent invisible box
+      top: 0px;
+      left: 30px;
+    }
+  }
+  &.crowned > div::after {
+    display: block;
+  }
+}
