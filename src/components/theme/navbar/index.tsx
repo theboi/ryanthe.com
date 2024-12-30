@@ -15,10 +15,10 @@ const paths = [
     name: "Home",
     url: "/",
   },
-  {
-    name: "Works",
-    url: "/works",
-  },
+  // {
+  //   name: "Works",
+  //   url: "/works",
+  // },
 ];
 
 
