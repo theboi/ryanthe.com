@@ -71,21 +71,42 @@ const data = [
       {
         title: "President, SST Inc TDP",
         url: "https://www.sstinc.org/",
-        desc: "As a leader in SST Inc, I led the ICT talent development programme (TDP) by coordinating bonding activities and the annual INCamp, overseeing the planning of events and weekly training lessons and managing the mentorship of SST Inc company projects. In doing so, I started and managed a Notion workspace, a team management platform, for the ExCo to keep track of the club's timeline, student list, meeting minutes and company projects. A reference copy of the Notion page I had started and passed down to my juniors can be found here.",
+        desc: `As a leader in SST Inc, I led the ICT talent development programme (TDP) 
+        by coordinating bonding activities and the annual INCamp, overseeing the planning 
+        of events and weekly training lessons and managing the mentorship of SST Inc 
+        company projects. In doing so, I started and managed a Notion workspace, a 
+        team management platform, for the EXCO to keep track of the club's timeline, 
+        student list, meeting minutes and company projects. A reference copy of the Notion 
+        page I had started and passed down to my juniors can be found here.`,
         period: "2021-2022",
         img: "sstinc.png",
       },
       {
-        title: "ExCo, Robotics @APEX CCA",
+        title: "EXCO, Robotics @APEX CCA",
         url: "https://roboapex.github.io/",
-        desc: "As a CCA leader, I started and managed a Notion workspace, a team management platform, for the ExCo and respective committees to keep track of the club's timeline, student list, meeting minutes, publicity and internal projects. I also started and helped run the club's Instagram page, including planning, designing and publishing posts. Specifically, as my CCA's head of training, I also planned the timeline for training and preparation aligned to upcoming competitions to allow our members to anticipate and be ready for events and challenges. A reference copy of the Notion page I had started and passed down to my juniors can be found here.",
+        desc: `As a CCA leader, I started and managed a Notion workspace, a team 
+        management platform, for the EXCO and respective committees to keep track 
+        of the club's timeline, student list, meeting minutes, publicity and 
+        internal projects. I also started and helped run the club's Instagram 
+        page, including planning, designing and publishing posts. Specifically, 
+        as my CCA's head of training, I also planned the timeline for training 
+        and preparation aligned to upcoming competitions to allow our members to 
+        anticipate and be ready for events and challenges. A reference copy of the 
+        Notion page I had started and passed down to my juniors can be found here.`,
         period: "2021-2022",
         img: "roboapex.png",
       },
       {
-        title: "ExCo, SST Inc TDP",
+        title: "EXCO, SST Inc TDP",
         url: "https://www.sstinc.org/",
-        desc: "In SST Inc, I served as the Chief Technology Officer (React), helping develop SST Inc's roadmap pertaining to React and React Native, conducting React Native lessons for club members and maintaining SST Inc's software related to React and React Native, such as SST Inc's URL shortener. Seeing an area for improvement in the club's attendance taking at that time, I also took the initiative to develop SST Inc's automated attendance taker system, which uses a dynamically changing QR code or code to verify that students are present.",
+        desc: `In SST Inc, I served as the Chief Technology Officer (React), 
+        helping develop SST Inc's roadmap pertaining to React and React Native, 
+        conducting React Native lessons for club members and maintaining 
+        SST Inc's software related to React and React Native, such as SST Inc's 
+        URL shortener. Seeing an area for improvement in the club's attendance 
+        taking at that time, I also took the initiative to develop SST Inc's 
+        automated attendance taker system, which uses a dynamically changing QR 
+        code or code to verify that students are present.`,
         period: "2020-2021",
         img: "sstinc.png",
       },
