@@ -1,0 +1,1538 @@
+/* ─── Design tokens & root wrapper ─── */
+.hw {
+  --bg: #ece6da;
+  --card: #fbf8f1;
+  --fg: #1c1a13;
+  --muted: #807868;
+  --hairline: rgba(28, 26, 19, 0.1);
+  --accent: oklch(58% 0.16 35);
+  --accent-soft: oklch(72% 0.17 35);
+  --accent-deep: oklch(48% 0.14 35);
+  --dot-rgb: 28, 26, 19;
+
+  --card-w: min(960px, calc(100vw - 56px));
+  --card-h: 580px;
+  --card-rest-top: 96px;
+  --card-gap: 24px;
+  --card-radius: 24px;
+
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-feature-settings: "kern", "liga";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ─── Dark / alternate tones ─── */
+.hw[data-tone="ink"] {
+  --bg: #15140f;
+  --card: #1d1c17;
+  --fg: #f1ece0;
+  --muted: #8a8472;
+  --hairline: rgba(241, 236, 224, 0.12);
+  --dot-rgb: 241, 236, 224;
+}
+.hw[data-tone="cool"] {
+  --bg: #e9ecef;
+  --card: #f6f8fa;
+  --hairline: rgba(20, 28, 40, 0.1);
+}
+.hw[data-tone="snow"] {
+  --bg: #f3f1ec;
+  --card: #ffffff;
+}
+
+/* ─── Mono label utility ─── */
+.hw .mono {
+  font-family: var(--font-mono, "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* ─── Dot-grid canvas ─── */
+.hw #dot-grid {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Page scaffold ─── */
+.hw .hero-spacer {
+  height: calc(100vh + var(--card-rest-top) + var(--card-h));
+}
+
+.hw .stack {
+  width: var(--card-w);
+  margin: 0 auto;
+  padding-top: var(--card-gap);
+  padding-bottom: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--card-gap);
+}
+
+/* ─── Cards ─── */
+.hw .card {
+  background: var(--card);
+  border-radius: var(--card-radius);
+  border: 1px solid var(--hairline);
+  overflow: hidden;
+}
+.hw[data-card-style="floating"] .card {
+  border-color: transparent;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04), 0 24px 48px -24px rgba(0, 0, 0, 0.18);
+}
+.hw[data-card-style="minimal"] .card {
+  background: transparent;
+  border-color: transparent;
+  border-top: 1px solid var(--hairline);
+  border-radius: 0;
+}
+
+/* ─── Hero card (position: fixed, transformed by JS) ─── */
+.hw .hero {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+  border-radius: 0;
+  z-index: 10;
+  overflow: hidden;
+  isolation: isolate;
+  /* Static target shadow; opacity is animated by the JS scroll handler via
+     a single CSS variable to avoid repainting the shadow bounding rect with
+     a fresh blur radius every frame (Firefox-sensitive). */
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, calc(var(--t, 0) * 0.1)),
+    0 0 0 1px rgba(0, 0, 0, calc(var(--t, 0) * 0.06));
+  will-change: top, left, width, height, border-radius;
+}
+.hw[data-card-style="floating"] .hero {
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, calc(var(--t, 0) * 0.18)),
+    0 0 0 1px rgba(0, 0, 0, calc(var(--t, 0) * 0.02));
+}
+.hw[data-card-style="minimal"] .hero {
+  box-shadow:
+    0 0 0 0 transparent,
+    0 1px 0 rgba(0, 0, 0, calc(var(--t, 0) * 0.08));
+}
+
+/* Card background fades in as hero shrinks */
+.hw .hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--card);
+  opacity: var(--t, 0);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hw .hero-inner {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  padding: calc((1 - var(--t, 0)) * 56px + var(--t, 0) * 36px);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 24px;
+}
+
+/* ─── Hero forward-motion mark ─── */
+.hw .hero-shape {
+  position: absolute;
+  right: -6%;
+  top: 50%;
+  transform: translateY(-50%) translateZ(0);
+  will-change: transform;
+  width: 70%;
+  aspect-ratio: 1;
+  z-index: 1;
+  pointer-events: none;
+  color: var(--fg);
+}
+.hw .hero-shape svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+.hw .hero-shape .ring {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.1;
+  transform-origin: 0 0;
+  transform-box: fill-box;
+  opacity: 0.18;
+}
+.hw .hero-shape .target-ring {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  opacity: 0.32;
+}
+.hw .hero-shape .target-ring.accent {
+  stroke: var(--accent);
+  opacity: 0.9;
+}
+.hw .hero-shape .target-bullseye {
+  fill: var(--accent);
+}
+.hw .hero-shape .arrow {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 12;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.hw .hero-shape-mark {
+  position: absolute;
+  bottom: 4%;
+  right: 12%;
+  color: var(--muted);
+  font-family: var(--font-mono, "JetBrains Mono", ui-monospace, monospace);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  z-index: 2;
+  opacity: 0.7;
+}
+
+/* ─── Hero content ─── */
+.hw .hero-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+}
+.hw .hero-row .right {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+.hw .hero-name {
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 0.9;
+  font-size: calc((1 - var(--t, 0)) * min(180px, 14.5vw) + var(--t, 0) * 68px);
+  width: 9em;
+  max-width: 100%;
+}
+.hw .hero-name .em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+}
+
+.hw .hero-tagline {
+  margin-top: 22px;
+  width: 32em;
+  max-width: 100%;
+  line-height: 1.36;
+  color: var(--fg);
+  font-size: calc((1 - var(--t, 0)) * 22px + var(--t, 0) * 17px);
+  letter-spacing: -0.005em;
+}
+.hw .hero-tagline .muted {
+  color: var(--muted);
+}
+
+.hw .hero-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding-right: 110px;
+}
+
+.hw .hero-cue {
+  position: absolute;
+  right: calc((1 - var(--t, 0)) * 56px + var(--t, 0) * 36px);
+  bottom: calc((1 - var(--t, 0)) * 56px + var(--t, 0) * 36px);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  opacity: calc(1 - var(--t, 0));
+  transition: opacity 0.15s linear;
+}
+.hw .hero-cue .arrow {
+  width: 18px;
+  height: 18px;
+  border-bottom: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+  transform: rotate(45deg) translate(-2px, -2px);
+  margin-bottom: 4px;
+  animation: hw-nudge 1.6s ease-in-out infinite;
+}
+
+@keyframes hw-nudge {
+  0%,
+  100% {
+    transform: rotate(45deg) translate(-2px, -2px);
+    opacity: 0.5;
+  }
+  50% {
+    transform: rotate(45deg) translate(2px, 2px);
+    opacity: 1;
+  }
+}
+
+.hw .hero-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px 28px;
+  color: var(--muted);
+  border-top: 1px solid var(--hairline);
+  padding-top: 18px;
+  opacity: calc(0.4 + var(--t, 0) * 0.6);
+}
+.hw .hero-grid > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.hw .hero-grid b {
+  color: var(--fg);
+  font-weight: 500;
+  font-size: 13px;
+}
+
+/* ─── Generic card padding ─── */
+.hw .card-pad {
+  padding: 44px 48px;
+}
+
+/* ─── Card 2 — Project (NRC 2021) ─── */
+.hw .card-project {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: var(--card-h);
+}
+.hw .card-project header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  padding: 36px 48px 28px;
+  align-items: end;
+}
+.hw .card-project header h2 {
+  font-size: 88px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+}
+.hw .card-project header h2 sup {
+  color: var(--accent) !important;
+}
+.hw .card-project header .desc {
+  color: var(--fg);
+  font-size: 18px;
+  line-height: 1.45;
+  max-width: 38ch;
+  align-self: end;
+}
+.hw .card-project header .desc .muted {
+  color: var(--muted);
+}
+.hw .card-project .visual {
+  margin: 0 24px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--hairline);
+  aspect-ratio: 16 / 9;
+  background: repeating-linear-gradient(
+    135deg,
+    oklch(86% 0.02 70) 0 8px,
+    oklch(82% 0.025 70) 8px 16px
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.hw[data-tone="ink"] .card-project .visual {
+  background: repeating-linear-gradient(
+    135deg,
+    oklch(28% 0.02 70) 0 8px,
+    oklch(24% 0.025 70) 8px 16px
+  );
+}
+.hw .visual .label {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+}
+.hw .visual .label-c {
+  position: absolute;
+  bottom: 14px;
+  right: 16px;
+}
+.hw .card-project footer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px 28px;
+  padding: 24px 48px 36px;
+  border-top: 1px solid var(--hairline);
+  margin-top: 24px;
+}
+.hw .card-project footer b {
+  color: var(--fg);
+  font-weight: 500;
+  font-size: 14px;
+  display: block;
+  margin-top: 4px;
+}
+
+/* ─── Card 3 — Split (RoboCup) ─── */
+.hw .card-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: var(--card-h);
+}
+.hw .card-split .visual-side {
+  background: repeating-linear-gradient(
+    45deg,
+    oklch(78% 0.04 220) 0 10px,
+    oklch(74% 0.05 220) 10px 20px
+  );
+  position: relative;
+  border-right: 1px solid var(--hairline);
+}
+.hw[data-tone="ink"] .card-split .visual-side {
+  background: repeating-linear-gradient(
+    45deg,
+    oklch(28% 0.04 220) 0 10px,
+    oklch(24% 0.05 220) 10px 20px
+  );
+}
+.hw .card-split .text-side {
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 28px;
+}
+.hw .card-split h2 {
+  font-size: 76px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  margin-top: 12px;
+}
+.hw .card-split .body {
+  color: var(--fg);
+  font-size: 18px;
+  line-height: 1.5;
+  max-width: 36ch;
+}
+.hw .card-split .body .muted {
+  color: var(--muted);
+}
+.hw .card-split .meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 24px;
+  padding-top: 22px;
+  border-top: 1px solid var(--hairline);
+}
+.hw .card-split .meta b {
+  color: var(--fg);
+  font-weight: 500;
+  font-size: 14px;
+  display: block;
+  margin-top: 3px;
+}
+
+/* ─── Card 4 — Quote (Splash Awards) ─── */
+.hw .card-quote {
+  padding: 56px 56px 44px;
+  min-height: var(--card-h);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 32px;
+}
+.hw .card-quote .topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.hw .card-quote blockquote {
+  font-size: 44px;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  font-weight: 400;
+  max-width: 22ch;
+  color: var(--fg);
+  text-wrap: pretty;
+}
+.hw .card-quote blockquote .muted {
+  color: var(--muted);
+}
+.hw .card-quote .bottom {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  align-items: end;
+  padding-top: 22px;
+  border-top: 1px solid var(--hairline);
+}
+.hw .card-quote h2 {
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+.hw .card-quote h2 small {
+  color: var(--muted);
+  font-weight: 400;
+  margin-left: 12px;
+  font-size: 16px;
+}
+.hw .card-quote .specimen {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.hw .specimen .swatch {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid var(--hairline);
+}
+
+/* ─── Card 5 — List (Background / Education) ─── */
+.hw .card-list {
+  padding: 44px 48px;
+  min-height: var(--card-h);
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 28px;
+}
+.hw .card-list .head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+.hw .card-list .head h2 {
+  font-size: 64px;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+}
+.hw .card-list ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.hw .card-list li {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  gap: 24px;
+  padding: 18px 0;
+  border-top: 1px solid var(--hairline);
+  align-items: baseline;
+  cursor: pointer;
+  transition: padding-left 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.2s;
+  position: relative;
+}
+.hw .card-list li::before {
+  content: "";
+  position: absolute;
+  left: -4px;
+  top: 50%;
+  width: 4px;
+  height: 0;
+  background: var(--accent);
+  transition: height 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), top 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+  border-radius: 2px;
+}
+.hw .card-list li:hover::before {
+  height: 60%;
+  top: 20%;
+}
+.hw .card-list li:hover {
+  padding-left: 12px;
+}
+.hw .card-list li:hover .num {
+  color: var(--accent);
+}
+.hw .card-list li:last-child {
+  border-bottom: 1px solid var(--hairline);
+}
+.hw .card-list .num {
+  color: var(--muted);
+}
+.hw .card-list .title-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.hw .card-list .title-row .t {
+  font-size: 22px;
+  letter-spacing: -0.015em;
+}
+.hw .card-list .title-row .s {
+  color: var(--muted);
+  font-size: 14px;
+}
+.hw .card-list .reading {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* ─── Card 6 — Contact ─── */
+.hw .card-contact {
+  min-height: var(--card-h);
+  padding: 56px 56px 44px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 60px;
+}
+.hw .card-contact .lhs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 32px;
+}
+.hw .card-contact h2 {
+  font-size: 92px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+}
+.hw .card-contact h2 .em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+}
+.hw .card-contact .lead {
+  font-size: 19px;
+  line-height: 1.45;
+  max-width: 40ch;
+}
+.hw .card-contact .lead .muted {
+  color: var(--muted);
+}
+.hw .card-contact .rhs {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  padding-top: 12px;
+}
+.hw .card-contact .row {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 18px;
+  align-items: baseline;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--hairline);
+}
+.hw .card-contact .row .ico {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1;
+  width: 18px;
+  text-align: center;
+}
+.hw .card-contact .row a {
+  display: inline-block;
+  justify-self: start;
+  color: var(--fg);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s, color 0.2s;
+}
+.hw .card-contact .row a:hover {
+  border-color: var(--accent);
+}
+.hw .card-contact .colophon {
+  margin-top: auto;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+/* ─── Section labels ─── */
+.hw .section-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  color: var(--muted);
+  margin: 8px 4px -8px;
+}
+
+/* ─── Top chrome (fades out as hero shrinks) ─── */
+.hw .top-chrome {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  padding: 22px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+  opacity: calc(1 - var(--t, 0));
+  transition: opacity 0.2s linear;
+}
+.hw .top-chrome > * {
+  pointer-events: auto;
+}
+.hw .top-chrome .right {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  color: var(--muted);
+}
+
+/* ─── Card T1 — Stats / Metrics ─── */
+.hw .card-stats {
+  min-height: var(--card-h);
+  padding: 44px 48px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 32px;
+}
+.hw .card-stats .head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.hw .card-stats .head h2 {
+  font-size: 56px;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+  max-width: 16ch;
+}
+.hw .card-stats .grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--hairline);
+}
+.hw .card-stats .grid > div {
+  padding: 28px 24px 20px;
+  border-right: 1px solid var(--hairline);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.hw .card-stats .grid > div:last-child {
+  border-right: none;
+}
+.hw .card-stats .grid .num {
+  font-size: 92px;
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 0.9;
+}
+.hw .card-stats .grid .num .accent {
+  color: var(--accent);
+  font-style: italic;
+  font-weight: 400;
+}
+.hw .card-stats .grid .lbl {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.4;
+  max-width: 24ch;
+}
+.hw .card-stats footer {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+}
+
+/* ─── Card T2 — Gallery (2x2) ─── */
+.hw .card-gallery {
+  min-height: var(--card-h);
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+.hw .card-gallery header {
+  padding: 36px 48px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 24px;
+}
+.hw .card-gallery header h2 {
+  font-size: 56px;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+}
+.hw .card-gallery header .desc {
+  color: var(--muted);
+  font-size: 15px;
+  max-width: 32ch;
+  line-height: 1.45;
+}
+.hw .card-gallery .grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 1px;
+  background: var(--hairline);
+  border-top: 1px solid var(--hairline);
+}
+.hw .card-gallery .tile {
+  background: var(--card);
+  aspect-ratio: 4 / 3;
+  position: relative;
+  overflow: hidden;
+}
+.hw .card-gallery .tile .fill {
+  position: absolute;
+  inset: 0;
+}
+.hw .card-gallery .tile.a .fill {
+  background: repeating-linear-gradient(135deg, oklch(86% 0.02 70) 0 8px, oklch(82% 0.025 70) 8px 16px);
+}
+.hw .card-gallery .tile.b .fill {
+  background: repeating-linear-gradient(45deg, oklch(78% 0.04 220) 0 10px, oklch(74% 0.05 220) 10px 20px);
+}
+.hw .card-gallery .tile.c .fill {
+  background: repeating-linear-gradient(90deg, oklch(82% 0.05 35) 0 6px, oklch(78% 0.06 35) 6px 12px);
+}
+.hw .card-gallery .tile.d .fill {
+  background: repeating-linear-gradient(0deg, oklch(80% 0.03 150) 0 14px, oklch(76% 0.04 150) 14px 28px);
+}
+.hw[data-tone="ink"] .card-gallery .tile.a .fill {
+  background: repeating-linear-gradient(135deg, oklch(28% 0.02 70) 0 8px, oklch(24% 0.025 70) 8px 16px);
+}
+.hw[data-tone="ink"] .card-gallery .tile.b .fill {
+  background: repeating-linear-gradient(45deg, oklch(28% 0.04 220) 0 10px, oklch(24% 0.05 220) 10px 20px);
+}
+.hw[data-tone="ink"] .card-gallery .tile.c .fill {
+  background: repeating-linear-gradient(90deg, oklch(28% 0.05 35) 0 6px, oklch(24% 0.06 35) 6px 12px);
+}
+.hw[data-tone="ink"] .card-gallery .tile.d .fill {
+  background: repeating-linear-gradient(0deg, oklch(28% 0.03 150) 0 14px, oklch(24% 0.04 150) 14px 28px);
+}
+.hw .card-gallery .tile .lbl {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  color: rgba(255, 255, 255, 0.85);
+}
+.hw .card-gallery .tile .cap {
+  position: absolute;
+  left: 14px;
+  bottom: 12px;
+  right: 14px;
+  color: var(--fg);
+  background: var(--card);
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  border: 1px solid var(--hairline);
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.hw .card-gallery .tile .cap b {
+  font-weight: 500;
+}
+.hw .card-gallery .tile .cap span {
+  color: var(--muted);
+}
+
+/* ─── Card T3 — Process / Timeline ─── */
+.hw .card-process {
+  min-height: var(--card-h);
+  padding: 44px 48px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 32px;
+}
+.hw .card-process .head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.hw .card-process .head h2 {
+  font-size: 56px;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+}
+.hw .card-process .steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+}
+.hw .card-process .steps::before {
+  content: "";
+  position: absolute;
+  top: 16px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--hairline);
+}
+.hw .card-process .step {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-right: 24px;
+  position: relative;
+}
+.hw .card-process .step .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 1.5px solid var(--muted);
+  margin-top: 10px;
+  position: relative;
+  z-index: 1;
+}
+.hw .card-process .step.active .dot {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.hw .card-process .step .num {
+  color: var(--muted);
+}
+.hw .card-process .step.active .num {
+  color: var(--accent);
+}
+.hw .card-process .step h3 {
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+.hw .card-process .step p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.hw .card-process footer {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  padding-top: 20px;
+  border-top: 1px solid var(--hairline);
+}
+
+/* ─── Card T4 — Featured (full-bleed visual + overlay) ─── */
+.hw .card-feature {
+  min-height: var(--card-h);
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+.hw .card-feature .visual {
+  position: relative;
+  background: repeating-linear-gradient(45deg, oklch(72% 0.06 35) 0 12px, oklch(68% 0.07 35) 12px 24px);
+  overflow: hidden;
+}
+.hw[data-tone="ink"] .card-feature .visual {
+  background: repeating-linear-gradient(45deg, oklch(28% 0.06 35) 0 12px, oklch(24% 0.07 35) 12px 24px);
+}
+.hw .card-feature .visual .badge {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.hw .card-feature .visual .badge::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent) 30%, transparent);
+}
+.hw .card-feature .visual .corner {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  color: rgba(255, 255, 255, 0.85);
+}
+.hw .card-feature .overlay {
+  padding: 32px 48px 36px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 36px;
+  align-items: end;
+  background: var(--card);
+  border-top: 1px solid var(--hairline);
+}
+.hw .card-feature .overlay h2 {
+  font-size: 64px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+}
+.hw .card-feature .overlay h2 .em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+}
+.hw .card-feature .overlay .meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 24px;
+}
+.hw .card-feature .overlay .meta b {
+  color: var(--fg);
+  font-weight: 500;
+  font-size: 14px;
+  display: block;
+  margin-top: 3px;
+}
+
+/* ─── Card T5 — Spec sheet (mono columns) ─── */
+.hw .card-spec {
+  min-height: var(--card-h);
+  padding: 44px 48px;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 56px;
+}
+.hw .card-spec .lhs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 28px;
+}
+.hw .card-spec .lhs h2 {
+  font-size: 56px;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+}
+.hw .card-spec .lhs h2 .em {
+  color: var(--accent);
+  font-style: italic;
+  font-weight: 400;
+}
+.hw .card-spec .lhs .lead {
+  color: var(--fg);
+  font-size: 17px;
+  line-height: 1.5;
+  max-width: 36ch;
+}
+.hw .card-spec .lhs .lead .muted {
+  color: var(--muted);
+}
+.hw .card-spec .lhs .sig {
+  color: var(--muted);
+}
+.hw .card-spec .rhs {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--hairline);
+}
+.hw .card-spec .row {
+  display: grid;
+  grid-template-columns: 110px 1fr auto;
+  gap: 20px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--hairline);
+  align-items: baseline;
+}
+.hw .card-spec .row .k {
+  color: var(--muted);
+}
+.hw .card-spec .row .v {
+  font-size: 16px;
+  letter-spacing: -0.005em;
+}
+.hw .card-spec .row .v b {
+  font-weight: 500;
+}
+.hw .card-spec .row .tag {
+  color: var(--accent);
+  font-family: var(--font-mono, "JetBrains Mono", ui-monospace, monospace);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ─── Card T6 — Index / TOC (large numbered list) ─── */
+.hw .card-index {
+  min-height: var(--card-h);
+  padding: 44px 48px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 28px;
+}
+.hw .card-index .head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.hw .card-index .head h2 {
+  font-size: 56px;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+}
+.hw .card-index ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: idx;
+}
+.hw .card-index li {
+  display: grid;
+  grid-template-columns: 100px 1fr auto;
+  gap: 24px;
+  padding: 18px 0;
+  border-top: 1px solid var(--hairline);
+  align-items: baseline;
+}
+.hw .card-index li:last-child {
+  border-bottom: 1px solid var(--hairline);
+}
+.hw .card-index li .n {
+  font-size: 36px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--muted);
+  line-height: 1;
+}
+.hw .card-index li .t {
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+.hw .card-index li .t .em {
+  color: var(--accent);
+  font-style: italic;
+  font-weight: 400;
+}
+.hw .card-index li .pg {
+  color: var(--muted);
+}
+
+/* ─── Card T7 — Two-up (text / text comparison) ─── */
+.hw .card-twoup {
+  min-height: var(--card-h);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.hw .card-twoup .col {
+  padding: 44px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  justify-content: space-between;
+}
+.hw .card-twoup .col + .col {
+  border-left: 1px solid var(--hairline);
+}
+.hw .card-twoup .col.right {
+  background: color-mix(in oklab, var(--accent) 8%, var(--card));
+}
+.hw[data-tone="ink"] .card-twoup .col.right {
+  background: color-mix(in oklab, var(--accent) 14%, var(--card));
+}
+.hw .card-twoup .col h3 {
+  font-size: 38px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+.hw .card-twoup .col h3 .em {
+  color: var(--accent);
+  font-style: italic;
+  font-weight: 400;
+}
+.hw .card-twoup .col .body {
+  color: var(--fg);
+  font-size: 16px;
+  line-height: 1.55;
+  max-width: 34ch;
+}
+.hw .card-twoup .col .body .muted {
+  color: var(--muted);
+}
+.hw .card-twoup .col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.hw .card-twoup .col li {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 10px;
+  align-items: baseline;
+  font-size: 14px;
+  color: var(--fg);
+}
+.hw .card-twoup .col li::before {
+  content: "—";
+  color: var(--muted);
+}
+.hw .card-twoup .col.right li::before {
+  content: "+";
+  color: var(--accent);
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 720px) {
+  .hw {
+    --card-h: 480px;
+    --card-rest-top: 64px;
+    --card-w: min(960px, calc(100vw - 28px));
+  }
+
+  .hw .hero-inner {
+    padding: calc((1 - var(--t, 0)) * 24px + var(--t, 0) * 22px);
+    gap: 18px;
+  }
+  .hw .hero-headline {
+    position: relative;
+    z-index: 3;
+  }
+  .hw .hero-name {
+    font-size: calc((1 - var(--t, 0)) * 18vw + var(--t, 0) * 52px);
+    width: auto;
+    max-width: 100%;
+    line-height: 0.92;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  .hw .hero-tagline {
+    font-size: calc((1 - var(--t, 0)) * 14px + var(--t, 0) * 13px);
+    width: auto;
+    max-width: 100%;
+    margin-top: 14px;
+    line-height: 1.4;
+  }
+  .hw .hero-shape {
+    top: 22%;
+    bottom: auto;
+    right: 12px;
+    left: auto;
+    transform: translateY(-18%);
+    width: 58%;
+    max-width: 320px;
+    opacity: 0.85;
+  }
+  .hw .hero-shape-mark {
+    display: none;
+  }
+  .hw .hero-bottom {
+    gap: 16px;
+    padding-right: 0;
+  }
+  .hw .hero-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 18px;
+    padding-top: 14px;
+  }
+  .hw .hero-grid > div {
+    min-width: 0;
+  }
+  .hw .hero-grid b {
+    font-size: 12px;
+    word-break: break-word;
+  }
+  .hw .hero-grid .mono {
+    font-size: 10px;
+  }
+
+  .hw .card-pad {
+    padding: 28px 22px;
+  }
+
+  .hw .card-project header {
+    padding: 24px 22px 18px;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .hw .card-project header h2 {
+    font-size: 56px;
+  }
+  .hw .card-project .visual {
+    margin: 0 14px;
+  }
+  .hw .card-project footer {
+    grid-template-columns: 1fr 1fr;
+    padding: 18px 22px 24px;
+    gap: 14px 18px;
+  }
+  .hw .card-project footer > div {
+    min-width: 0;
+  }
+  .hw .card-project footer b {
+    font-size: 13px;
+    word-break: break-word;
+  }
+
+  .hw .card-split {
+    grid-template-columns: 1fr;
+  }
+  .hw .card-split .visual-side {
+    aspect-ratio: 16 / 10;
+    border-right: none;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .hw .card-split .text-side {
+    padding: 28px 22px;
+  }
+  .hw .card-split h2 {
+    font-size: 54px;
+  }
+  .hw .card-split .meta {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 16px;
+  }
+  .hw .card-split .meta > div {
+    min-width: 0;
+  }
+  .hw .card-split .meta b {
+    word-break: break-word;
+  }
+
+  .hw .card-quote {
+    padding: 28px 22px;
+    gap: 22px;
+  }
+  .hw .card-quote blockquote {
+    font-size: 30px;
+  }
+  .hw .card-quote .bottom {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .hw .card-quote h2 {
+    font-size: 24px;
+  }
+  .hw .card-quote h2 small {
+    display: block;
+    margin-left: 0;
+    margin-top: 4px;
+  }
+
+  .hw .card-list {
+    padding: 28px 22px;
+  }
+  .hw .card-list .head h2 {
+    font-size: 44px;
+  }
+  .hw .card-list li {
+    grid-template-columns: 56px 1fr;
+  }
+  .hw .card-list .reading {
+    display: none;
+  }
+
+  .hw .card-contact {
+    grid-template-columns: 1fr;
+    padding: 28px 22px;
+    gap: 32px;
+  }
+  .hw .card-contact h2 {
+    font-size: 56px;
+  }
+  .hw .card-contact .row {
+    grid-template-columns: 24px 1fr;
+    gap: 14px;
+  }
+  .hw .card-contact .row a {
+    word-break: break-word;
+    min-width: 0;
+  }
+  .hw .card-contact .colophon {
+    gap: 14px;
+  }
+
+  /* ── Hero → first stack item gap (mobile) ── */
+  .hw .stack {
+    padding-top: 56px;
+  }
+  .hw .section-label {
+    margin-bottom: 0;
+  }
+
+  /* ── T1 Stats ── */
+  .hw .card-stats {
+    padding: 28px 22px;
+    gap: 22px;
+  }
+  .hw .card-stats .head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .hw .card-stats .head h2 {
+    font-size: 40px;
+  }
+  .hw .card-stats .grid {
+    grid-template-columns: 1fr;
+  }
+  .hw .card-stats .grid > div {
+    padding: 20px 0 18px;
+    border-right: none;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .hw .card-stats .grid > div:last-child {
+    border-bottom: none;
+  }
+  .hw .card-stats .grid .num {
+    font-size: 64px;
+  }
+  .hw .card-stats footer {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  /* ── T2 Gallery ── */
+  .hw .card-gallery header {
+    padding: 24px 22px 18px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .hw .card-gallery header h2 {
+    font-size: 40px;
+  }
+  .hw .card-gallery .grid {
+    grid-template-columns: 1fr;
+  }
+  .hw .card-gallery .tile {
+    aspect-ratio: 16 / 10;
+  }
+
+  /* ── T3 Process ── */
+  .hw .card-process {
+    padding: 28px 22px;
+    gap: 22px;
+  }
+  .hw .card-process .head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .hw .card-process .head h2 {
+    font-size: 40px;
+  }
+  .hw .card-process .steps {
+    grid-template-columns: 1fr 1fr;
+    gap: 22px 16px;
+  }
+  .hw .card-process .steps::before {
+    display: none;
+  }
+  .hw .card-process .step {
+    padding-right: 0;
+  }
+  .hw .card-process footer {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* ── T4 Feature ── */
+  .hw .card-feature .overlay {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 24px 22px 26px;
+  }
+  .hw .card-feature .overlay h2 {
+    font-size: 40px;
+  }
+  .hw .card-feature .overlay .meta {
+    gap: 12px 16px;
+  }
+  .hw .card-feature .overlay .meta > div {
+    min-width: 0;
+  }
+  .hw .card-feature .overlay .meta b {
+    word-break: break-word;
+    font-size: 13px;
+  }
+
+  /* ── T5 Spec ── */
+  .hw .card-spec {
+    grid-template-columns: 1fr;
+    padding: 28px 22px;
+    gap: 24px;
+  }
+  .hw .card-spec .lhs h2 {
+    font-size: 40px;
+  }
+  .hw .card-spec .row {
+    grid-template-columns: 90px 1fr auto;
+    gap: 12px;
+  }
+  .hw .card-spec .row .v {
+    font-size: 14px;
+    word-break: break-word;
+    min-width: 0;
+  }
+
+  /* ── T6 Index ── */
+  .hw .card-index {
+    padding: 28px 22px;
+  }
+  .hw .card-index .head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .hw .card-index .head h2 {
+    font-size: 40px;
+  }
+  .hw .card-index li {
+    grid-template-columns: 56px 1fr;
+    gap: 14px;
+  }
+  .hw .card-index li .pg {
+    display: none;
+  }
+  .hw .card-index li .n {
+    font-size: 28px;
+  }
+  .hw .card-index li .t {
+    font-size: 18px;
+  }
+
+  /* ── T7 Two-up ── */
+  .hw .card-twoup {
+    grid-template-columns: 1fr;
+  }
+  .hw .card-twoup .col {
+    padding: 28px 22px;
+  }
+  .hw .card-twoup .col + .col {
+    border-left: none;
+    border-top: 1px solid var(--hairline);
+  }
+  .hw .card-twoup .col h3 {
+    font-size: 30px;
+  }
+}
