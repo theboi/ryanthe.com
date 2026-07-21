@@ -29,22 +29,22 @@ export default function Page() {
       <div className="hero-spacer" aria-hidden="true" />
 
       <main className="stack">
-        <SectionLabel {...sections.selectedWork} />
+        {/* <SectionLabel {...sections.selectedWork} />
         <ProjectCard {...cards.project} />
         <SplitCard {...cards.split} />
         <QuoteCard {...cards.quote} />
 
         <SectionLabel {...sections.education} />
-        <ListCard {...cards.background} />
+        <ListCard {...cards.background} /> */}
 
-        <SectionLabel {...sections.templates} />
+        {/* <SectionLabel {...sections.templates} />
         <StatsCard {...cards.stats} />
         <GalleryCard {...cards.gallery} />
         <ProcessCard {...cards.process} />
         <FeatureCard {...cards.feature} />
         <SpecCard {...cards.spec} />
         <IndexCard {...cards.index} />
-        <TwoUpCard {...cards.twoUp} />
+        <TwoUpCard {...cards.twoUp} /> */}
 
         <SectionLabel {...sections.reach} />
         <ContactCard {...cards.contact} />

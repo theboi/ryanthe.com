@@ -220,26 +220,26 @@ export interface HomePageContent {
 
 export const homePageData = {
   hero: {
-    portfolioLabel: "Portfolio · 2026 · v.07",
-    indexLabel: "Index · 06",
+    portfolioLabel: "Ryan The · 2026",
+    indexLabel: "01",
     name: "Ryan The,",
-    tagline: "student, self-taught software developer & designer based in Singapore.",
+    tagline: "a student, self-taught software developer & designer based in Singapore,",
     mutedTagline:
-      "Passionate about harnessing technology to improve society — building solutions across the web, native apps, and robotics.",
-    shapeMark: "Forward · 26°",
+      "passionate about harnessing technology to improve society, building solutions that turn complex data and repetitive workflows into clear reports and practical tools.",
+    shapeMark: "",
     details: [
-      { label: "Practice", value: "Dev ↔ Design" },
-      { label: "Stack", value: "React · Swift · Python" },
+      // { label: "Practice", value: "Dev ↔ Design" },
+      // { label: "Stack", value: "React · Swift · Python" },
       { label: "Based", value: "Singapore" },
       { label: "Reach", value: "ryan@ryanthe.com" },
     ],
     scrollLabel: "Scroll",
   },
   sections: {
-    selectedWork: { title: "Selected Work", index: "01 / 03" },
-    education: { title: "Education & Leadership", index: "04 timeline" },
-    templates: { title: "Templates · Future Slides", index: "T1 — T7" },
-    reach: { title: "Reach", index: "06 / 06 · End" },
+    selectedWork: { title: "", index: "" },
+    education: { title: "Education & Leadership", index: "" },
+    templates: { title: "Templates / Future Slides", index: "" },
+    reach: { title: "Reach", index: "" },
   },
   cards: {
     project: {
@@ -558,11 +558,9 @@ export const homePageData = {
       headingSuffix: ".",
       lead:
         "Always open to conversations about software, robotics, leadership, or how to use technology to solve real-world problems.",
-      mutedLead: "I read every message — replies may be slow when school is in session.",
+      mutedLead: "",
       colophon: [
         "© 2026 Ryan Theodore The",
-        "Set in Helvetica & JetBrains Mono",
-        "v.07 · Hand-built",
       ],
       links: [
         {
