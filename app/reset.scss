@@ -1,6 +1,8 @@
 @use "src/styles/theme";
 
 :root {
+  --t: 0; /* hero scroll progress, driven by JS */
+
   --bgtrans: rgba(255, 255, 255, 0.7);
   --bg0: rgb(248, 248, 248);
   --bg1: rgb(255, 255, 255);
@@ -51,7 +53,7 @@ code {
 }
 
 h1 {
-  font-family: 'Merriweather', serif;
+  font-family: var(--font-merriweather), Georgia, serif;
 }
 
 *::selection {

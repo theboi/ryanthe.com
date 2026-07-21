@@ -1,9 +1,22 @@
 import type { Metadata } from "next";
+import { JetBrains_Mono, Merriweather } from "next/font/google";
 
 import "./reset.scss";
-import style from "./_app.module.scss";
-import NavBar from "../src/components/theme/navbar";
-import Footer from "../src/components/theme/footer";
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-mono",
+  display: "swap",
+});
+
+const merriweather = Merriweather({
+  subsets: ["latin"],
+  weight: ["300", "400", "700", "900"],
+  style: ["normal", "italic"],
+  variable: "--font-merriweather",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -13,11 +26,6 @@ export const metadata: Metadata = {
   description: "Ryan Theodore The's personal portfolio website.",
   openGraph: {
     url: "https://www.ryanthe.com",
-    // title: {
-    //   template: '%s | Ryan Theodore The',
-    //   default: "Ryan Theodore The"
-    // },
-    // description: "Ryan Theodore The's personal portfolio website.",
   },
   icons: {
     icon: "/favicons/favicon-light.ico",
@@ -33,37 +41,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      {/* <Head>
-
-        <meta name="version" content="v3.0" />
-        <meta name="description" content={metaData.desc} />
-        <meta name="author" content="Ryan Theodore The" />
-        <link rel="icon" href="/favicons/favicon-light.ico" />
-      </Head> */}
+    <html
+      lang="en"
+      className={`${jetbrainsMono.variable} ${merriweather.variable}`}
+    >
       <head>
         <link
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
           rel="stylesheet"
-        />
-        {/* NextJS Font Optimisation used below https://nextjs.org/docs/basic-features/font-optimization */}
-        {/* TODO: update this font import (was from previous Page router code). See https://nextjs.org/docs/pages/building-your-application/optimizing/fonts */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-          rel="stylesheet"
+          integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
         />
       </head>
-      <body suppressHydrationWarning>
-        <main>
-          <div className={style.main}>
-            <NavBar />
-            <div className={style.content}>{children}</div>
-            <Footer />
-          </div>
-        </main>
-      </body>
+      <body suppressHydrationWarning>{children}</body>
     </html>
   );
 }
-
-//remove isDarkMode
