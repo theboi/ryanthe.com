@@ -1,4 +1,4 @@
-import { Project } from "../../data/project";
+import { Project } from "../../../data/project";
 import ProjectItem from "./projectItem";
 import style from "./style.module.scss";
 

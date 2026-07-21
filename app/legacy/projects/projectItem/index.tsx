@@ -1,7 +1,7 @@
 import style from "./style.module.scss";
 
 import Image from "next/image";
-import { Project } from "../../../data/project";
+import { Project } from "../../../../data/project";
 
 export default function ProjectItem({ project }: { project: Project }) {
   return (

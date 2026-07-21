@@ -1,0 +1,62 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 20px;
+
+  & > * {
+    width: 100%;
+    max-width: 800px;
+  }
+}
+
+.header {
+  text-align: left; /* Changed to left-align the header */
+  margin-bottom: 20px;
+}
+
+.projectsListing {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+
+  @media (min-width: 600px) {
+    grid-template-columns: repeat(2, 1fr); /* Set a maximum of 2 columns */
+  }
+}
+
+.projectItem {
+  background-color: #f0f0f0;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.projectItem:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.projectItem img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+.projectItem {
+  background-color: transparent; /* Remove background color */
+  padding: 0; /* Remove padding */
+  border-radius: 0; /* Remove border radius */
+  box-shadow: none; /* Remove box shadow */
+  text-align: center; /* Center align text */
+}
+
+.projectItem img {
+  content: url('https://i.imgur.com/placeholder.png');
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+  object-fit: cover; /* Ensure the image covers the area */
+}
