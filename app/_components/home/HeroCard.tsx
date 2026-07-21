@@ -5,6 +5,13 @@ export interface HeroCardDetail {
   value: string;
 }
 
+export interface HeroCardLink {
+  iconClassName: string;
+  href: string;
+  label: string;
+  openInNewTab?: boolean;
+}
+
 export interface HeroCardProps {
   portfolioLabel: string;
   indexLabel: string;
@@ -13,6 +20,7 @@ export interface HeroCardProps {
   mutedTagline: string;
   shapeMark: string;
   details: readonly HeroCardDetail[];
+  links: readonly HeroCardLink[];
   scrollLabel: string;
 }
 
@@ -24,6 +32,7 @@ export default function HeroCard({
   mutedTagline,
   shapeMark,
   details,
+  links,
   scrollLabel,
 }: HeroCardProps) {
   return (
@@ -68,6 +77,20 @@ export default function HeroCard({
           <p className="hero-tagline">
             {tagline} <span className="muted">{mutedTagline}</span>
           </p>
+          <nav className="hero-links" aria-label="Contact links">
+            {links.map((link) => (
+              <a
+                href={link.href}
+                aria-label={link.label}
+                title={link.label}
+                target={link.openInNewTab ? "_blank" : undefined}
+                rel={link.openInNewTab ? "noreferrer" : undefined}
+                key={link.href}
+              >
+                <i className={link.iconClassName} aria-hidden="true" />
+              </a>
+            ))}
+          </nav>
         </div>
 
         <div className="hero-bottom">

@@ -24,7 +24,7 @@ export default function Page() {
     <HomeClient>
       <HomeBodyStyles />
       <DotGrid />
-      <HeroCard {...hero} />
+      <HeroCard {...hero} links={cards.contact.links} />
 
       <div className="hero-spacer" aria-hidden="true" />
 

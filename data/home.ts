@@ -20,6 +20,7 @@ export interface HeroContent {
 }
 
 export interface ProjectCardContent {
+  url: string;
   title: string;
   externalMarker: string;
   description: string;
@@ -30,6 +31,7 @@ export interface ProjectCardContent {
 }
 
 export interface SplitCardContent {
+  url: string;
   visualLabel: string;
   visualRatio: string;
   eyebrow: string;
@@ -40,6 +42,7 @@ export interface SplitCardContent {
 }
 
 export interface QuoteCardContent {
+  url: string;
   eyebrow: string;
   category: string;
   quote: string;
@@ -240,6 +243,7 @@ export const homePageData = {
   },
   cards: {
     project: {
+      url: "/projects/nrc-2021",
       title: "NRC 2021",
       externalMarker: "↗",
       description: "National Robotics Competition — Future Engineers Category.",
@@ -255,6 +259,7 @@ export const homePageData = {
       ],
     },
     split: {
+      url: "/projects/robocup-2021",
       visualLabel: "[ line-tracing run · arena ]",
       visualRatio: "1 : 1",
       eyebrow: "02 / RoboCup",
@@ -270,6 +275,7 @@ export const homePageData = {
       ],
     },
     quote: {
+      url: "/projects/tour-glasses",
       eyebrow: "03 / Splash Awards 2021",
       category: "Innovation · 2021",
       quote: "“Critical & creative thinking turn picked-up skills into innovative strategies.",

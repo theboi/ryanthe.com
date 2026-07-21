@@ -6,6 +6,7 @@ export interface ProjectCardMetadataItem {
 }
 
 export interface ProjectCardProps {
+  url: string;
   title: string;
   externalMarker: string;
   description: string;
@@ -16,6 +17,7 @@ export interface ProjectCardProps {
 }
 
 export default function ProjectCard({
+  url,
   title,
   externalMarker,
   description,
@@ -25,7 +27,7 @@ export default function ProjectCard({
   metadata,
 }: ProjectCardProps) {
   return (
-    <BaseCard className="card-project">
+    <BaseCard className="card-project" url={url}>
       <header>
         <h2>
           {title}

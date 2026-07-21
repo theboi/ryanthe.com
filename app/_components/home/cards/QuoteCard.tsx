@@ -1,6 +1,7 @@
 import BaseCard from "./BaseCard";
 
 export interface QuoteCardProps {
+  url: string;
   eyebrow: string;
   category: string;
   quote: string;
@@ -12,6 +13,7 @@ export interface QuoteCardProps {
 }
 
 export default function QuoteCard({
+  url,
   eyebrow,
   category,
   quote,
@@ -22,7 +24,7 @@ export default function QuoteCard({
   specimenColors,
 }: QuoteCardProps) {
   return (
-    <BaseCard className="card-quote">
+    <BaseCard className="card-quote" url={url}>
       <div className="topline">
         <span className="mono">{eyebrow}</span>
         <span className="mono">{category}</span>

@@ -53,7 +53,7 @@ code {
 }
 
 h1 {
-  font-family: 'Merriweather', serif;
+  font-family: var(--font-merriweather), Georgia, serif;
 }
 
 *::selection {

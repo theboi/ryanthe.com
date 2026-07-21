@@ -5,6 +5,7 @@ import style from "./style.module.scss";
 const placeholderProjects: Project[] = [
   {
     id: "1",
+    url: "/projects/1",
     name: "Project 1",
     description: "Description 1",
     imageURL: "https://picsum.photos/200/300",
@@ -12,6 +13,7 @@ const placeholderProjects: Project[] = [
   },
   {
     id: "2",
+    url: "/projects/2",
     name: "Project 2",
     description: "Description 2",
     imageURL: "https://picsum.photos/200/300",
@@ -19,6 +21,7 @@ const placeholderProjects: Project[] = [
   },
   {
     id: "3",
+    url: "/projects/3",
     name: "Project 3",
     description: "Description 3",
     imageURL: "https://picsum.photos/200/300",

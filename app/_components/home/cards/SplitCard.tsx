@@ -6,6 +6,7 @@ export interface SplitCardMetadataItem {
 }
 
 export interface SplitCardProps {
+  url: string;
   visualLabel: string;
   visualRatio: string;
   eyebrow: string;
@@ -16,6 +17,7 @@ export interface SplitCardProps {
 }
 
 export default function SplitCard({
+  url,
   visualLabel,
   visualRatio,
   eyebrow,
@@ -25,8 +27,8 @@ export default function SplitCard({
   metadata,
 }: SplitCardProps) {
   return (
-    <BaseCard className="card-split">
-      <div className="visual-side">
+    <BaseCard className="card-split" url={url}>
+      <div className="visual visual-side">
         <span className="mono label" style={{ color: "rgba(255,255,255,0.85)" }}>
           {visualLabel}
         </span>

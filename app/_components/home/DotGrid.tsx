@@ -28,6 +28,9 @@ export default function DotGrid() {
 
     const canvas: HTMLCanvasElement = currentCanvas;
     const ctx: CanvasRenderingContext2D = currentContext;
+    const supportsPointerInteraction = window.matchMedia(
+      "(hover: hover) and (pointer: fine)",
+    ).matches;
 
     const SPACING = 28;
     const RADIUS = 150;
@@ -149,16 +152,6 @@ export default function DotGrid() {
         t0: performance.now() / 1000,
       });
     };
-    const onTouch = (event: TouchEvent) => {
-      const touch = event.touches.item(0);
-      if (touch) {
-        ripples.push({
-          x: touch.clientX,
-          y: touch.clientY,
-          t0: performance.now() / 1000,
-        });
-      }
-    };
     const onMouseMove = (event: MouseEvent) => {
       mx = event.clientX;
       my = event.clientY;
@@ -167,19 +160,11 @@ export default function DotGrid() {
       mx = -9999;
       my = -9999;
     };
-    const onTouchMove = (event: TouchEvent) => {
-      const touch = event.touches.item(0);
-      if (touch) {
-        mx = touch.clientX;
-        my = touch.clientY;
-      }
-    };
-
-    window.addEventListener("click", onClick, { passive: true });
-    window.addEventListener("touchstart", onTouch, { passive: true });
-    window.addEventListener("mousemove", onMouseMove, { passive: true });
-    window.addEventListener("mouseleave", onMouseLeave);
-    window.addEventListener("touchmove", onTouchMove, { passive: true });
+    if (supportsPointerInteraction) {
+      window.addEventListener("click", onClick, { passive: true });
+      window.addEventListener("mousemove", onMouseMove, { passive: true });
+      window.addEventListener("mouseleave", onMouseLeave);
+    }
     window.addEventListener("resize", build);
 
     build();
@@ -187,11 +172,11 @@ export default function DotGrid() {
 
     return () => {
       cancelAnimationFrame(animId);
-      window.removeEventListener("click", onClick);
-      window.removeEventListener("touchstart", onTouch);
-      window.removeEventListener("mousemove", onMouseMove);
-      window.removeEventListener("mouseleave", onMouseLeave);
-      window.removeEventListener("touchmove", onTouchMove);
+      if (supportsPointerInteraction) {
+        window.removeEventListener("click", onClick);
+        window.removeEventListener("mousemove", onMouseMove);
+        window.removeEventListener("mouseleave", onMouseLeave);
+      }
       window.removeEventListener("resize", build);
     };
   }, []);

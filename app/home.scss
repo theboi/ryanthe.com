@@ -88,6 +88,14 @@
   border: 1px solid var(--hairline);
   overflow: hidden;
 }
+.hw .card-link {
+  color: inherit;
+  display: block;
+  border-radius: var(--card-radius);
+}
+.hw .card-link:hover {
+  color: inherit;
+}
 .hw[data-card-style="floating"] .card {
   border-color: transparent;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04), 0 24px 48px -24px rgba(0, 0, 0, 0.18);
@@ -249,6 +257,33 @@
 }
 .hw .hero-tagline .muted {
   color: var(--muted);
+}
+
+.hw .hero-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+.hw .hero-links a {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--hairline);
+  border-radius: 50%;
+  color: var(--muted);
+  display: grid;
+  place-items: center;
+  transition: border-color 0.2s ease-out, color 0.2s ease-out,
+    transform 0.2s ease-out;
+}
+.hw .hero-links a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+.hw .hero-links i {
+  color: inherit;
+  font-size: 14px;
 }
 
 .hw .hero-bottom {
@@ -1231,6 +1266,14 @@
     max-width: 100%;
     margin-top: 14px;
     line-height: 1.4;
+  }
+  .hw .hero-links {
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .hw .hero-links a {
+    width: 30px;
+    height: 30px;
   }
   .hw .hero-shape {
     top: 22%;
