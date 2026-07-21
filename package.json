@@ -9,23 +9,23 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@notionhq/client": "^0.4.12",
+    "@notionhq/client": "^0.4.13",
     "axios": "^0.21.4",
-    "clsx": "^1.1.1",
-    "dotenv": "^8.2.0",
-    "next": "^15.0.4",
-    "phaser": "^3.55.2",
-    "react": "^19.0.0",
-    "react-confetti-boom": "^1.1.0",
-    "react-dom": "^19.0.0",
-    "sass": "^1.43.4",
+    "clsx": "^1.2.1",
+    "dotenv": "^8.6.0",
+    "next": "^15.5.21",
+    "phaser": "^3.90.0",
+    "react": "^19.2.8",
+    "react-confetti-boom": "^1.1.2",
+    "react-dom": "^19.2.8",
+    "sass": "^1.101.3",
     "sharp": "^0.29.3"
   },
   "devDependencies": {
-    "@types/node": "^16.11.7",
-    "@types/react": "^17.0.34",
-    "eslint": "7",
-    "eslint-config-next": "^15.0.4",
-    "typescript": "^5.7.2"
+    "@types/node": "^16.18.126",
+    "@types/react": "^17.0.93",
+    "eslint": "^7.32.0",
+    "eslint-config-next": "^15.5.21",
+    "typescript": "^5.9.3"
   }
 }
