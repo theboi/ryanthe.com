@@ -1,7 +1,7 @@
 import style from "./style.module.scss";
-import HomeTile from "../../components/works/tile";
+import HomeTile from "../../src/components/works/tile";
 import { GetServerSidePropsContext, GetStaticPropsContext } from "next";
-import { getWorkProperties, WorksNotability } from "../../data/works";
+import { getWorkProperties, WorksNotability } from "../../src/data/works";
 
 export const databaseId = "12c16582503441148d442bbab9528bdd";
 
@@ -26,16 +26,6 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   const entries = await notion.databases.query({
     database_id: databaseId,
   });
-
-  // const options = {
-  //   method: "GET",
-  //   headers: {
-  //     accept: "application/json",
-  //     "Notion-Version": "2022-06-28",
-  //     authorization:
-  //       "Bearer secret_Vq6wBqB5dogkvtFigBExmIUlhHCWkGWrWf1MJlCXr7k",
-  //   },
-  // };
 
   return {
     props: {

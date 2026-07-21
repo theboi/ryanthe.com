@@ -3,12 +3,13 @@ import Image from "next/legacy/image";
 import {
   GetServerSideProps,
   GetServerSidePropsContext,
+  GetStaticPaths,
   GetStaticProps,
   GetStaticPropsContext,
 } from "next";
 import { databaseId } from "..";
 import React from "react";
-import { getWorkProperties } from "../../../data/works";
+import { getWorkProperties } from "../../../src/data/works";
 
 export default function WorkPage({ data }) {
   return (
@@ -50,26 +51,10 @@ const resolveBlock = (block) => {
   return jsx;
 };
 
-export const getStaticPaths = async () => {
-  const { Client } = require("@notionhq/client");
-  const notion = new Client({ auth: process.env.NOTION_API_KEY });
-
-  const entries = await notion.databases.query({
-    database_id: databaseId,
-  });
-
-  return {
-    paths: entries.results.map((entry) => ({
-      params: {
-        id:
-          entry.properties["ID"]?.rich_text.reduce((a,c) => a+c.plain_text, "") ||
-          entry.properties["Name"]?.title.reduce((a,c) => a+c.plain_text, "") ||
-          entry["id"],
-      },
-    })),
-    fallback: true,
-  };
-};
+export const getStaticPaths: GetStaticPaths = async () => ({
+  paths: [],
+  fallback: "blocking",
+});
 
 export const getStaticProps: GetStaticProps = async (
   ctx: GetStaticPropsContext
