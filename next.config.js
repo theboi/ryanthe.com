@@ -2,7 +2,7 @@ require('dotenv').config()
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['picsum.photos', 's3.us-west-1.amazonaws.com', 's3.us-west-2.amazonaws.com'],
+    domains: [],
   },
   async redirects() {
     return [
@@ -18,7 +18,5 @@ module.exports = {
       },
     ]
   },
-  env: {
-    NOTION_API_KEY: process.env.NOTION_API_KEY,
-  },
+  env: {},
 }
